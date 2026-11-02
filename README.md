@@ -1,8 +1,8 @@
-# DSOC2610 — DGSL_SOC
+# SoC2611 — DGSL_SOC
 
 A preliminary RISC-V System-on-Chip (SoC) with an AI accelerator targeting the IHP SG13CMOS5L process and packaged in a QFN64 form factor.
 
-This repository contains the design assets, documentation, signoff flow, and release materials for the `DSOC2610` top cell.
+This repository contains the design assets, documentation, signoff flow, and release materials for the `SoC2611` top cell.
 
 ## Overview
 
@@ -11,7 +11,7 @@ This repository contains the design assets, documentation, signoff flow, and rel
 - Package: QFN64
 - Die size: 6.6 mm × 6.6 mm
 - Core concept: RISC-V CPU + AI accelerator
-- Top cell: `DSOC2610`
+- Top cell: `SoC2611`
 - License: Apache-2.0
 
 ## Project status
@@ -43,9 +43,9 @@ Important design notes:
 │   └── v.1.0.0/
 │       ├── ReleaseNote.md
 │       ├── doc/            (Datasheet.md, Specification.md)
-│       ├── gds/            (DSOC2610.gds.gz)
-│       └── netlist/        (DSOC2610.cdl.gz, DSOC2610.v.gz)
-├── DSOC2610-main/
+│       ├── gds/            (SoC2611.gds.gz)
+│       └── netlist/        (SoC2611.cdl.gz, SoC2611.v.gz)
+├── SoC2611-main/
 │   ├── Flow/
 │   ├── constraints/
 │   ├── rtl/
@@ -72,7 +72,7 @@ Contains the public release artifacts for the current version, including:
 - Netlists used for verification and LVS
 - Release documentation and notes
 
-### `DSOC2610-main/`
+### `SoC2611-main/`
 This is the main design workspace and contains the flow and implementation assets:
 
 - `Flow/` — design and signoff flow scripts
@@ -83,7 +83,7 @@ This is the main design workspace and contains the flow and implementation asset
 
 ## Design goals
 
-The DSOC2610 design is intended to combine:
+The SoC2611 design is intended to combine:
 
 - a RISC-V processor subsystem,
 - a DeepGrid AI accelerator,
@@ -97,7 +97,7 @@ For a technical understanding of the design, start with:
 1. `doc/Specification.md`
 2. `doc/Datasheet.md`
 3. `doc/TRL-Mixed-Signal-IP.md`
-4. `DSOC2610-main/README.md`
+4. `SoC2611-main/README.md`
 
 ## Licensing
 
