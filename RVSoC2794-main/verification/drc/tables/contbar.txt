@@ -1,0 +1,3 @@
+# lyrdb files: 1
+#   /workspace/chip_rehearsal2/drc_tables/contbar/dgrid_soc1_chip_top_lvsview_dgrid_soc1_chip_top_contbar.lyrdb
+DRC CLEAN: 0 violations

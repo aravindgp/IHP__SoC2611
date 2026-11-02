@@ -1,0 +1,6 @@
+# lyrdb files: 1
+#   /workspace/chip_rehearsal2/drc_tables/topvia1/dgrid_soc1_chip_top_lvsview_dgrid_soc1_chip_top_topvia1.lyrdb
+rule                            count  waived  top cells / description
+TV1.b                              28       0  dgrid_soc1_chip_top:28  | 5.21. TV1.b : Min. TopVia1 space: 0.42 um
+TV1.a                               8       0  dgrid_soc1_chip_top:8  | 5.21. TV1.a : Min. and max. TopVia1 width: 0.42 um
+TOTAL 36 violations in 2 rules; unwaived 36 in 2 rules

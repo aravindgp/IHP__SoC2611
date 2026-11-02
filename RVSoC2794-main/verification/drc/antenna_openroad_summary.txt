@@ -1,0 +1,3 @@
+[INFO ANT-0002] Found 6107 net violations.
+[INFO ANT-0001] Found 7134 pin violations.
+ANTENNA_VIOLATIONS 6107 -> /workspace/chip_rehearsal2/ant/antenna.rpt

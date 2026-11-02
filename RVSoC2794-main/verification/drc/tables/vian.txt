@@ -1,0 +1,8 @@
+# lyrdb files: 1
+#   /workspace/chip_rehearsal2/drc_tables/vian/dgrid_soc1_chip_top_lvsview_dgrid_soc1_chip_top_vian.lyrdb
+rule                            count  waived  top cells / description
+V3.b                              170       0  dgrid_soc1_chip_top:170  | 5.20. V3.b : Min. Via3 space: 0.22 um
+V2.b                              127       0  dgrid_soc1_chip_top:127  | 5.20. V2.b : Min. Via2 space: 0.22 um
+V3.a                              103       0  dgrid_soc1_chip_top:103  | 5.20. V3.a : Min. and max. Via3 width: 0.19 um
+V2.a                               81       0  dgrid_soc1_chip_top:81  | 5.20. V2.a : Min. and max. Via2 width: 0.19 um
+TOTAL 481 violations in 4 rules; unwaived 481 in 4 rules

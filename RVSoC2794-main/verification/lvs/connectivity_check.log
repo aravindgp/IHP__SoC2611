@@ -1,0 +1,25 @@
+DGSE_INFO connectivity check (signoff): every top pin reaches an instance pin, no driverless or multi-driven nets, 0 analog net(s) clean
+CONN_LOGICAL PASS
+CONN_UNROUTED 102 of 322906 multi-pin signal nets
+CONN_UNROUTED_NET cam_d_in\[0\]
+CONN_UNROUTED_NET cam_d_in\[1\]
+CONN_UNROUTED_NET cam_d_in\[2\]
+CONN_UNROUTED_NET cam_d_in\[3\]
+CONN_UNROUTED_NET cam_d_in\[4\]
+CONN_UNROUTED_NET cam_d_in\[5\]
+CONN_UNROUTED_NET cam_d_in\[6\]
+CONN_UNROUTED_NET cam_d_in\[7\]
+CONN_UNROUTED_NET cam_hs_in
+CONN_UNROUTED_NET cam_pwdn_out
+CONN_UNROUTED_NET cam_reset_out
+CONN_UNROUTED_NET cam_scl_out
+CONN_UNROUTED_NET cam_sda_oe_out
+CONN_UNROUTED_NET cam_sda_out
+CONN_UNROUTED_NET cam_vs_in
+CONN_UNROUTED_NET gpio_in\[0\]
+CONN_UNROUTED_NET gpio_in\[1\]
+CONN_UNROUTED_NET gpio_in\[2\]
+CONN_UNROUTED_NET gpio_in\[3\]
+CONN_UNROUTED_NET hb_csn_out
+CONN_DRT_SHORTS 10000
+CONN_DRT_VIOLATIONS 15826

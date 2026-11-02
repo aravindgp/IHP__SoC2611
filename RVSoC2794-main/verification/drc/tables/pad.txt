@@ -1,0 +1,8 @@
+# lyrdb files: 1
+#   /workspace/chip_rehearsal2/drc_tables/pad/dgrid_soc1_chip_top_lvsview_dgrid_soc1_chip_top_pad.lyrdb
+rule                            count  waived  top cells / description
+Pad.fR_M3                         106     106  dgrid_soc1_chip_top:106  | 6.9. Pad.fR_M3 : Min. recommended M3 exit length is 7.0 um
+Pad.fR_M2                          96      96  dgrid_soc1_chip_top:96  | 6.9. Pad.fR_M2 : Min. recommended M2 exit length is 7.0 um
+Pad.fR_TM1                         88      88  dgrid_soc1_chip_top:88  | 6.9. Pad.fR_TM1 : Min. recommended TM1 exit length is 7.0 um
+Pad.fR_M4                          24      24  dgrid_soc1_chip_top:24  | 6.9. Pad.fR_M4 : Min. recommended M4 exit length is 7.0 um
+TOTAL 314 violations in 4 rules; unwaived 0 in 0 rules
