@@ -1,13 +1,13 @@
 {
-  "name": "DSOC2610",
+  "name": "SoC2611",
   "design_type": "M",
   "technology": "IHP",
-  "unique_id": "2610",
+  "unique_id": "2611",
   "license": "Apache-2.0",
   "trl": 0,
   "sealring_x": 6600.0,
   "sealring_y": 6600.0,
-  "repository": "https://github.com/aravindgp/IHP__DSOC2610",
+  "repository": "https://github.com/aravindgp/IHP__SoC2611",
   "pdk_version": "IHP-Open-PDK dev dcb03b1e2d24250bccbb2e8783d55d2b4f734f14 (Merge PR #1311, 2026-10-30), unmodified",
   "process": "SG13CMOS5L",
   "dependencies": {
@@ -24,11 +24,11 @@
     "drc_lvs": "KLayout 0.30.5 with the IHP SG13CMOS5L decks",
     "fill": "PDK fill recipes (tiled)"
   },
-  "top_cell_name": "DSOC2610",
+  "top_cell_name": "SoC2611",
   "release": {
     "version": "v.1.0.0",
-    "gds": "release/v.1.0.0/gds/DSOC2610.gds.gz",
-    "netlist": "release/v.1.0.0/netlist/DSOC2610.cdl.gz",
+    "gds": "release/v.1.0.0/gds/SoC2611.gds.gz",
+    "netlist": "release/v.1.0.0/netlist/SoC2611.cdl.gz",
     "doc": "release/v.1.0.0/doc"
   }
 }
