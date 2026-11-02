@@ -1,4 +1,4 @@
-# RVSoC2794 (DGrid-SoC1) — Specification
+# DGSL2611 (DGrid-SoC1) — Specification
 
 > **Status: PRELIMINARY — not for fabrication.** Detailed routing has not converged and hold timing on
 > CPU↔SRAM paths is open; DRC/LVS are not clean yet. A final release will replace this one.

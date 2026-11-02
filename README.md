@@ -1,8 +1,8 @@
-# RVSoC2794 — DGrid-SoC1
+# DGSL2611 — DGrid-SoC1
 
 A preliminary RISC-V System-on-Chip (SoC) with an AI accelerator targeting the IHP SG13CMOS5L process and packaged in a QFN64 form factor.
 
-This repository contains the design assets, documentation, signoff flow, and release materials for the `RVSoC2794` top cell.
+This repository contains the design assets, documentation, signoff flow, and release materials for the `DGSL2611` top cell.
 
 ## Overview
 
@@ -11,7 +11,7 @@ This repository contains the design assets, documentation, signoff flow, and rel
 - Package: QFN64
 - Die size: 6.6 mm × 6.6 mm
 - Core concept: RISC-V CPU + AI accelerator
-- Top cell: `RVSoC2794`
+- Top cell: `DGSL2611`
 - License: Apache-2.0
 
 ## Project status
@@ -42,7 +42,7 @@ Important design notes:
 │       ├── gds/
 │       ├── netlist/
 │       └── release-notes/
-├── RVSoC2794-main/
+├── DGSL2611-main/
 │   ├── Flow/
 │   ├── constraints/
 │   ├── rtl/
@@ -69,7 +69,7 @@ Contains the public release artifacts for the current version, including:
 - Netlists used for verification and LVS
 - Release documentation and notes
 
-### `RVSoC2794-main/`
+### `DGSL2611-main/`
 This is the main design workspace and contains the flow and implementation assets:
 
 - `Flow/` — design and signoff flow scripts
@@ -80,7 +80,7 @@ This is the main design workspace and contains the flow and implementation asset
 
 ## Design goals
 
-The RVSoC2794 design is intended to combine:
+The DGSL2611 design is intended to combine:
 
 - a RISC-V processor subsystem,
 - a DeepGrid AI accelerator,
@@ -94,7 +94,7 @@ For a technical understanding of the design, start with:
 1. `doc/Specification.md`
 2. `doc/Datasheet.md`
 3. `doc/TRL-Digital-Hard-IP.md`
-4. `RVSoC2794-main/README.md`
+4. `DGSL2611-main/README.md`
 
 ## Licensing
 

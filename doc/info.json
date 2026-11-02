@@ -1,8 +1,8 @@
 {
-  "name": "RVSoC2794",
+  "name": "DGSL2611",
   "design_type": "D",
   "technology": "IHP",
-  "unique_id": "2794",
+  "unique_id": "2611",
   "license": "Apache-2.0",
   "trl": 4,
   "sealring_x": 6600.0,
@@ -17,11 +17,11 @@
     "drc_lvs": "KLayout 0.30.5 with the IHP SG13CMOS5L decks",
     "fill": "PDK fill recipes (tiled)"
   },
-  "top_cell_name": "RVSoC2794",
+  "top_cell_name": "DGSL2611",
   "release": {
     "version": "v.1.0.0",
-    "gds": "release/v.1.0.0/gds/RVSoC2794.gds.gz",
-    "netlist": "release/v.1.0.0/netlist/RVSoC2794.cdl.gz",
+    "gds": "release/v.1.0.0/gds/DGSL2611.gds.gz",
+    "netlist": "release/v.1.0.0/netlist/DGSL2611.cdl.gz",
     "doc": "release/v.1.0.0/doc"
   }
 }
