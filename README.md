@@ -16,7 +16,7 @@ This repository contains the design assets, documentation, signoff flow, and rel
 
 ## Project status
 
-This project is currently in a preliminary stage and is not intended for fabrication.
+This project is currently in a preliminary stage and is  intended for fabrication( work in progress).
 
 Important design notes:
 
