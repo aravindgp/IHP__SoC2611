@@ -7,7 +7,7 @@
   "trl": 4,
   "sealring_x": 6600.0,
   "sealring_y": 6600.0,
-  "repository": "",
+  "repository": "https://github.com/aravindgp/IHP__DGSL2611",
   "pdk_version": "IHP-Open-PDK dev branch, ihp-sg13cmos5l (snapshot 2026-10-30)",
   "process": "SG13CMOS5L",
   "dependencies": {},
