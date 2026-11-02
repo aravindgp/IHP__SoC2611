@@ -1,4 +1,4 @@
-# SoC2611 — DGrid-SoC1
+# SoC2611 — DGSL_SOC
 
 A preliminary RISC-V System-on-Chip (SoC) with an AI accelerator targeting the IHP SG13CMOS5L process and packaged in a QFN64 form factor.
 
