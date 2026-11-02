@@ -138231,7 +138231,7 @@ module clk_gen_icg_Brtl
     n104 <= n92;
 endmodule
 
-module SoC2611
+module DSOC2610
   (input  clk_x2_in,
    input  porst_n_in,
    output hb_ck_out,

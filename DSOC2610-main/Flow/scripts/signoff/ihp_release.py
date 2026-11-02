@@ -5,7 +5,7 @@ usage: ihp_release.py <ip_repo> <name> <in.gds> <old_top> <chip.v> <chip.cdl> [v
   - GDS: top cell <old_top> renamed to <name>, written to release/<version>/gds/<name>.gds.gz with the KLayout save
     options IHP requires (Open-Silicon-MPW fig/klayout_save.png): GDS2, dbu 0.001, no PCell/library context,
     zero-length paths eliminated (-> BOUNDARY), library LIB, max vertices 8000, max cell name length 32000.
-  - Netlists: module / .SUBCKT <old_top> renamed to <name> -> release/<version>/netlist/<name>.v and <name>.cdl
+  - Netlists: module / .SUBCKT <old_top> renamed to <name> -> release/<version>/netlist/<name>.v.gz and <name>.cdl.gz
   - doc/info.json: release paths point at the files (the CI resolves release.gds / release.netlist from it).
 """
 import gzip
@@ -47,18 +47,22 @@ print(f'GDS  {gout} ({gout.stat().st_size / 1e6:.1f} MB), top {name}, dbu {ly.db
 
 v = Path(vin).read_text()
 v, nv = re.subn(rf'^(\s*module\s+){re.escape(old_top)}\b', rf'\g<1>{name}', v, flags=re.M)
-(rel / 'netlist' / f'{name}.v').write_text(v)
+with gzip.open(rel / 'netlist' / f'{name}.v.gz', 'wt') as fh:
+    fh.write(v)   # .gz: GitHub rejects files > 100 MB (chip CDL 121 MB, Verilog 143 MB; ~6 MB each gzipped)
 c = Path(cin).read_text()
 c, nc = re.subn(rf'^(\.SUBCKT\s+){re.escape(old_top)}\b', rf'\g<1>{name}', c, flags=re.M | re.I)
-(rel / 'netlist' / f'{name}.cdl').write_text(c)
-print(f'NET  {name}.v (module renamed {nv}x), {name}.cdl (.SUBCKT renamed {nc}x)')
+with gzip.open(rel / 'netlist' / f'{name}.cdl.gz', 'wt') as fh:
+    fh.write(c)
+print(f'NET  {name}.v.gz (module renamed {nv}x), {name}.cdl.gz (.SUBCKT renamed {nc}x)')
 if nv != 1 or nc != 1:
     sys.exit('expected exactly one top module / subckt to rename')
 
 ij = Path(repo) / 'doc' / 'info.json'
 info = json.loads(ij.read_text())
 info['top_cell_name'] = name
+info['name'] = name
+info['unique_id'] = ''.join(ch for ch in name if ch.isdigit())[-4:] or info.get('unique_id', '')
 info['release'] = {'version': ver, 'gds': f'release/{ver}/gds/{name}.gds.gz',
-                   'netlist': f'release/{ver}/netlist/{name}.cdl', 'doc': f'release/{ver}/doc'}
+                   'netlist': f'release/{ver}/netlist/{name}.cdl.gz', 'doc': f'release/{ver}/doc'}
 ij.write_text(json.dumps(info, indent=2) + '\n')
 print(f'INFO {ij}: release paths set')

@@ -140,7 +140,8 @@ def add_sealring(layout, cell, width, height, x0=0.0, y0=0.0, cell_name='sealrin
         sr.shapes(li).insert(reg)
     cell.insert(db.CellInstArray(sr.cell_index(), db.Trans(db.Vector(round(x0 / dbu), round(y0 / dbu)))))
     sr.shapes(layout.layer(*L['TEXT'])).insert(db.DText(
-        f"Device registration size: x={width:.1f} um ; y={height:.1f} um", 5.0, 5.0).to_itype(dbu))
+        f"Device registration size: x={width:.1f} um ; y={height:.1f} um\n"
+        f"Calculated area: {width * height / 1e6:.2f} sq mm", 5.0, 5.0).to_itype(dbu))  # PDK PCell label, area in mm2
     return sr
 
 

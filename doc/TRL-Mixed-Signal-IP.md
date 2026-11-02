@@ -1,5 +1,9 @@
 # Mixed-Signal IP Quality Assessment using TRL scale
 
+> **Declared level: TRL 0 (preliminary).** Only items with evidence in this repository are ticked. Functional
+> simulation results are not yet supplied, so TRL1 is not complete. Items about design equations and Verilog-A
+> models do not apply to this digital SoC; its RTL (`DSOC2610-main/rtl/`) and gate-level netlists are provided.
+
 The provided set of the quality assessment criteria, using TRL (Technology Readiness Level) scale, is a tool for designers to auto evaluate a submitted design. The purpose of this tool is to
 have a short overview of IP in terms of its maturity.
 

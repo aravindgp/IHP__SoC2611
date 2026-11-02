@@ -1,4 +1,4 @@
-# SoC2611 (DGrid-SoC1) — Datasheet
+# DSOC2610 (DGrid-SoC1) — Datasheet
 
 > **Status: PRELIMINARY — not for fabrication.** Detailed routing has not converged and hold timing on
 > CPU↔SRAM paths is open; DRC/LVS are not clean yet. A final release will replace this one.
