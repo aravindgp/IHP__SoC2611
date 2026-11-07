@@ -33,3 +33,9 @@ Routing is not yet DRC-clean, antenna repair and hold-timing closure are open, L
 verification summaries here were taken on a reduced LVS view (IO/SRAM FEOL removed, all metal kept) of an
 intermediate routing snapshot — not on the released GDS. The final release will carry DRC on the unmodified filled
 GDS (IHP precheck + density), with input hashes.
+
+**Update 7 November 2026** (see `../STATUS_2026-11-07.md`): the chip was re-floorplanned by hand and routed through
+a measured campaign; the best routed state (floorplan H10) is at 1,290 detailed-route violations from 392,856, the
+remainder being Metal4 shorts inside the SRAM macros caused by global-route overflow across them; floorplan H12 is
+being checked as the fix. Files: `Flow/ROUTING_CLOSURE_LOG.md` (dated log), `Flow/floorplan/` (placements in um,
+placement blockages, violation maps, the two problem briefs), `Flow/scripts/signoff/` (all scripts used).

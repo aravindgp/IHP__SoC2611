@@ -25,8 +25,11 @@ Every script sources `env.sh` itself. Python helpers need the `klayout` module, 
 | `make_padring.py [--config padring/padring_qfn64.json] [--outdir dir]` | QFN64 pad ring. See "Pad ring + seal ring" below. |
 | `padring/test_padring_openroad.sh [dir]` | Places the ring with OpenROAD from `padring.tcl` on a pad-only netlist, then `compare_padring.py` checks the DEF against `padring.gds`. |
 | `fill_tiled.py <in.gds> <out.gds> [--tile 1000] [-j 3] [--no-activ] [--no-metal]` | Density fill using the PDK recipes (`macros/sg13cmos5l_filler_{ActGatP,Metal}.lym`), run tile by tile in separate KLayout processes (see "Density fill" below). Needs the seal ring in the layout. |
+| `fill_topup.py <filled.gds> <out.gds> [-j 12] [--layers M1,M2,M3,M4,TM1,Activ,GatPoly] [--macros RE]` | **Density top-up after `fill_tiled.py`**: fills the irregular space the PDK lattice leaves between routes and cells with rule-clean free-form pieces (see "Density closure" below). Never inside macro outlines on Activ/GatPoly/M1-M4; TM1 also over the SRAMs. |
+| `density_fast.py <gds> [-j 12] [--attrib] [--json f] [--csv f] [--ref density.lyrdb]` | **The PDK `density.drc` numbers in minutes** (AFil.g/g1/g2/g3, GFil.g, M1-4.j/k, M1-4Fil.h/k, TM1.c/d). Same layer derivation, chip area, 800 um windows/400 um step and edge "backup" windows as the deck. `--ref` diffs against a deck lyrdb; `--attrib` adds per-window macro and fill shares. Exit 0 = all pass. |
+| `check_fill.py <gds> [--cell DG_TOPUP_FILL] [-j 8]` | Filler width/space/max-size (AFil.a/a1/b, GFil.a/b/c, MFil.a1/a2/b, TM1Fil.a/a1/b: rules only the maximal deck has) plus filler-to-drawn spacing, in one tiled pass. |
 | `run_fill.sh <in> <out> [--no-activ] [--no-metal]` | The PDK's own untiled `scripts/filler.py`. Use it only on small layouts: it needed >9 GB on the 6.6 mm die. |
-| `run_signoff.sh <chip.gds> <top> <chip.cdl> [--has-sealring] [--no-fill] [-j N] [--blackbox PAT]` | Runs seal ring (`make_sealring.py --input`), tiled fill (`fill_tiled.py`), DRC and LVS (`--deep`) in one go and writes `<top>_final.gds`. `--blackbox PAT` is passed through to LVS. |
+| `run_signoff.sh <chip.gds> <top> <chip.cdl> [--has-sealring] [--no-fill] [--no-topup] [--pdk-density] [-j N] [--srams] [--blackbox PAT]` | Runs seal ring (`make_sealring.py --input`), tiled fill (`fill_tiled.py`, `--abstract-macros` with `--srams`) + `fill_topup.py`, `density_fast.py` (`density.txt/json`), DRC without the 16 h density deck (`--pdk-density` adds it back) and LVS (`--deep`) in one go and writes `<top>_final.gds`. `--blackbox PAT` is passed through to LVS. |
 
 ## Validated (2026-10-31)
 
@@ -95,6 +98,78 @@ Geometry:
 - The fill frame is the inside of the seal ring, so the seal ring must exist first.
 - Activ fill does not fit between standard-cell rows (AFil.d keeps 1 um from NWell edges). Active density in the core comes from the cells themselves plus `decap_*`/`fill_*` (decap_8 39 %, fill_8 27 % Activ). Fill raises it in the IO ring, the core-to-pad gap and macro channels.
 - Alternative for metals: OpenROAD `density_fill -rules engine/flow/platforms/ihp-sg13cmos5l-dgse/fill.json`, which the DGSE flow already wires into `pnr_resume*.tcl`. Then run `fill_tiled.py --no-metal` for Activ/GatPoly only.
+
+### Density closure on the full chip (2 Nov, rehearsal chip `/workspace/chip_rehearsal2`)
+
+**Problem.** The PDK lattice fill alone (`fill_tiled.py --abstract-macros "RM_IHPSG13_.*"`, 17 min) left
+**212 density violations** on the rehearsal chip (PDK `density.drc`, 16 h): AFil.g2 x21, M1Fil.h x25,
+M2Fil.h x85, M3Fil.h x42, M4Fil.h x37 (800 um windows at 15-25 %), plus global **M2.j 27.87 %** (min 35)
+and **GFil.g 14.89 %** (min 15). TM1 passed with no margin (25.08 %, min 25).
+
+**Root cause: the std-cell core, not the SRAMs.** (`density_fast.py --attrib`.)
+- The 298 RM_IHPSG13 macros (12.94 mm2, 29.7 % of the die) are dense on every layer they use: Activ
+  34-44 %, GatPoly 19-20 %, M1 37-40 %, M2 33-41 %, M3 37-46 %, M4 41-48 % (measured from the SRAM GDS,
+  per macro type). Only TopMetal1 is 0 % inside them.
+- Outside the macros the averages were Activ 35.6 %, GatPoly 12.9 %, M1 34.5 %, **M2 23.9 %**, M3 33.2 %,
+  M4 33.8 %. The failing windows are 86-97 % std-cell core (3-11 % macro, 0-2 % pad ring), with only
+  0.4-10 % of their area filled: the lattice squares (3.5/4 um at 5/6 um pitch, 1x1 at 2.5 um) need
+  1.84-4.84 um of free space aligned to the global lattice, which the routed core rarely has.
+- Macro interiors cannot be filled (they use Activ..M4; the SRAM docs give no fill allowance), so the
+  fix had to come from the space between routes and cells.
+
+**Fix: `fill_topup.py`** after the lattice fill. Free space per layer = seal-ring interior minus macro
+outlines (kept out by the layer's largest rule distance) minus every PDK-recipe exclusion; it is cut by a
+5 um grid (0.43 um lines; TM1 13 um / 3.01 um) and opened by the min. filler width, and any piece with a
+Euclidean width/space/notch marker is dropped. Pieces are free-form Manhattan polygons of 1x1..4.57x4.57 um
+(GatPoly 0.7..4.2, TM1 5..10). Rule distances +10 nm. TM1 is also filled over the SRAMs (no TM1 inside).
+
+| rule | limit | lattice fill only | + `fill_topup.py` |
+|---|---|---|---|
+| AFil.g / g1 (global Activ) | 35..55 % | 36.49 % | 44.25 % |
+| AFil.g2 / g3 (800 um windows) | 25..65 % | 21 fail, min 21.11 % | pass, 37.03..54.00 % |
+| GFil.g (global GatPoly) | >= 15 % | **14.89 % FAIL** | 24.52 % |
+| M1.j / k | 35..60 % | 35.82 % | 49.10 % |
+| M2.j / k | 35..60 % | **27.87 % FAIL** | 36.92 % |
+| M3.j / k | 35..60 % | 35.61 % | 45.58 % |
+| M4.j / k | 35..60 % | 37.61 % | 56.75 % (3.2 points below the max) |
+| M1Fil.h / k (windows) | 25..75 % | 25 fail, min 18.25 % | pass, 39.61..60.91 % |
+| M2Fil.h / k | 25..75 % | 85 fail, min 15.49 % | pass, 27.90..43.26 % |
+| M3Fil.h / k | 25..75 % | 42 fail, min 14.96 % | pass, 30.78..63.30 % |
+| M4Fil.h / k | 25..75 % | 37 fail, min 15.44 % | pass, 43.32..70.12 % |
+| TM1.c / d | 25..70 % | 25.08 % | 33.05 % |
+| **total** | | **212 violations** | **0** |
+
+Added: M1 5.79, M2 3.94, M3 4.34, M4 8.34, TM1 3.47, Activ 3.38, GatPoly 4.20 mm2 (3.9 M shapes).
+
+**Validation.**
+- `density_fast.py` vs the PDK deck on the lattice-filled chip: the same 212 violations (212 common, 0 extra,
+  0 missing), max ratio difference 0.0005 %-points, globals identical to 3 decimals. On three 800 um
+  clips of the topped-up chip (std-cell core / std-cell core / pad ring + SRAMs) the PDK deck's layer
+  densities equal `density_fast.py`'s to 0.01 % and no window rule fires.
+- Fill DRC: PDK tables activfiller, gatpolyfiller, metalnfiller, topmetal1, topmetal1filler, offgrid,
+  angle on the three clips: **0 violations**. `check_fill.py` on all 3.9 M top-up shapes (width, space,
+  max size, maximal-deck rules): **clean**.
+- Not run: the full-chip PDK density deck on the topped-up chip (16 h); `density_fast.py` replaces it in
+  the loop. Start it at low priority only when the machine is idle.
+
+**Run time on the full chip** (measured next to the running DRT, load average 60-75 on 32 CPUs):
+`fill_tiled.py` 17 min, `fill_topup.py -j 12` 23 min (~4 GB), `density_fast.py -j 12` 8.5 min (~4 GB;
+the macros are measured once per master and instance instead of being flattened in every tile:
+`--no-macro-split` is the slow reference mode, >50 min). GDS grows from 0.82 to 1.13 GB.
+
+**Margins to watch on the final chip:** M2.j is at 36.9 % (needs 35) and M4.j at 56.8 % (max 60); the
+lowest M2 window is 27.9 % (needs 25). If the final routing adds a lot of M4 and M4.k fails, re-run
+`fill_topup.py --shrink M4=0.2` (pieces pulled back from the free-space edge; on a std-cell clip
+`M4=0.5` cut the M4 top-up from 0.213 to 0.047 mm2 per 0.64 mm2). Do not drop the M4 top-up entirely:
+lattice-only M4 had 37 M4Fil.h windows below 25 %.
+
+```bash
+S=HW/asic/signoff
+python3 $S/fill_tiled.py chip_seal.gds chip_pdkfill.gds --top dgrid_soc1_chip_top -j 2 --abstract-macros 'RM_IHPSG13_.*'
+python3 $S/fill_topup.py chip_pdkfill.gds chip_final.gds --top dgrid_soc1_chip_top -j 12
+python3 $S/density_fast.py chip_final.gds -j 12 --attrib --json density.json      # exit 0 = all pass
+python3 $S/check_fill.py chip_final.gds --cell DG_TOPUP_FILL -j 8                  # optional, flat drawn layers: slow
+```
 
 ## Waivers (`waivers/`)
 
