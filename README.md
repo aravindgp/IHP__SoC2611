@@ -40,6 +40,7 @@ Important design notes:
 ├── dependencies/
 ├── measurements/
 ├── release/
+│   ├── v.1.1.0/        (latest, preliminary: 8 Nov 2026 routed state, seal ring + fill; GDS in two .part files, see its ReleaseNote.md)
 │   └── v.1.0.0/
 │       ├── ReleaseNote.md
 │       ├── doc/            (Datasheet.md, Specification.md)
@@ -65,8 +66,14 @@ This directory contains the project documentation and metadata:
 - `TRL-Mixed-Signal-IP.md` — technology readiness assessment
 - `info.json` — repository metadata and design information
 
+### `release/v.1.1.0/` (latest, preliminary)
+Interim release of 8 November 2026: GDS of the best routed state at the time (floorplan H10, detailed-route pass 61,
+1,005 remaining violations, mostly shorts inside the SRAM macros whose fix is in progress), seal ring, PDK and top-up
+fill (density 0 violations), CDL and Verilog netlists, SHA-256 hashes in its `ReleaseNote.md`. Not for fabrication;
+DRC/LVS not run on it. `doc/info.json` points at this release.
+
 ### `release/v.1.0.0/`
-Contains the public release artifacts for the current version, including:
+Contains the public release artifacts for the previous preliminary version, including:
 
 - GDS output for layout export
 - Netlists used for verification and LVS
