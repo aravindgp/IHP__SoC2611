@@ -34,8 +34,11 @@
   at pass 0), about 860 of them Metal4 shorts between pass-through signal wires and the SRAM macros' power-pin
   stripes inside the macros (root cause and fix in progress: `../../STATUS_2026-11-08.md`).
 - Density (`density_fast.py`, same windows and limits as the PDK density deck): full-fill variant **0 violations**,
-  all Activ/GatPoly/Metal1-4/TopMetal1 rules PASS (global TopMetal1 33.1 %); the figures of the whole-file
-  (PDK-fill-only) variant are added to this note by a follow-up commit as soon as measured.
+  all Activ/GatPoly/Metal1-4/TopMetal1 rules PASS (global TopMetal1 33.1 %). Whole-file (PDK-fill-only) variant:
+  **84 violations** — Metal2 global 29.7 % (limit >= 35 %), and 4 / 69 / 10 windows of Metal1 / Metal2 / Metal3
+  below the 25 % window minimum (15.6-24.9 %); Activ, GatPoly, Metal4 and TopMetal1 pass. The top-up fill of the
+  full-fill variant removes all of them; the final release will be a single density-clean file within the size
+  limit.
 - Antenna: not repaired on this snapshot (about 6,000 violating nets; repair rehearsed, see the status note).
 - Scripts to reproduce every step: `SoC2611-main/Flow/scripts/signoff/` (chip_finish.tcl, stream_chip.sh,
   release_gds_chain.sh = make_sealring.py + fill_tiled.py + fill_topup.py + density_fast.py, make_chip_cdl.sh,
