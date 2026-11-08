@@ -159,6 +159,32 @@ PROBES = {
                     dict(pl='/workspace/chip_fp2/handoff/H12_cpueast.pl', no_ring=True,
                          blk=['3120 1400 3300 2300', '3300 1955 3900 2140']),
                     dict(halo=10, density=0.6, dpl_max_disp='1500 1500')),
+    'H13-pockets': ('H12 + placement blockages on every dead space of the macro placement (fp_pockets.py: 146 rects, '
+                    '5.0 mm2): the 60-130 um pockets between two macro rows whose pin edges face each other and the '
+                    '100 um margin strips between the pad ring and the edge-row macros. H12 DRT pass 3 showed the '
+                    'remaining inside-macro shorts (PCORE register-file rows, AXI FIFO stack x 4464, dp FIFO columns '
+                    'x 1930/2407) come from cells placed in these pockets: 98 of the 112 nets with guides inside those '
+                    'macros have a pin in a pocket, and the pocket cells have no vertical routing exit (M1-M4 blocked '
+                    'inside the macros, no layer above TopMetal1 in cmos5l)',
+                    'GRT sanity < 15,000; killed if guides_in_macros (margin -10) shows > 60 Metal4 boxes inside '
+                    'macros on the chip guides (H12: 166), or DRT pass 3 > 40,000',
+                    dict(pl='/workspace/chip_fp2/handoff/H12_cpueast.pl', no_ring=True,
+                         blk=['3120 1400 3300 2300', '3300 1955 3900 2140'],
+                         blk_file='/workspace/chip_fp2/handoff/H12_pockets.txt'),
+                    dict(halo=10, density=0.6, dpl_max_disp='1500 1500')),
+    'H14-camspread': ('H13 + (a) the camera write-FIFO row at y 1240 (four flat macros 3480-5899 with 60 um gaps, a '
+                      '2.4 mm wall above a 0.4 mm band of cells) spread to 147 um gaps: slice1 4243 -> 4330, '
+                      'write_fifo2 slice0 5006 -> 5180, slice1 5482 -> 5743 (ends at the 6160 margin), and (b) '
+                      'placement blockages on every thin (< 30 um) blank gap between stacked macros as well (88 more '
+                      'rects, 234 total, 5.56 mm2). H13 DRT pass 3 still had 866 shorts inside macros: camera FIFOs '
+                      '347 (traffic from the band below through the 60 um gaps), dp FIFO rows ~390 (cells in 20 um '
+                      'blank gaps between stacked rows)',
+                      'GRT sanity < 15,000; killed if guides_in_macros (margin -10) shows > 25 Metal4 or > 150 '
+                      'Metal2 boxes inside macros (H13: 35 / 209), or DRT pass 3 > 25,000',
+                      dict(pl='/workspace/chip_fp2/handoff/H14_camspread.pl', no_ring=True,
+                           blk=['3120 1400 3300 2300', '3300 1955 3900 2140'],
+                           blk_file='/workspace/chip_fp2/handoff/H14_pockets.txt'),
+                      dict(halo=10, density=0.6, dpl_max_disp='1500 1500')),
     'D-h25-d050': ('A with the previous best run\'s engine knobs: halo 25 keeps cells off the macro edges, '
                    'GPL density 0.5 spreads the logic into the strips', 'killed if overflow is not below A',
                    dict(layout='bands', G=60, BB=20, strip_scale=1.0), dict(halo=25, density=0.5, dpl_max_disp='1500 1500')),
@@ -176,6 +202,11 @@ def plan(tag):
         txt = r.stdout + r.stderr + f'\nmacros with lower-left inside the band: {n_out}\n'
         ring = '340.3 340.2 6259.7 440.3;340.3 6159.7 6259.7 6259.7;340.3 440.3 440.3 6159.7;6159.7 440.3 6259.7 6159.7'
         blks = ([] if kn.get('no_ring') else [ring]) + list(kn.get('blk', []))   # blk: extra 'x0 y0 x1 y1' um rects
+        if kn.get('blk_file'):   # fp_pockets.py output: "BLK x0 y0 x1 y1  # why"
+            blks += [' '.join(ln.split()[1:5]) for ln in open(kn['blk_file']) if ln.startswith('BLK ')]
+            txt_extra = f'blockages from {kn["blk_file"]}: {len(blks)} total\n'
+        else:
+            txt_extra = ''
         (OUT / f'{tag}_blockages.txt').write_text(';'.join(blks))
         (OUT / f'{tag}_summary.txt').write_text(txt)
         (OUT / f'{tag}_plan.log').write_text(txt)

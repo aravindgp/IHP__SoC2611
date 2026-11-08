@@ -39,3 +39,10 @@ a measured campaign; the best routed state (floorplan H10) is at 1,290 detailed-
 remainder being Metal4 shorts inside the SRAM macros caused by global-route overflow across them; floorplan H12 is
 being checked as the fix. Files: `Flow/ROUTING_CLOSURE_LOG.md` (dated log), `Flow/floorplan/` (placements in um,
 placement blockages, violation maps, the two problem briefs), `Flow/scripts/signoff/` (all scripts used).
+
+**Update 8 November 2026** (see `../STATUS_2026-11-08.md`): root cause of the residual shorts found and measured
+(cells placed in the dead spaces between macro rows force pass-through nets across the SRAM macros, which have no
+legal vertical crossing in this 5-metal process); floorplan H13 blocks those spaces (global-route overflow 9,522 ->
+3,061, detailed route 1,196 at pass 28); the route is now being closed by side-move ECO rounds on the H13
+snapshots (`Flow/scripts/signoff/eco_round.sh`), and the post-route chain (bondpad pins, GDS stream, antenna
+repair) has been rehearsed on an H13 snapshot.

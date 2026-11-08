@@ -1,0 +1,147 @@
+BLK 440.32 340.30 1143.15 440.20  # south margin strip under bank\[0\]_g_slice\[0\]_macro_i MX
+BLK 1203.15 340.30 1619.79 440.20  # south margin strip under bank\[0\]_g_slice\[1\]_macro_i MX
+BLK 1930.16 340.30 2632.99 440.20  # south margin strip under bank\[0\]_g_slice\[1\]_macro_i MX
+BLK 2692.99 340.30 3109.63 440.20  # south margin strip under bank\[0\]_g_slice\[2\]_macro_i MX
+BLK 3460.37 340.30 4163.20 440.20  # south margin strip under bank\[0\]_g_slice\[0\]_macro_i MX
+BLK 4223.20 340.30 4639.84 440.20  # south margin strip under bank\[0\]_g_slice\[1\]_macro_i MX
+BLK 4980.21 340.30 5683.04 440.20  # south margin strip under bank\[0\]_g_slice\[1\]_macro_i MX
+BLK 5743.04 340.30 6159.68 440.20  # south margin strip under bank\[0\]_g_slice\[2\]_macro_i MX
+BLK 1203.15 558.98 1619.79 677.17  # pocket 118 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 2692.99 558.98 3109.63 677.17  # pocket 118 um between bank\[0\]_g_slice\[2\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 4223.20 558.98 4639.84 677.17  # pocket 118 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 5743.04 558.98 6159.68 677.17  # pocket 118 um between bank\[0\]_g_slice\[2\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 440.32 577.17 1143.15 677.17  # pocket 100 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 1930.16 577.17 2632.99 677.17  # pocket 100 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 3460.37 577.17 4163.20 677.17  # pocket 100 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 4980.21 577.17 5683.04 677.17  # pocket 100 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 440.32 952.92 856.96 1052.92  # pocket 100 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[5\]_macro_i R0
+BLK 916.96 952.92 1333.60 1052.92  # pocket 100 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[7\]_macro_i R0
+BLK 1930.16 952.92 2346.80 1052.92  # pocket 100 um between bank\[0\]_g_slice\[2\]_macro_i MX and bank\[0\]_g_slice\[6\]_macro_i R0
+BLK 2406.80 952.92 2823.44 1052.92  # pocket 100 um between bank\[0\]_g_slice\[4\]_macro_i MX and bank\[0\]_g_slice\[8\]_macro_i R0
+BLK 3926.40 952.92 4163.20 1052.92  # pocket 100 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[5\]_macro_i R0
+BLK 4403.04 952.92 4639.84 1052.92  # pocket 100 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[7\]_macro_i R0
+BLK 5446.24 952.92 5683.04 1052.92  # pocket 100 um between bank\[0\]_g_slice\[4\]_macro_i MX and bank\[0\]_g_slice\[6\]_macro_i R0
+BLK 5922.88 952.92 6159.68 1052.92  # pocket 100 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[8\]_macro_i R0
+BLK 440.32 1618.98 856.96 1718.98  # pocket 100 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 916.96 1618.98 1333.60 1718.98  # pocket 100 um between ank\[0\]_g_slice\[11\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 1930.16 1618.98 2346.80 1718.98  # pocket 100 um between ank\[0\]_g_slice\[10\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 2406.80 1618.98 2823.44 1718.98  # pocket 100 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[5\]_macro_i R0
+BLK 3300.00 1761.66 3716.64 1836.66  # pocket 75 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 3776.64 1761.66 4193.28 1836.66  # pocket 75 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 4819.84 1761.66 5236.48 1836.66  # pocket 75 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 5296.48 1761.66 5533.28 1836.66  # pocket 75 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 5593.28 1761.66 5713.12 1836.66  # pocket 75 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 440.32 1976.54 856.96 2076.54  # pocket 100 um between bank\[0\]_g_slice\[6\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 916.96 1976.54 1333.60 2076.54  # pocket 100 um between bank\[0\]_g_slice\[8\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 1930.16 1976.54 2346.80 2076.54  # pocket 100 um between bank\[0\]_g_slice\[7\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 2406.80 1976.54 2823.44 2076.54  # pocket 100 um between bank\[0\]_g_slice\[9\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 3936.43 2214.30 4173.23 2343.98  # pocket 130 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 5922.88 2214.30 6159.68 2343.98  # pocket 130 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 4640.42 2215.07 4869.65 2343.98  # pocket 129 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 4929.65 2215.07 5166.45 2343.98  # pocket 129 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 3459.79 2258.98 3876.43 2343.98  # pocket 85 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 4453.01 2258.98 4580.42 2343.98  # pocket 85 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 5446.24 2258.98 5862.88 2343.98  # pocket 85 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 440.32 2334.10 856.96 2434.10  # pocket 100 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 916.96 2334.10 1333.60 2434.10  # pocket 100 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 1930.16 2334.10 2346.80 2434.10  # pocket 100 um between bank\[0\]_g_slice\[4\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 2406.80 2334.10 2823.44 2434.10  # pocket 100 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 3459.79 2601.54 3876.43 2686.54  # pocket 85 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 4453.01 2601.54 4869.65 2686.54  # pocket 85 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 5446.24 2601.54 5862.88 2686.54  # pocket 85 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 440.32 2691.66 856.96 2791.66  # pocket 100 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 916.96 2691.66 1333.60 2791.66  # pocket 100 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 1930.16 2691.66 2346.80 2791.66  # pocket 100 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 2406.80 2691.66 2823.44 2791.66  # pocket 100 um between bank\[0\]_g_slice\[2\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 3470.40 2900.19 4173.23 2985.19  # pocket 85 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 4463.62 2900.19 5166.45 2985.19  # pocket 85 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 5456.85 2944.10 5862.88 3029.10  # pocket 85 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 440.32 2994.80 677.12 3094.80  # pocket 100 um between ank\[0\]_g_slice\[20\]_macro_i MX and ank\[0\]_g_slice\[28\]_macro_i R0
+BLK 737.12 2994.80 973.92 3094.80  # pocket 100 um between ank\[0\]_g_slice\[22\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 1033.92 2994.80 1270.72 3094.80  # pocket 100 um between ank\[0\]_g_slice\[24\]_macro_i MX and ank\[0\]_g_slice\[31\]_macro_i R0
+BLK 1330.72 2994.80 1567.52 3094.80  # pocket 100 um between ank\[0\]_g_slice\[26\]_macro_i MX and ank\[0\]_g_slice\[33\]_macro_i R0
+BLK 1930.16 2994.80 2166.96 3094.80  # pocket 100 um between ank\[0\]_g_slice\[21\]_macro_i MX and ank\[0\]_g_slice\[29\]_macro_i R0
+BLK 2226.96 2994.80 2463.76 3094.80  # pocket 100 um between ank\[0\]_g_slice\[23\]_macro_i MX and ank\[0\]_g_slice\[30\]_macro_i R0
+BLK 2523.76 2994.80 2760.56 3094.80  # pocket 100 um between ank\[0\]_g_slice\[25\]_macro_i MX and ank\[0\]_g_slice\[32\]_macro_i R0
+BLK 2820.56 2994.80 3057.36 3094.80  # pocket 100 um between ank\[0\]_g_slice\[27\]_macro_i MX and ank\[0\]_g_slice\[34\]_macro_i R0
+BLK 3470.40 3154.93 3876.43 3239.93  # pocket 85 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 3936.43 3154.93 4173.23 3239.93  # pocket 85 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 4463.62 3154.93 4869.65 3239.93  # pocket 85 um between bank\[0\]_g_slice\[4\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 4929.65 3154.93 5166.45 3239.93  # pocket 85 um between bank\[0\]_g_slice\[4\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 5456.85 3198.84 5862.88 3283.84  # pocket 85 um between bank\[0\]_g_slice\[2\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 5922.88 3198.84 6159.68 3283.84  # pocket 85 um between bank\[0\]_g_slice\[2\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 440.32 3243.52 677.12 3343.52  # pocket 100 um between ank\[0\]_g_slice\[35\]_macro_i MX and ank\[0\]_g_slice\[42\]_macro_i R0
+BLK 737.12 3243.52 973.92 3343.52  # pocket 100 um between ank\[0\]_g_slice\[37\]_macro_i MX and ank\[0\]_g_slice\[44\]_macro_i R0
+BLK 1033.92 3243.52 1270.72 3343.52  # pocket 100 um between ank\[0\]_g_slice\[39\]_macro_i MX and ank\[0\]_g_slice\[46\]_macro_i R0
+BLK 1330.72 3243.52 1567.52 3343.52  # pocket 100 um between ank\[0\]_g_slice\[40\]_macro_i MX and ank\[0\]_g_slice\[48\]_macro_i R0
+BLK 1930.16 3243.52 2166.96 3343.52  # pocket 100 um between ank\[0\]_g_slice\[36\]_macro_i MX and ank\[0\]_g_slice\[43\]_macro_i R0
+BLK 2226.96 3243.52 2463.76 3343.52  # pocket 100 um between ank\[0\]_g_slice\[38\]_macro_i MX and ank\[0\]_g_slice\[45\]_macro_i R0
+BLK 2523.76 3243.52 2760.56 3343.52  # pocket 100 um between bank\[0\]_g_slice\[3\]_macro_i MX and ank\[0\]_g_slice\[47\]_macro_i R0
+BLK 2820.56 3243.52 3057.36 3343.52  # pocket 100 um between ank\[0\]_g_slice\[41\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 3936.43 3408.90 4173.23 3494.67  # pocket 86 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 4929.65 3408.90 5166.45 3494.67  # pocket 86 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 3350.40 3409.67 3579.63 3494.67  # pocket 85 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 3639.63 3409.67 3876.43 3494.67  # pocket 85 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 4343.62 3409.67 4572.85 3494.67  # pocket 85 um between bank\[0\]_g_slice\[4\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 4632.85 3409.67 4869.65 3494.67  # pocket 85 um between bank\[0\]_g_slice\[4\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 5922.88 3452.81 6159.68 3538.58  # pocket 86 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 5336.85 3453.58 5566.08 3538.58  # pocket 85 um between bank\[0\]_g_slice\[5\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 5626.08 3453.58 5862.88 3538.58  # pocket 85 um between bank\[0\]_g_slice\[5\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 3342.83 3643.39 3579.63 3728.39  # pocket 85 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 3639.63 3643.39 3876.43 3728.39  # pocket 85 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 3936.43 3643.39 4173.23 3728.39  # pocket 85 um between bank\[0\]_g_slice\[2\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 4336.05 3643.39 4572.85 3728.39  # pocket 85 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 4632.85 3643.39 4869.65 3728.39  # pocket 85 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 4929.65 3643.39 5166.45 3728.39  # pocket 85 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 5329.28 3687.30 5566.08 3772.30  # pocket 85 um between bank\[0\]_g_slice\[2\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 5626.08 3687.30 5862.88 3772.30  # pocket 85 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 5922.88 3687.30 6159.68 3772.30  # pocket 85 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 3954.35 3877.11 4173.23 3953.57  # pocket 76 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 5104.42 4126.97 5524.37 4201.97  # pocket 75 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 5633.65 4126.97 5862.88 4201.97  # pocket 75 um between bank\[1\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 5922.88 4126.97 6159.68 4201.97  # pocket 75 um between bank\[1\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 440.32 4151.54 677.12 4211.54  # pocket 60 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 737.12 4151.54 973.92 4211.54  # pocket 60 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 1033.92 4151.54 1270.72 4211.54  # pocket 60 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 1330.72 4151.54 1567.52 4211.54  # pocket 60 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 1930.16 4151.54 2166.96 4211.54  # pocket 60 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 2226.96 4151.54 2463.76 4211.54  # pocket 60 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 2523.76 4151.54 2760.56 4211.54  # pocket 60 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 2820.56 4151.54 3057.36 4211.54  # pocket 60 um between bank\[0\]_g_slice\[1\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 3360.00 4434.87 3886.03 4495.00  # pocket 60 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[1\]_g_slice\[0\]_macro_i R0
+BLK 440.32 4533.26 677.12 4593.26  # pocket 60 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 737.12 4533.26 973.92 4593.26  # pocket 60 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 1033.92 4533.26 1270.72 4593.26  # pocket 60 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 1330.72 4533.26 1567.52 4593.26  # pocket 60 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 1930.16 4533.26 2166.96 4593.26  # pocket 60 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 2226.96 4533.26 2463.76 4593.26  # pocket 60 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 2523.76 4533.26 2760.56 4593.26  # pocket 60 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 2820.56 4533.26 3057.36 4593.26  # pocket 60 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 3954.35 4744.31 4343.04 4819.31  # pocket 75 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 4403.04 4744.31 4639.84 4819.31  # pocket 75 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 5474.20 4744.31 6159.69 4819.31  # pocket 75 um between bank\[0\]_g_slice\[0\]_macro_i MX and bank\[1\]_g_slice\[0\]_macro_i R0
+BLK 440.32 5546.96 856.96 5646.96  # pocket 100 um between bank\[0\]_g_slice\[5\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 916.96 5546.96 1333.60 5646.96  # pocket 100 um between bank\[0\]_g_slice\[7\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 1930.16 5546.96 2346.80 5646.96  # pocket 100 um between bank\[0\]_g_slice\[6\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 2406.80 5546.96 2823.44 5646.96  # pocket 100 um between bank\[0\]_g_slice\[8\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 3926.40 5546.96 4163.20 5646.96  # pocket 100 um between bank\[0\]_g_slice\[5\]_macro_i MX and bank\[0\]_g_slice\[3\]_macro_i R0
+BLK 4403.04 5546.96 4639.84 5646.96  # pocket 100 um between bank\[0\]_g_slice\[7\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 5446.24 5546.96 5683.04 5646.96  # pocket 100 um between bank\[0\]_g_slice\[6\]_macro_i MX and bank\[0\]_g_slice\[4\]_macro_i R0
+BLK 5922.88 5546.96 6159.68 5646.96  # pocket 100 um between bank\[0\]_g_slice\[8\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 1203.15 5904.52 1619.79 6022.71  # pocket 118 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 2692.99 5904.52 3109.63 6022.71  # pocket 118 um between bank\[0\]_g_slice\[4\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 4223.20 5904.52 4639.84 6022.71  # pocket 118 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 5743.04 5904.52 6159.68 6022.71  # pocket 118 um between bank\[0\]_g_slice\[4\]_macro_i MX and bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 440.32 5922.71 1143.15 6022.71  # pocket 100 um between bank\[0\]_g_slice\[2\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 1930.16 5922.71 2632.99 6022.71  # pocket 100 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 3460.37 5922.71 4163.20 6022.71  # pocket 100 um between bank\[0\]_g_slice\[2\]_macro_i MX and bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 4980.21 5922.71 5683.04 6022.71  # pocket 100 um between bank\[0\]_g_slice\[3\]_macro_i MX and bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 1203.15 6141.49 1619.79 6259.70  # north margin strip over bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 2692.99 6141.49 3109.63 6259.70  # north margin strip over bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 4223.20 6141.49 4639.84 6259.70  # north margin strip over bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 5743.04 6141.49 6159.68 6259.70  # north margin strip over bank\[0\]_g_slice\[2\]_macro_i R0
+BLK 440.32 6159.68 1143.15 6259.70  # north margin strip over bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 1930.16 6159.68 2632.99 6259.70  # north margin strip over bank\[0\]_g_slice\[1\]_macro_i R0
+BLK 3460.37 6159.68 4163.20 6259.70  # north margin strip over bank\[0\]_g_slice\[0\]_macro_i R0
+BLK 4980.21 6159.68 5683.04 6259.70  # north margin strip over bank\[0\]_g_slice\[1\]_macro_i R0
+# 146 dead spaces, 5.00 mm2
