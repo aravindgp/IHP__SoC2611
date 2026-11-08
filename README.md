@@ -40,7 +40,7 @@ Important design notes:
 ├── dependencies/
 ├── measurements/
 ├── release/
-│   ├── v.1.1.0/        (latest, preliminary: 8 Nov 2026 routed state, seal ring + fill; GDS in two .part files, see its ReleaseNote.md)
+│   ├── v.1.1.0/        (latest, preliminary: 8 Nov 2026 routed state; whole GDS with PDK fill + full-fill variant in two parts, see its ReleaseNote.md)
 │   └── v.1.0.0/
 │       ├── ReleaseNote.md
 │       ├── doc/            (Datasheet.md, Specification.md)
