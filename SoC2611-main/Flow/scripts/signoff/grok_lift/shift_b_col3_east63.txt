@@ -1,0 +1,5 @@
+# option b: column 3 (slices 27/34/41/4) east by 63.36 um (full clearance)
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[27\]_macro_i/g_64x16_u 63.36 0
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[34\]_macro_i/g_64x16_u 63.36 0
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[41\]_macro_i/g_64x16_u 63.36 0
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[4\]_macro_i/g_64x16_u 63.36 0

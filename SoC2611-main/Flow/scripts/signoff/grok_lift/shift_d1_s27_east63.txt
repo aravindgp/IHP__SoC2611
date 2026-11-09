@@ -1,0 +1,2 @@
+# option d1: only slice[27] east by 63.36 um (= 132 Metal2 pitches): x 2820.56 -> 2883.92 (clears the 256x32 edge 2883.44 by 0.48)
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[27\]_macro_i/g_64x16_u 63.36 0

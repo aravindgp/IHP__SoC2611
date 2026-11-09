@@ -12,7 +12,7 @@ HERE=/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/signoff
 OR=/nix/store/2y36a4sr078y15ick388dncqjdzmlxga-openroad-2026-02-17/bin/openroad
 E=/workspace/chip_fp2/eco; PL=/workspace/chip_fp2/handoff/H12_cpueast.pl
 MAC=/workspace/chip_fp2/handoff/macros_name_w_h_um.txt
-REL=/workspace/chip_fp2/release_1200; REPO=/workspace/ihp_ip_repo/IHP__DSOC2610; VER=v.1.2.0; TOP=dgrid_soc1_chip_top
+REL=${REL:-/workspace/chip_fp2/release_1200}; REPO=/workspace/ihp_ip_repo/IHP__DSOC2610; VER=${VER:-v.1.2.0}; TOP=dgrid_soc1_chip_top
 NAME=SoC2611; CONT_END=${CONT_END:-8}
 T_HARD=$(date -u -d '2026-11-09 05:30' +%s)
 log() { echo "[morning $(date -u +%T)] $*"; }
@@ -103,6 +103,6 @@ cd $REPO && git add release/$VER doc/info.json && git -c user.name=aravindgp -c 
 log "release $VER pushed: $(git log --oneline -1)"
 
 # ---------------------------------------------------------------- 4. DRC on the full-fill GDS (runs on)
-nohup bash $HERE/run_drc.sh $FULL $TOP -m minimum -o /workspace/chip_fp2/drc_1200_min -j 8 > /workspace/chip_fp2/drc_1200_min.log 2>&1 &
+nohup bash $HERE/run_drc.sh $FULL $TOP -m minimum -o /workspace/chip_fp2/drc_${VER}_min -j 2 > /workspace/chip_fp2/drc_1200_min.log 2>&1 &
 log "IHP minimum DRC started on $FULL"
 log "MORNING DONE"

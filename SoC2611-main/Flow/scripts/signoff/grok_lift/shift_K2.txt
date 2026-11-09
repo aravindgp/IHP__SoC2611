@@ -1,0 +1,16 @@
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[23\]_macro_i/g_64x16_u 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[25\]_macro_i/g_64x16_u 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[27\]_macro_i/g_64x16_u 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/_446_ 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/wire6318 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/wire6319 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/_441_ 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/_443_ 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/_440_ 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[23\]_macro_i/_1_ 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[23\]_macro_i/load_slew6203 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/load_slew10078 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/_34954_ 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/_18756_ 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/g_1p_tile_i/g_bank\[0\]_g_slice\[27\]_macro_i/load_slew10074 0 40
+soc_i/ztachip_inst/dp_1_i/dp0_i/dp_fetch_1_i/gen1_ram_i/ram_i/_445_ 0 40
