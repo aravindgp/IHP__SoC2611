@@ -1,0 +1,15 @@
+# DRC waivers for DGrid-SoC1 on IHP SG13CMOS5L (read by summarize_lyrdb.py via run_drc.sh).
+# Format: <rule pattern>[@<cell pattern>]   (fnmatch; cell = cell the marker is reported in, deep mode)
+# Every entry needs a reason and must be confirmed with IHP at tape-out submission.
+
+# IHP IO library: 6 x M1.e markers inside each of IOPadOut4mA, IOPadInOut4mA, IOPadOut16mA,
+# IOPadInOut16mA (edge pairs at x=33.7/38.2 um, y=17..63 um in cell coordinates, i.e. the
+# output driver, far from the cell boundary).  Confirmed real geometry by a flat run of the
+# cell alone (work/drc_orient_flat); the deck does not flag it when the IO cell itself is
+# the top cell.  Unmodified PDK cell -> waive, ask IHP to confirm.
+M1.e@sg13cmos5l_IOPad*
+
+# Recommended rule (suffix R): Metal exit length 7 um from dfpad.  The 70x70 bondpad abuts the
+# IO cell's 3 um-high 'pad' pin strip on TopMetal1, so the TM1 exit is 3 um; ORFS's sg13g2
+# bondpad_70x70 has the same geometry.  Recommendation only.
+Pad.fR_*

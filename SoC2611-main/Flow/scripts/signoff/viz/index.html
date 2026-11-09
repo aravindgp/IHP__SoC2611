@@ -1,0 +1,212 @@
+<title>H10 to H12 Passage</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one chip drawing fills the stage; a control/caption rail sits below it, like a signoff viewer. */
+:root {
+  --bg: #f3f1ec; --fg: #1d2126; --muted: #5b6168; --rail: #e6e2d8; --line: #c9c3b6;
+  --accent: #b84a1c; --ok: #2f7d4a; --chip: #fbfaf7; --core: #8a8577;
+  --font-ui: 'IBM Plex Sans', system-ui, sans-serif; --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15181c; --fg: #e8e4da; --muted: #a39d90; --rail: #1f2429; --line: #3a4048; --chip: #1b1f24; --core: #6c6659;
+  --accent: #e9793f; --ok: #5fbf80; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #15181c; --fg: #e8e4da; --muted: #a39d90; --rail: #1f2429; --line: #3a4048; --chip: #1b1f24; --core: #6c6659;
+  --accent: #e9793f; --ok: #5fbf80; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-ui); margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 12px 24px; }
+header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin-bottom: 8px; }
+header h1 { font-size: 1.15rem; font-weight: 600; margin: 0; text-wrap: balance; }
+header .sub { color: var(--muted); font-size: 0.9rem; }
+.stage { position: relative; background: var(--chip); border: 1px solid var(--line); border-radius: 6px;
+  max-width: 100%; aspect-ratio: 1 / 1; max-height: 78vh; margin: 0 auto; overflow: hidden; }
+.stage svg { width: 100%; height: 100%; display: block; }
+.hud { position: absolute; left: 10px; top: 8px; font: 500 0.78rem var(--font-mono); color: var(--muted);
+  background: color-mix(in srgb, var(--chip) 85%, transparent); padding: 3px 7px; border-radius: 4px; }
+.rail { display: grid; grid-template-columns: auto 1fr; gap: 10px 16px; align-items: start; margin-top: 10px;
+  background: var(--rail); border-radius: 6px; padding: 10px 12px; }
+.ctl { display: flex; flex-wrap: wrap; gap: 6px; }
+button { font: 500 0.85rem var(--font-ui); color: var(--fg); background: var(--chip); border: 1px solid var(--line);
+  border-radius: 4px; padding: 6px 11px; cursor: pointer; }
+button:hover { border-color: var(--fg); }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+.cap { min-width: 0; }
+.cap .step { font: 500 0.72rem var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.cap p { margin: 4px 0 0; max-width: 70ch; line-height: 1.45; font-size: 0.95rem; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font-size: 0.8rem; color: var(--muted); }
+.legend span::before { content: ""; display: inline-block; width: 11px; height: 11px; margin-right: 5px;
+  vertical-align: -1px; border: 1px solid var(--line); background: var(--c); }
+@media (max-width: 560px) { .rail { grid-template-columns: 1fr; } .stage { max-height: none; } }
+</style>
+
+<header>
+  <h1>H10 to H12: the passage through the CPU block</h1>
+  <span class="sub">DSOC2610 floorplans, 298 SRAM macros, drawn from the real placement and guide files</span>
+</header>
+
+<div class="stage">
+  <svg id="svg" viewBox="0 0 6600 6600" preserveAspectRatio="xMidYMid meet" aria-label="Chip floorplan animation"></svg>
+  <div class="hud" id="hud">H10 · whole chip</div>
+</div>
+
+<div class="rail">
+  <div class="ctl">
+    <button id="play" aria-pressed="false">Play with voice</button>
+    <button id="prev">Back</button>
+    <button id="next">Next</button>
+    <button id="mute" aria-pressed="false">Mute</button>
+  </div>
+  <div class="cap">
+    <div class="step" id="stepLabel">Step 1 of 7</div>
+    <p id="caption">Press Play with voice to start the walkthrough, or step through it with Next.</p>
+  </div>
+</div>
+<div class="legend">
+  <span style="--c:#e0a040">PCORE</span><span style="--c:#8a5fc9">datapath</span><span style="--c:#c0392b">AXI</span>
+  <span style="--c:#16a085">CPU</span><span style="--c:#7f8c8d">streams</span><span style="--c:#2c3e50">instr</span>
+  <span style="--c:#d35400">ztachip mem</span><span style="--c:#e84393">camera</span>
+  <span style="--c:#ff3b30">placement blockage</span><span style="--c:#2f7d4a">passage opened by H12</span>
+  <span style="--c:#000">macro crossed by global-route guides (darker = more)</span>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  const D = window.FP_DATA;
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('svg');
+  const COL = { PCORE: '#e0a040', datapath: '#8a5fc9', AXI: '#c0392b', CPU: '#16a085', streams: '#7f8c8d',
+    instr: '#2c3e50', 'ztachip mem': '#d35400', camera: '#e84393', other: '#999999' };
+  const H = 6600;                      // chip y grows upward; SVG y = H - (y + h)
+  const el = (t, a) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); return e; };
+
+  svg.appendChild(el('rect', { x: 0, y: 0, width: 6600, height: 6600, fill: 'none', stroke: '#8a8577', 'stroke-width': 8 }));
+  const c = D.core;
+  svg.appendChild(el('rect', { x: c[0], y: H - c[3], width: c[2] - c[0], height: c[3] - c[1], fill: 'none', stroke: '#8a8577', 'stroke-width': 10 }));
+
+  const gGrid = el('g', { opacity: 0 });
+  const gmax = Math.max(...D.grid10.map(w => w[4]));
+  for (const w of D.grid10) {
+    if (w[4] === 0) continue;
+    const a = Math.min(0.85, 0.08 + 0.8 * Math.sqrt(w[4] / gmax));
+    gGrid.appendChild(el('rect', { x: w[0], y: H - w[3], width: w[2] - w[0], height: w[3] - w[1], fill: '#b84a1c', opacity: a }));
+  }
+  svg.appendChild(gGrid);
+
+  const gBlk = el('g', {});
+  for (const b of D.blockages)
+    gBlk.appendChild(el('rect', { x: b[0], y: H - b[3], width: b[2] - b[0], height: b[3] - b[1], fill: '#ff3b30', 'fill-opacity': 0.45, stroke: '#ff3b30', 'stroke-width': 12 }));
+  svg.appendChild(gBlk);
+
+  const gPass = el('g', { opacity: 0 });
+  gPass.appendChild(el('rect', { x: 4640, y: H - 4744, width: 834, height: 385, fill: '#2f7d4a', 'fill-opacity': 0.35, stroke: '#2f7d4a', 'stroke-width': 14, 'stroke-dasharray': '60 40' }));
+  gPass.appendChild(el('rect', { x: 4343, y: H - 5205, width: 1131, height: 386, fill: '#2f7d4a', 'fill-opacity': 0.35, stroke: '#2f7d4a', 'stroke-width': 14, 'stroke-dasharray': '60 40' }));
+  svg.appendChild(gPass);
+
+  const gMac = el('g', {});
+  const rects = [], pins = [], shades = [];
+  const gmax10 = Math.max(...D.macros.map(m => m.g10));
+  for (const m of D.macros) {
+    const r = el('rect', { width: m.w, height: m.h, fill: COL[m.o] || COL.other, stroke: '#111', 'stroke-width': 3, 'fill-opacity': 0.8 });
+    const s = el('rect', { width: m.w, height: m.h, fill: '#000', 'fill-opacity': 0, stroke: 'none' });
+    const p = el('line', { stroke: '#000', 'stroke-width': 10 });
+    gMac.appendChild(r); gMac.appendChild(s); gMac.appendChild(p);
+    rects.push(r); shades.push(s); pins.push(p);
+  }
+  svg.appendChild(gMac);
+  const gLab = el('g', { opacity: 0, 'font-family': 'IBM Plex Mono, monospace', 'font-size': 60, 'font-weight': 500 });
+  svg.appendChild(gLab);
+
+  function place(t) {
+    D.macros.forEach((m, i) => {
+      const x = m.a[0] + (m.b[0] - m.a[0]) * t, y = m.a[1] + (m.b[1] - m.a[1]) * t;
+      const o = t < 0.5 ? m.a[2] : m.b[2];
+      const sy = H - (y + m.h);
+      rects[i].setAttribute('x', x); rects[i].setAttribute('y', sy);
+      shades[i].setAttribute('x', x); shades[i].setAttribute('y', sy);
+      const py = (o === 'R0' || o === 'MY') ? H - y : sy;
+      pins[i].setAttribute('x1', x); pins[i].setAttribute('x2', x + m.w); pins[i].setAttribute('y1', py); pins[i].setAttribute('y2', py);
+    });
+  }
+  function shade(which) {
+    D.macros.forEach((m, i) => {
+      const v = which === 'none' ? 0 : m[which];
+      shades[i].setAttribute('fill-opacity', v ? Math.min(0.85, 0.25 + 0.6 * v / gmax10) : 0);
+    });
+  }
+  place(0); shade('none');
+
+  const FULL = [0, 0, 6600, 6600];
+  const CPU = [3200, H - 5520, 3100, 1750];
+  let view = FULL.slice();
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function setView(v) { view = v; svg.setAttribute('viewBox', v.join(' ')); }
+  function tween(from, to, ms, step, done) {
+    if (reduced) { step(1); if (done) done(); return; }
+    const t0 = performance.now();
+    (function f(now) {
+      const k = Math.min(1, (now - t0) / ms); const e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      step(e); if (k < 1) requestAnimationFrame(f); else if (done) done();
+    })(t0);
+  }
+  function zoom(to, ms, done) { const a = view.slice(); tween(0, 1, ms, e => setView(a.map((v, i) => v + (to[i] - v) * e)), done); }
+  function fade(node, to, ms) { const from = +node.getAttribute('opacity'); tween(0, 1, ms, e => node.setAttribute('opacity', from + (to - from) * e)); }
+  let placeT = 0;
+  function morph(to, ms, done) { const from = placeT; tween(0, 1, ms, e => { placeT = from + (to - from) * e; place(placeT); }, done); }
+
+  function label(x, y, text, color) { const t = el('text', { x, y: H - y, fill: color }); t.textContent = text; gLab.appendChild(t); }
+  label(3300, 5300, 'CPU logic north of the caches', '#0e6b57');
+  label(3300, 3880, 'CPU logic south of the caches', '#0e6b57');
+  label(4910, 5030, '1024x32 cache', '#ffffff'); label(4910, 4570, '1024x32 cache', '#ffffff');
+  label(5650, 4850, 'tags', '#ffffff'); label(5650, 4390, 'tags', '#ffffff');
+
+  const steps = [
+    { hud: 'H10 · whole chip', text: 'This is floorplan H10: 298 SRAM macros coloured by the block that owns them, with their pin edges drawn black, and the two red placement blockages that keep logic out of the datapath corridor and the camera slot. H10 routed down to about 1,100 violations and then stopped improving.',
+      run: () => { gLab.setAttribute('opacity', 0); gPass.setAttribute('opacity', 0); shade('none'); fade(gGrid, 0, 400); morph(0, 800); zoom(FULL, 900); } },
+    { hud: 'H10 · pass 30 violations', text: 'Where those violations sit: the orange squares are the detailed-route markers at pass 30, 600 micrometres per square. Nothing is concentrated any more; the remaining markers are spread thin across the chip.',
+      run: () => { gLab.setAttribute('opacity', 0); gPass.setAttribute('opacity', 0); shade('none'); morph(0, 600); zoom(FULL, 600); fade(gGrid, 1, 600); } },
+    { hud: 'H10 · macros crossed by guides', text: 'But most of what remains is inside the macros. The global router sends guides straight across some macros, and the detailed router then drops Metal4 wires onto the macros’ power-pin stripes. The darker a macro, the more guide boxes run through it: 442 in total, and 265 of them on the two large CPU caches at the upper right.',
+      run: () => { gLab.setAttribute('opacity', 0); gPass.setAttribute('opacity', 0); morph(0, 600); zoom(FULL, 600); fade(gGrid, 0.25, 500); shade('g10'); } },
+    { hud: 'H10 · CPU block', text: 'Zooming into the CPU block. CPU logic lives above the caches and below them, so thousands of nets have one end north and one end south. East of the caches the column is sealed by two small tag macros, and the nearest open channel is 500 micrometres to the west. The cheapest path the global router finds is straight through the caches.',
+      run: () => { gPass.setAttribute('opacity', 0); shade('g10'); morph(0, 600); fade(gGrid, 0, 400); zoom(CPU, 1400, () => fade(gLab, 1, 400)); } },
+    { hud: 'H12 · macros move', text: 'H12 changes exactly four macros. The two tag macros move to free rows west of the lower cache, and the two large caches slide to the east margin. Everything else, including the two red blockages, stays where it was.',
+      run: () => { fade(gLab, 0, 300); fade(gGrid, 0, 300); zoom(CPU, 600); shade('g10'); morph(1, 1800, () => fade(gPass, 1, 600)); } },
+    { hud: 'H12 · the passage', text: 'The green area is the passage this opens: 835 micrometres wide through the lower row and 1,130 through the upper. North-south nets of the CPU now have a cheap way around the caches instead of an overflow through them.',
+      run: () => { gLab.setAttribute('opacity', 0); zoom(CPU, 600); morph(1, 400); fade(gPass, 1, 400); shade('g12'); } },
+    { hud: 'H12 · whole chip', text: 'Measured on H12’s chip-level global route: guide boxes inside macros fall from 442 to 166, the two caches drop off the list entirely, and the total overflow is the lowest of any candidate, 9,522 against 11,786 for H10. H12 is now in detailed routing; the 166 boxes left sit on one AXI FIFO and one PCORE register file and are the next target if their shorts appear.',
+      run: () => { gLab.setAttribute('opacity', 0); morph(1, 400); shade('g12'); fade(gPass, 1, 300); zoom(FULL, 1200); } },
+  ];
+  let cur = -1, playing = false, muted = false, utter = null;
+  const cap = document.getElementById('caption'), hud = document.getElementById('hud'), lab = document.getElementById('stepLabel');
+  const playBtn = document.getElementById('play');
+  function speak(text, onend) {
+    if (muted || !('speechSynthesis' in window)) { setTimeout(onend, Math.max(2500, text.length * 55)); return; }
+    speechSynthesis.cancel();
+    utter = new SpeechSynthesisUtterance(text); utter.rate = 0.98;
+    const voices = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang));
+    if (voices.length) utter.voice = voices.find(v => /Google UK English Female|Samantha|Daniel|Natural/i.test(v.name)) || voices[0];
+    utter.onend = onend; utter.onerror = onend;
+    speechSynthesis.speak(utter);
+  }
+  function show(i, withVoice) {
+    cur = Math.max(0, Math.min(steps.length - 1, i));
+    const s = steps[cur];
+    lab.textContent = 'Step ' + (cur + 1) + ' of ' + steps.length; hud.textContent = s.hud; cap.textContent = s.text;
+    s.run();
+    if (withVoice) speak(s.text, () => { if (!playing) return; if (cur < steps.length - 1) setTimeout(() => { if (playing) show(cur + 1, true); }, 700); else stop(); });
+  }
+  function stop() { playing = false; playBtn.setAttribute('aria-pressed', 'false'); playBtn.textContent = 'Play with voice'; if ('speechSynthesis' in window) speechSynthesis.cancel(); }
+  playBtn.addEventListener('click', () => {
+    if (playing) { stop(); return; }
+    playing = true; playBtn.setAttribute('aria-pressed', 'true'); playBtn.textContent = 'Pause';
+    show(cur < 0 || cur >= steps.length - 1 ? 0 : cur, true);
+  });
+  document.getElementById('next').addEventListener('click', () => { stop(); show(cur + 1, false); });
+  document.getElementById('prev').addEventListener('click', () => { stop(); show(cur - 1, false); });
+  document.getElementById('mute').addEventListener('click', e => { muted = !muted; e.currentTarget.setAttribute('aria-pressed', String(muted)); if (muted && 'speechSynthesis' in window) speechSynthesis.cancel(); });
+  show(0, false);
+})();
+</script>

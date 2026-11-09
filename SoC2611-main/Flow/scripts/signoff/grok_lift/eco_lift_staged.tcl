@@ -34,6 +34,10 @@ proc um {v} { expr {round($v * $::dbu)} }
 set_routing_layers -signal Metal2-TopMetal1
 set_global_routing_layer_adjustment Metal2-Metal4 [env_or ADJ 0.05]
 set_global_routing_layer_adjustment TopMetal1 [env_or TM1_ADJ 0.30]
+# MACRO_EXT: gcells added round every macro for the global router's blockage map. The moved macro's edges do not sit
+# on gcell lines (gcell 7.2 um): d1/d2 showed guides in the border gcells (the bottom row is 99.4 % under the macro),
+# the detailed router then squeezed those nets against the macro edge (91 markers along y 2929-2931 on d2).
+if {[env_or MACRO_EXT 0] > 0} { set_macro_extension [env_or MACRO_EXT 0] }
 foreach ra [split [env_or REGION_ADJ ""] ";"] {
     set ra [string trim $ra]
     if {$ra eq ""} continue

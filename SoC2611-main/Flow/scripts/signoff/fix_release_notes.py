@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Replace the status paragraph of the v.1.2.0 and v.1.3.0 release notes in the IHP repo with the exact state."""
+"""Replace the status paragraph of the release notes in the IHP repo with the exact state.
+usage: fix_release_notes.py [version ...]   (default: all versions listed below)"""
 import re
 import sys
 
@@ -18,7 +19,18 @@ notes = {
              "> turns through a 20 um gap; the rest is ordinary spacing residue. Density (PDK fill + top-up, `density_fullfill.txt`):\n"
              "> 0 violations. Antenna repair, LVS and timing sign-off not run on this GDS; IHP minimum DRC deck running on it,\n"
              "> result to be added. Closure of the elbow (local floorplan ECO) is the next step, `../../STATUS_2026-11-09.md`."),
+ 'v.1.3.1': ("> **Status: PRELIMINARY, not for fabrication.** The v.1.3.0 routing base after 32 further detailed-route passes\n"
+             "> (9 Nov 09:40 UTC): still **0 power shorts inside the SRAM macros and 0 nets touching VDD or VSS**; 1,624\n"
+             "> detailed-route violations remain (1,495 shorts between signal nets, 129 spacing). 1,532 of them lie in one 50 um\n"
+             "> square (x 2800-2850, y 2900-2950) on 109 nets, where a 256x32 and a 64x16 SRAM slice overlap by 2.8 um and the\n"
+             "> 60 um channel turns through a 20 um gap; 92 are anywhere else on the chip. Passes alone do not dissolve that\n"
+             "> knot (1,760 -> 1,288 at pass 24 -> 1,624 after the pass-25 rip-up); a staged local floorplan ECO that moves the\n"
+             "> 64x16 slice 63 um east and re-routes the affected nets is running (`../../STATUS_2026-11-09.md`). Density (PDK\n"
+             "> fill + top-up, `density_fullfill.txt`): 0 violations. Antenna repair, LVS and timing sign-off not run on this GDS;\n"
+             "> IHP minimum DRC deck running on it, result to be added. Target: a checked GDS by 12 November for the 20 November slot."),
 }
+if len(sys.argv) > 1:
+    notes = {v: notes[v] for v in sys.argv[1:]}
 for ver, new in notes.items():
     p = repo + ver + '/ReleaseNote.md'
     s = open(p).read()

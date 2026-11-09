@@ -1,0 +1,13 @@
+# Density rules: meaningful only on the full, filled chip.  Waived for block / macro / std-cell /
+# pad-ring-only runs (run_drc.sh --block).  NEVER use for the final chip GDS.
+AFil.g*       # global / 800x800 window Activ density (+ AFil.g1..g3)
+GFil.g*       # global GatPoly density
+M?.j          # global Metal1..4 density
+M?.k          # global Metal1..4 max density
+M?Fil.h       # Metal1..4 coverage per 800x800 window
+M?Fil.k
+TM1.c         # global TopMetal1 density
+TM1.d
+TM1Fil.*
+LBE.i
+DEN.BND.*
