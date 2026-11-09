@@ -29,18 +29,37 @@ def past_blockages(x, y, up):
     return None
 S = {l.split()[0]: (float(l.split()[2]), float(l.split()[3])) for l in open(mac) if len(l.split()) == 4}
 P = {}
+O = {}
 for l in open(pl):
     p = l.split()
     if len(p) == 4 and p[0] in S:
         P[p[0]] = (float(p[1]), float(p[2]), float(p[1]) + S[p[0]][0], float(p[2]) + S[p[0]][1])
+        O[p[0]] = p[3]
 # macro outlines (+10 um halo) are blocked space for the push as well: a target pushed past a pocket must not land in
 # the next macro row
-blks += [(x0 - 10, y0 - 10, x1 + 10, y1 + 10) for (x0, y0, x1, y1) in P.values()]
+mblks = [(x0 - 10, y0 - 10, x1 + 10, y1 + 10) for (x0, y0, x1, y1) in P.values()]
+blks += mblks
 pins = collections.defaultdict(list)
 for l in open(log):
     p = l.split()
     if p and p[0] == 'PIN':
-        pins[p[1]].append((p[2], float(p[3]), float(p[4]), p[5]))
+        x, y = float(p[3]), float(p[4])
+        if p[2] in P:
+            # a macro pin: the dump gives the instance centre; the RM_IHPSG13 pins sit on the south edge (R0/MY) or
+            # the north edge (MX/R180), which is what decides the side of the net
+            y = P[p[2]][1] if O.get(p[2]) in ('R0', 'MY') else P[p[2]][3]
+        pins[p[1]].append((p[2], x, y, p[5]))
+
+
+def past_macros(x, y, up):
+    """like past_blockages but only the macro outlines count: used for the pocket in front of a macro pin, where the
+    ECO lifts the placement blockage (DROP_BLOCKAGES=1)"""
+    for _ in range(20):
+        hit = [b for b in mblks if b[0] <= x <= b[2] and b[1] - 4 <= y <= b[3] + 4]
+        if not hit:
+            return y
+        y = (max(b[3] for b in hit) + clear) if up else (min(b[1] for b in hit) - clear)
+    return None
 macro_of = {}
 for l in open(pairs):
     p = l.split()
@@ -59,16 +78,26 @@ for net, m in macro_of.items():
     if not north or not south:
         stats['one side only (pin access / sideways)'] += 1
         continue
-    minority, target_y, side = (north, y0 - clear, 'north') if len(north) < len(south) else (south, y1 + clear, 'south')
-    if any(t[0] == 'PORT' or t[3].startswith('RM_IHPSG13') for t in minority):
-        stats['unmovable (macro/port on the minority side)'] += 1
+    fixed = lambda ts: any(t[0] == 'PORT' or t[3].startswith('RM_IHPSG13') or t[0] in P for t in ts)
+    n_fixed, s_fixed = fixed(north), fixed(south)
+    if n_fixed and s_fixed:
+        stats['unmovable (macro/port on both sides)'] += 1
         continue
+    if n_fixed:                      # macro pin north: move the south cells to the pocket in front of it
+        minority, target_y, side = south, y1 + clear, 'south'
+    elif s_fixed:                    # macro pin south: move the north cells to the pocket in front of it
+        minority, target_y, side = north, y0 - clear, 'north'
+    else:
+        minority, target_y, side = (north, y0 - clear, 'north') if len(north) < len(south) else (south, y1 + clear, 'south')
+    pin_net = n_fixed or s_fixed
     if len(minority) > 6:
         stats['minority > 6 cells'] += 1
         continue
     for inst, x, y, master in minority:
         tx = min(max(x, x0), x1)
-        ty = past_blockages(tx, target_y, side == 'south')
+        ty = past_macros(tx, target_y, side == 'south') if pin_net else past_blockages(tx, target_y, side == 'south')
+        if pin_net:
+            stats['macro-pin net: cells to the pin pocket'] += 1
         if ty is None or abs(ty - target_y) > 250:
             # fallback: the vertical channel beside the macro (just outside its x-span, nearest side), at the
             # majority-side y next to the macro edge

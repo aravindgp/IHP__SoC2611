@@ -20,7 +20,7 @@ This project is currently in a preliminary stage and is  intended for fabricatio
 
 Important design notes:
 
-- Detailed routing has not converged yet.
+- Detailed routing has not converged yet (9 Nov: supply shorts inside the SRAMs closed on a trial database; a signal-short congestion knot around one SRAM block is open, see STATUS_2026-11-09.md).
 - Hold timing on CPU ↔ SRAM paths remains open.
 - DRC/LVS are not yet clean.
 - A final release will supersede this repository snapshot.

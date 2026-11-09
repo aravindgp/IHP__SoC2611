@@ -11,6 +11,11 @@ set dbu [$block getDbUnitsPerMicron]
 set_global_routing_layer_adjustment Metal2-TopMetal1 0.05
 set_routing_layers -signal Metal2-TopMetal1
 global_route -start_incremental
+# positions BEFORE the moves: every moved cell counts as displaced even if the legalizer leaves it where it was put
+set before [dict create]
+foreach inst [$block getInsts] {
+    if {[[$inst getMaster] isCore]} { dict set before [$inst getName] [$inst getLocation] }
+}
 set moved {}
 set miss 0
 set fh [open $::env(MOVES_FILE) r]
@@ -28,10 +33,6 @@ while {[gets $fh line] >= 0} {
 }
 close $fh
 puts "ECO_SIDE moved [llength $moved] cells ($miss names not found)"
-set before [dict create]
-foreach inst [$block getInsts] {
-    if {[[$inst getMaster] isCore]} { dict set before [$inst getName] [$inst getLocation] }
-}
 set md [expr {[info exists ::env(MAXDISP)] ? $::env(MAXDISP) : "300 300"}]
 set removed {}
 foreach bt [$block getBTerms] {
@@ -41,6 +42,13 @@ foreach bt [$block getBTerms] {
     }
 }
 set_placement_padding -global -left 1 -right 1
+# DROP_BLOCKAGES=1: remove the placement blockages (the H13 pockets) so cells moved into the pocket in front of a
+# macro pin can be legalized there; routing obstructions are untouched
+if {[info exists ::env(DROP_BLOCKAGES)] && $::env(DROP_BLOCKAGES) eq "1"} {
+    set nb 0
+    foreach b [$block getBlockages] { odb::dbBlockage_destroy $b; incr nb }
+    puts "ECO_SIDE placement blockages dropped: $nb"
+}
 detailed_placement -max_displacement $md
 check_placement -verbose
 foreach r $removed {
@@ -57,10 +65,55 @@ foreach inst [$block getInsts] {
     incr nshift
     foreach it [$inst getITerms] {
         set net [$it getNet]
-        if {$net ne "NULL" && [$net getSigType] eq "SIGNAL"} { dict set touched [$net getName] $net }
+        if {$net ne "NULL" && [$net getSigType] ni {POWER GROUND}} { dict set touched [$net getName] $net }
     }
 }
 puts "ECO_SIDE cells displaced (moved + legalizer): $nshift, nets touched: [dict size $touched]"
+# optional EXTRA_NETS (one name per line, e.g. crossing nets whose cells are all on one side): marked dirty for the
+# incremental global route (one ITerm disconnected and reconnected) and re-routed with the touched nets
+if {[info exists ::env(EXTRA_NETS)] && $::env(EXTRA_NETS) ne ""} {
+    set nx 0
+    set fh [open $::env(EXTRA_NETS) r]
+    while {[gets $fh ln] >= 0} {
+        set ln [string trim $ln]
+        if {$ln eq "" || [dict exists $touched $ln]} continue
+        set n [$block findNet $ln]
+        if {$n eq "NULL"} continue
+        set its [$n getITerms]
+        if {[llength $its] == 0} continue
+        set it [lindex $its 0]
+        set modnet [$it getModNet]
+        $it disconnect
+        if {$modnet ne "NULL"} { $it connect $n $modnet } else { $it connect $n }
+        dict set touched $ln $n
+        incr nx
+    }
+    close $fh
+    puts "ECO_SIDE extra nets added to the re-route: $nx"
+}
+# optional EXTRA_INSTS (one instance name per line): every signal/clock net of those instances is re-routed (fix-up
+# for cells moved by earlier rounds whose clock nets were not re-routed)
+if {[info exists ::env(EXTRA_INSTS)] && $::env(EXTRA_INSTS) ne ""} {
+    set nx 0
+    set fh [open $::env(EXTRA_INSTS) r]
+    while {[gets $fh ln] >= 0} {
+        set ln [string trim $ln]
+        if {$ln eq ""} continue
+        set i [$block findInst $ln]
+        if {$i eq "NULL"} continue
+        foreach it [$i getITerms] {
+            set n [$it getNet]
+            if {$n eq "NULL" || [$n getSigType] in {POWER GROUND} || [dict exists $touched [$n getName]]} continue
+            set modnet [$it getModNet]
+            $it disconnect
+            if {$modnet ne "NULL"} { $it connect $n $modnet } else { $it connect $n }
+            dict set touched [$n getName] $n
+            incr nx
+        }
+    }
+    close $fh
+    puts "ECO_SIDE nets of extra instances added to the re-route: $nx"
+}
 # wires off first, so the incremental GRT and the DRT start clean on these nets
 set nd 0
 dict for {name net} $touched {
@@ -81,7 +134,7 @@ if {[info exists ::env(SNAP_DIR)] && $::env(SNAP_DIR) ne ""} {
 detailed_route -output_drc $rpt -droute_end_iter $end -verbose 1
 set unrouted 0
 foreach net [$block getNets] {
-    if {[$net getSigType] ne "SIGNAL"} { continue }
+    if {[$net getSigType] in {POWER GROUND}} { continue }
     if {[$net getWire] eq "NULL" && [llength [$net getITerms]] > 1} { incr unrouted }
 }
 puts "ECO_SIDE unrouted multi-pin signal nets after: $unrouted"
