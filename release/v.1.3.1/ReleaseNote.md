@@ -1,8 +1,14 @@
 # SoC2611 v.1.3.1 - release note (9 November 2026, 11:11 UTC)
 
-> **Status: PRELIMINARY, built overnight for the 9 November deadline.** Routed state after ECO round GC:
-> 0 power shorts inside the SRAM macros remain, total detailed-route violations 1624.
-> Antenna repair, LVS and timing sign-off not run on this GDS. DRC (IHP minimum deck) running, result to follow.
+> **Status: PRELIMINARY, not for fabrication.** The v.1.3.0 routing base after 32 further detailed-route passes
+> (9 Nov 09:40 UTC): still **0 power shorts inside the SRAM macros and 0 nets touching VDD or VSS**; 1,624
+> detailed-route violations remain (1,495 shorts between signal nets, 129 spacing). 1,532 of them lie in one 50 um
+> square (x 2800-2850, y 2900-2950) on 109 nets, where a 256x32 and a 64x16 SRAM slice overlap by 2.8 um and the
+> 60 um channel turns through a 20 um gap; 92 are anywhere else on the chip. Passes alone do not dissolve that
+> knot (1,760 -> 1,288 at pass 24 -> 1,624 after the pass-25 rip-up); a staged local floorplan ECO that moves the
+> 64x16 slice 63 um east and re-routes the affected nets is running (`../../STATUS_2026-11-09.md`). Density (PDK
+> fill + top-up, `density_fullfill.txt`): 0 violations. Antenna repair, LVS and timing sign-off not run on this GDS;
+> IHP minimum DRC deck running on it, result to be added. Target: a checked GDS by 12 November for the 20 November slot.
 
 ## Contents
 - `gds/SoC2611.gds.gz`: whole file (the one `doc/info.json` points at), seal ring + label, PDK lattice fill only (under GitHub's 100 MB limit).
