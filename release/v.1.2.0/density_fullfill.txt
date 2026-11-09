@@ -1,0 +1,26 @@
+density_fast: /workspace/chip_fp2/release_1200/dgrid_soc1_chip_top_final.gds top=dgrid_soc1_chip_top chip=EdgeSeal.boundary 43560000 um2, 256 windows/layer, grid 200 um, read 11.0 s + tiles 1107.9 s + macros 220.2 s (8 threads)
+global: Activ 43.978%  GatPoly 24.530%  Metal1 49.303%  Metal2 38.133%  Metal3 46.211%  Metal4 57.446%  TopMetal1 32.993%
+  AFil.g    >= 35%   global 43.978%                       PASS
+  AFil.g1   <= 55%   global 43.978%                       PASS
+  AFil.g2   >= 25%   window min 36.99% max 53.68%         PASS
+  AFil.g3   <= 65%   window min 36.99% max 53.68%         PASS
+  GFil.g    >= 15%   global 24.530%                       PASS
+  M1.j      >= 35%   global 49.303%                       PASS
+  M1.k      <= 60%   global 49.303%                       PASS
+  M2.j      >= 35%   global 38.133%                       PASS
+  M2.k      <= 60%   global 38.133%                       PASS
+  M3.j      >= 35%   global 46.211%                       PASS
+  M3.k      <= 60%   global 46.211%                       PASS
+  M4.j      >= 35%   global 57.446%                       PASS
+  M4.k      <= 60%   global 57.446%                       PASS
+  M1Fil.h   >= 25%   window min 40.36% max 57.10%         PASS
+  M1Fil.k   <= 75%   window min 40.36% max 57.10%         PASS
+  M2Fil.h   >= 25%   window min 30.94% max 43.76%         PASS
+  M2Fil.k   <= 75%   window min 30.94% max 43.76%         PASS
+  M3Fil.h   >= 25%   window min 33.68% max 64.56%         PASS
+  M3Fil.k   <= 75%   window min 33.68% max 64.56%         PASS
+  M4Fil.h   >= 25%   window min 44.34% max 68.45%         PASS
+  M4Fil.k   <= 75%   window min 44.34% max 68.45%         PASS
+  TM1.c     >= 25%   global 32.993%                       PASS
+  TM1.d     <= 70%   global 32.993%                       PASS
+TOTAL 0 density violations
