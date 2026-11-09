@@ -4,7 +4,7 @@
   "technology": "IHP",
   "unique_id": "2611",
   "license": "Apache-2.0",
-  "trl": 3,
+  "trl": 2,
   "sealring_x": 6600.0,
   "sealring_y": 6600.0,
   "repository": "https://github.com/aravindgp/IHP__SoC2611",

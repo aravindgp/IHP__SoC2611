@@ -1,0 +1,39 @@
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:666:4:@80070ns:(report note): PASS DPRAM_DUAL_CLOCK 58x32 w1/rx2 read_cycles=20002 known=19991 reads_advanced=5045
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:666:4:@140122500ps:(report note): PASS DPRAM_DUAL_CLOCK 145x32 w11/r7 read_cycles=20002 known=20000 reads_advanced=6426
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM_BE 272x256 cycles=19986 known=18875
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM_BE 64x1024 cycles=19986 known=16445
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM_BE 72x64 cycles=19986 known=19798
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM_BE 128x256 two_port cycles=19986 known=19011
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM_BE 32x1024 two_port cycles=19986 known=16897
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 133x256 cycles=19986 known=19733
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 380x256 cycles=19986 known=19752
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 64x256 cycles=19986 known=19773
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 132x256 cycles=19986 known=19760
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 73x256 cycles=19986 known=19778
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 67x256 cycles=19986 known=19795
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 132x128 cycles=19986 known=19892
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 58x256 cycles=19986 known=19781
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 58x64 cycles=19986 known=19923
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 35x128 cycles=19986 known=19902
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 64x64 two_port cycles=19986 known=19946
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 58x32 (flops) cycles=19986 known=19970
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 8x256 (flops) cycles=19986 known=19788
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 33x16 (axi_ram_read resp_fifo) cycles=19986 known=19978
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 776x16 cycles=19986 known=19980
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 37x32 cycles=19986 known=19971
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:220:4:@160010ns:(report note): PASS DPRAM 5x256 cycles=19986 known=19790
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:322:4:@160010ns:(report note): PASS SPRAM 24x512 cycles=19986 known=8829 skipped_after_write=11125
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:322:4:@160010ns:(report note): PASS SPRAM_BE 128x1024 cycles=19986 known=7132 skipped_after_write=11661
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:424:4:@160010ns:(report note): PASS ramw 272x256 cycles=19986 known=18906
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:424:4:@160010ns:(report note): PASS ramw 144x32 cycles=19986 known=19894
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:424:4:@160010ns:(report note): PASS ramw2 128x256 cycles=19986 known=19760
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:535:4:@160010ns:(report note): PASS ram2r1w 128x256 cycles=19986 known=18360
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:535:4:@160010ns:(report note): PASS ram2r1w 32x1024 cycles=19986 known=14629
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:666:4:@160138ns:(report note): PASS DPRAM_DUAL_CLOCK 145x32 wx2/r1 read_cycles=20002 known=20002 reads_advanced=11062
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:666:4:@160138ns:(report note): PASS DPRAM_DUAL_CLOCK 64x32 wx2/r1 read_cycles=20002 known=20002 reads_advanced=10965
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:666:4:@220192500ps:(report note): PASS DPRAM_DUAL_CLOCK 145x32 w7/r11 read_cycles=20002 known=20002 reads_advanced=11016
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:666:4:@220192500ps:(report note): PASS DPRAM_DUAL_CLOCK 64x32 w7/r11 read_cycles=20002 known=20002 reads_advanced=11024
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:666:4:@220192500ps:(report note): PASS DPRAM_DUAL_CLOCK 58x32 w7/r11 read_cycles=20002 known=20002 reads_advanced=10817
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:666:4:@220192500ps:(report note): PASS DPRAM_DUAL_CLOCK 3x32 w7/r11 (flops) read_cycles=20002 known=20002 reads_advanced=11056
+/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_ihp_mem_equiv.vhd:719:4:@220228ns:(report note): IHP MEM EQUIV TB: PASS pairs=37
+PASS lines: 37

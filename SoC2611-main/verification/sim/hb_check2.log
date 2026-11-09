@@ -1,0 +1,54 @@
+rm -f results.xml
+mkdir -p /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/build/hb_build2
+\
+    /usr/bin/ghdl -i --std=08 -frelaxed  -frelaxed -Wno-hide -Wno-shared --workdir=/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/build/hb_build2 --work=work /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/rtl/config.vhd /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/src/ztachip_pkg.vhd /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/platform/asic/CCD_SYNC.vhd /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/platform/asic/DPRAM_DUAL_CLOCK.vhd /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/src/util/afifo.vhd /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/rtl/hyperbus/hyperbus_rx.vhd /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/rtl/hyperbus/hyperbus_core.vhd /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/rtl/hyperbus/hyperbus_axi.vhd /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/rtl/reset_sync.vhd /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/hyperram_model.vhd /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/tb/tb_hyperbus.vhd && \
+    /usr/bin/ghdl -m --std=08 -frelaxed  -frelaxed -Wno-hide -Wno-shared --workdir=/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/build/hb_build2 -P/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/build/hb_build2 --work=work tb_hyperbus 
+rm -f results.xml
+COCOTB_TEST_MODULES=test_hyperbus COCOTB_TESTCASE=  COCOTB_TOPLEVEL=tb_hyperbus TOPLEVEL_LANG=vhdl       \
+     /usr/bin/ghdl -r --std=08 -frelaxed  --time-resolution=ps --workdir=/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/build/hb_build2 -P/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/build/hb_build2 --work=work tb_hyperbus  --vpi=/usr/local/lib/python3.12/dist-packages/cocotb/libs/libcocotbvpi_ghdl.so --ieee-asserts=disable  
+loading VPI module '/usr/local/lib/python3.12/dist-packages/cocotb/libs/libcocotbvpi_ghdl.so'
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:242  in gpi_load_users                  Loaded entry library: '/usr/lib/x86_64-linux-gnu/libpython3.12.so.1.0'
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:233  in gpi_load_users                  Running entry func 'initialize' from loaded library '/usr/local/lib/python3.12/dist-packages/cocotb/simulator.cpython-312-x86_64-linux-gnu.so'
+     -.--ns INFO     pygpi                              ..ib/pygpi/embed.cpp:114  in initialize                      Using Python 3.12.12 interpreter at /usr/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:74   in gpi_print_registered_impl       GPI: VPI support registered
+VPI module loaded!
+     0.00ns INFO     cocotb.initialize                  Seeding Python random module with 1793346178
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb.initialize                  Initialized cocotb v2.1.0 from /usr/local/lib/python3.12/dist-packages/cocotb
+     0.00ns INFO     cocotb.initialize                  Running on GHDL version 1.0.0 (Ubuntu 1.0.0+dfsg-6) [Dunoon edition]
+     0.00ns INFO     cocotb.regression                  Running tests
+     0.00ns INFO     cocotb.regression                  running test_hyperbus.test_single_word (1/6)
+                                                            (a) one 16-byte write then read, device 0 and device 1.
+  7196.00ns INFO     cocotb.regression                  test_hyperbus.test_single_word passed
+  7196.00ns INFO     cocotb.regression                  running test_hyperbus.test_narrow_writes (2/6)
+                                                            (b) sizes 0..3 with strobes (single beats and short bursts), read back.
+279456.00ns INFO     cocotb.regression                  test_hyperbus.test_narrow_writes passed
+279456.00ns INFO     cocotb.regression                  running test_hyperbus.test_back_to_back_64 (3/6)
+                                                            (d) 64-beat write immediately followed by a 64-beat read at the same address.
+360046.00ns INFO     cocotb.regression                  test_hyperbus.test_back_to_back_64 passed
+360046.00ns INFO     cocotb.regression                  running test_hyperbus.test_device_boundary (4/6)
+                                                            bursts crossing the 8 MB device boundary (chunks are 128-byte aligned, so each
+422306.00ns INFO     cocotb.regression                  test_hyperbus.test_device_boundary passed
+422306.00ns INFO     cocotb.regression                  running test_hyperbus.test_random_bursts (5/6)
+                                                            (c) HB_BURSTS random INCR bursts (1..64 beats, random size, random address in
+587305.00ns INFO     cocotb.tb_hyperbus                 random bursts: 50/200 done
+787345.00ns INFO     cocotb.tb_hyperbus                 random bursts: 100/200 done
+972365.00ns INFO     cocotb.tb_hyperbus                 random bursts: 150/200 done
+1137515.00ns INFO     cocotb.tb_hyperbus                 random bursts: 200/200 done
+1137516.00ns INFO     cocotb.tb_hyperbus                 STATS writes=159 reads=208 beats=3633 wbytes=19622 rbytes=29424
+1137516.00ns INFO     cocotb.regression                  test_hyperbus.test_random_bursts passed
+1137516.00ns INFO     cocotb.regression                  running test_hyperbus.test_model_flags (6/6)
+                                                            (e) the models never flagged a tCSM/tVCS/tRP/protocol violation.
+1137616.00ns INFO     cocotb.regression                  test_hyperbus.test_model_flags passed
+1137616.00ns INFO     cocotb.regression                  ********************************************************************************************
+                                                        ** TEST                                STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ********************************************************************************************
+                                                        ** test_hyperbus.test_single_word       PASS        7196.00           0.10      74817.91  **
+                                                        ** test_hyperbus.test_narrow_writes     PASS      272260.00           0.32     847573.38  **
+                                                        ** test_hyperbus.test_back_to_back_64   PASS       80590.00           0.11     710290.29  **
+                                                        ** test_hyperbus.test_device_boundary   PASS       62260.00           0.09     686204.97  **
+                                                        ** test_hyperbus.test_random_bursts     PASS      715210.00           0.89     804050.00  **
+                                                        ** test_hyperbus.test_model_flags       PASS         100.00           0.00     725155.90  **
+                                                        ********************************************************************************************
+                                                        ** TESTS=6 PASS=6 FAIL=0 SKIP=0                  1137616.00           1.51     752031.05  **
+                                                        ********************************************************************************************

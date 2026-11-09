@@ -1,0 +1,71 @@
+# cocotb unit test for the HyperBus (HyperRAM) controller (GHDL, VHDL-2008).
+#
+#   make -f Makefile.hyperbus                    # compile and run all tests
+#   make -f Makefile.hyperbus COCOTB_TESTCASE=test_random_bursts
+#   make -f Makefile.hyperbus HB_SEED=7 HB_BURSTS=400 HB_WGAP=0.95 HB_RREADY=0.3
+#   make -f Makefile.hyperbus SIM_ARGS="-gFIXED_LATENCY=false --ieee-asserts=disable"
+#   make -f Makefile.hyperbus synth-check        # GHDL 7 --synth latch/error check (GHDL7=...)
+#   make -f Makefile.hyperbus area               # IHP SG13G2 std-cell area of hyperbus_axi (YOSYS=..., LIB=...)
+#
+# DUT: HW/asic/tb/tb_hyperbus.vhd = hyperbus_axi + 2 x hyperram_model.
+# Requires: ghdl (>= 1.0 with VPI), cocotb >= 2.0.
+SIM ?= ghdl
+TOPLEVEL_LANG ?= vhdl
+ROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../../..)
+
+CTRL_SOURCES := $(ROOT)/HW/asic/rtl/config.vhd \
+                $(ROOT)/HW/src/ztachip_pkg.vhd \
+                $(ROOT)/HW/platform/asic/CCD_SYNC.vhd \
+                $(ROOT)/HW/platform/asic/DPRAM_DUAL_CLOCK.vhd \
+                $(ROOT)/HW/src/util/afifo.vhd \
+                $(ROOT)/HW/asic/rtl/hyperbus/hyperbus_rx.vhd \
+                $(ROOT)/HW/asic/rtl/hyperbus/hyperbus_core.vhd \
+                $(ROOT)/HW/asic/rtl/hyperbus/hyperbus_axi.vhd
+VHDL_SOURCES := $(CTRL_SOURCES) \
+                $(ROOT)/HW/asic/rtl/reset_sync.vhd \
+                $(ROOT)/HW/asic/tb/hyperram_model.vhd \
+                $(ROOT)/HW/asic/tb/tb_hyperbus.vhd
+
+TOPLEVEL := tb_hyperbus
+COCOTB_TEST_MODULES ?= test_hyperbus
+export PYTHONPATH := $(ROOT)/HW/asic/cocotb:$(PYTHONPATH)
+SIM_BUILD ?= sim_build_hyperbus
+
+# --std=08 must reach import, elaboration AND run (GHDL_ARGS is used by all three)
+GHDL_ARGS += --std=08 -frelaxed
+COMPILE_ARGS += -frelaxed -Wno-hide -Wno-shared
+SIM_ARGS += --ieee-asserts=disable
+
+# knobs read by test_hyperbus.py
+export HB_SEED ?= 1
+export HB_BURSTS ?= 200
+export HB_RREADY ?= 0.7
+export HB_WGAP ?= 0.2
+
+include $(shell cocotb-config --makefiles)/Makefile.sim
+
+# ---------------------------------------------------------------------------
+# standalone checks (not part of the cocotb flow)
+# ---------------------------------------------------------------------------
+GHDL7 ?= ghdl
+YOSYS ?= yosys
+LIB ?= sg13g2_stdcell_typ_1p20V_25C.lib
+SYNTH_DIR ?= $(ROOT)/HW/asic/build/hyperbus_synth
+CLOCK_MHZ ?= 100
+
+# GHDL 7 synthesis check of the controller alone: must report no latch and no error
+synth-check:
+	mkdir -p $(SYNTH_DIR)
+	$(GHDL7) -a --std=08 -frelaxed -Wno-hide -Wno-shared --workdir=$(SYNTH_DIR) $(CTRL_SOURCES)
+	$(GHDL7) --synth --std=08 -frelaxed --workdir=$(SYNTH_DIR) --out=verilog hyperbus_axi > $(SYNTH_DIR)/hyperbus_axi.v 2> $(SYNTH_DIR)/ghdl_synth.log
+	@grep -ci latch $(SYNTH_DIR)/ghdl_synth.log | sed 's/^/latch messages: /'
+	@grep -ci error $(SYNTH_DIR)/ghdl_synth.log | sed 's/^/error messages: /'
+
+# std-cell area of the controller (afifo RAM synthesized to flops, no macros):
+# the DGSE synth script's recipe without the memory black-box step
+area: synth-check
+	printf 'read_liberty -lib $(LIB)\nread_verilog -sv $(SYNTH_DIR)/hyperbus_axi.v\nhierarchy -check -top hyperbus_axi\nsynth -top hyperbus_axi -extra-map +/choices/kogge-stone.v -noabc\nabc\nopt -fast\ndfflibmap -liberty $(LIB)\nopt\nabc -D %d -liberty $(LIB)\nopt_clean -purge\nhilomap -singleton -hicell sg13g2_tiehi L_HI -locell sg13g2_tielo L_LO\nsplitnets -ports\nopt_clean -purge\ninsbuf -buf sg13g2_buf_1 A X\nsetundef -zero\ncheck\ntee -o $(SYNTH_DIR)/synth_stat.txt stat -liberty $(LIB)\n' $$(( 1000000 / $(CLOCK_MHZ) - 650 )) > $(SYNTH_DIR)/synth.ys
+	$(YOSYS) -q -l $(SYNTH_DIR)/synth.log -s $(SYNTH_DIR)/synth.ys > /dev/null
+	@grep -E 'Chip area|Number of cells|dfr|dfl' $(SYNTH_DIR)/synth_stat.txt
+
+.PHONY: synth-check area

@@ -20,9 +20,10 @@ This project is currently in a preliminary stage and is  intended for fabricatio
 
 Important design notes:
 
-- Detailed routing has not converged yet (9 Nov: supply shorts inside the SRAMs closed on a trial database; a signal-short congestion knot around one SRAM block is open, see STATUS_2026-11-09.md).
+- Latest release: `release/v.1.3.1` (9 Nov): 0 supply shorts, 1,624 detailed-route violations open in one congestion knot; a local floorplan ECO that removes the knot is in its clean-up runs (see STATUS_2026-11-09.md).
 - Hold timing on CPU ↔ SRAM paths remains open.
-- DRC/LVS are not yet clean.
+- DRC/LVS are not yet clean (density deck passes; the IHP minimum deck and chip LVS run on the final database).
+- Functional verification (RTL): firmware suite 6/6 PASS on the chip top, boot loader, HyperBus and SRAM-wrapper tests PASS; see `SoC2611-main/verification/sim/` and `doc/TRL-Mixed-Signal-IP.md` (declared TRL 2).
 - A final release will supersede this repository snapshot.
 
 ## Repository structure

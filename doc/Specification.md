@@ -5,7 +5,8 @@
 
 ## Function
 - VexRiscv RISC-V CPU (RV32IM, JTAG debug, I/D caches), boot ROM copy to a tightly-coupled memory, UART loader.
-- ztachip AI accelerator: 4 PCOREs, data path, scratchpad SRAM, AXI-lite control.
+- ztachip AI accelerator: 8 PCOREs (2 cells x 4), 16 threads each, data path, scratchpad SRAM, AXI-lite control
+  (register map in `RegisterMap.md`, interfaces in `Interfaces.md`).
 - AXI interconnect (lean AXI split/merge), HyperBus memory interface, camera input + video stream writer,
   UART, timer, GPIO, APB bridge. Single main clock with integrated clock gating (2 ICG cells).
 
@@ -18,4 +19,4 @@
 | Package | QFN64 (64 pads: 48 signal, 16 supply) |
 | Standard cells | ~290k after synthesis (~6.2 mm²), ~335k after P&R |
 | SRAM | 298 RM_IHPSG13 macros, 214 KiB, ~12.9 mm² |
-| IO | sg13cmos5l_io (IOPadIn / Out4mA / InOut4mA / supply pads), 70 × 70 µm bondpads |
+| IO | sg13cmos5l_io (IOPadIn / Out4mA / Out16mA / InOut4mA / InOut16mA / supply pads), 70 × 70 µm bondpads |
