@@ -7,7 +7,7 @@
 # usage: overnight.sh <in.odb> <name> [START=17] [END=24] [THREADS=24]   (outputs in /workspace/chip_fp2/eco/lift)
 IN=$1; N=$2; START=${3:-17}; END=${4:-24}; T=${5:-24}
 D=/workspace/chip_fp2/eco/lift
-S=/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/signoff
+S=<design-repo>/HW/asic/signoff
 OR=/nix/store/2y36a4sr078y15ick388dncqjdzmlxga-openroad-2026-02-17/bin/openroad
 W=/root/.claude/jobs/658ac326/tmp/grok_onehour/out/d1_watch.sh
 log() { echo "[overnight $(date +%H:%M:%S)] $*"; }

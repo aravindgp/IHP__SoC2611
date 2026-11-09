@@ -20,14 +20,14 @@ t write_v
 IN_ODB=$O/chip_pdn.odb OUT_V=$O/chip.v OUT_DEF=$O/chip.def ${DGSE_OPENROAD_NIX:-openroad} -no_init -no_splash -exit \
     "$HERE/write_v.tcl" > "$O/4_writev.log" 2>&1 || { echo REHEARSAL_FAIL write_v; tail "$O/4_writev.log"; exit 1; }
 t stream
-bash "$HERE/stream_chip.sh" "$O/chip.def" dgrid_soc1_chip_top "$O/gds/chip.gds" "$HERE/work/padring" > "$O/5_stream.log" 2>&1 \
+bash "$HERE/stream_chip.sh" "$O/chip.def" soc2611_chip_top "$O/gds/chip.gds" "$HERE/work/padring" > "$O/5_stream.log" 2>&1 \
     || { echo REHEARSAL_FAIL stream; tail "$O/5_stream.log"; exit 1; }
 ls -la "$O/gds"
 t cdl
-bash "$HERE/make_chip_cdl.sh" "$O/chip.v" "$O/chip.def" dgrid_soc1_chip_top "$O/lvs/chip.cdl" > "$O/6_cdl.log" 2>&1 \
+bash "$HERE/make_chip_cdl.sh" "$O/chip.v" "$O/chip.def" soc2611_chip_top "$O/lvs/chip.cdl" > "$O/6_cdl.log" 2>&1 \
     || { echo REHEARSAL_FAIL cdl; tail "$O/6_cdl.log"; exit 1; }
 tail -3 "$O/6_cdl.log"
 t signoff
-bash "$HERE/run_signoff.sh" "$O/gds/chip.gds" dgrid_soc1_chip_top "$O/lvs/chip.cdl" -o "$O/signoff" --die 6600 -j 2 --srams > "$O/7_signoff.log" 2>&1
+bash "$HERE/run_signoff.sh" "$O/gds/chip.gds" soc2611_chip_top "$O/lvs/chip.cdl" -o "$O/signoff" --die 6600 -j 2 --srams > "$O/7_signoff.log" 2>&1
 echo "REHEARSAL signoff rc=$?"; tail -25 "$O/7_signoff.log"
 t done

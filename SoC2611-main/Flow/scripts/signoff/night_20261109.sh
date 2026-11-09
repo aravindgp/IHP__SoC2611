@@ -11,11 +11,11 @@
 # Antenna repair is deliberately skipped (rehearsal: 2 h 21 min and 9,085 collateral violations; not in the
 # precheck's minimum deck).  Log: /workspace/chip_fp2/night_20261109.log
 set -u
-HERE=/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/signoff
+HERE=<design-repo>/HW/asic/signoff
 OR=/nix/store/2y36a4sr078y15ick388dncqjdzmlxga-openroad-2026-02-17/bin/openroad
 E=/workspace/chip_fp2/eco
 PL=/workspace/chip_fp2/handoff/H12_cpueast.pl; BLK=/workspace/chip_fp2/dpass/H13-pockets_blockages.txt
-REL=/workspace/chip_fp2/release_1200; REPO=/workspace/ihp_ip_repo/IHP__DSOC2610; VER=v.1.2.0; TOP=dgrid_soc1_chip_top
+REL=/workspace/chip_fp2/release_1200; REPO=/workspace/ihp_ip_repo/IHP__DSOC2610; VER=v.1.2.0; TOP=soc2611_chip_top
 NAME=SoC2611
 T_NOROUND=$(date -u -d '2026-11-09 03:00' +%s); T_HARD=$(date -u -d '2026-11-09 06:00' +%s)
 log() { echo "[night $(date -u +%T)] $*"; }
@@ -93,7 +93,7 @@ cp $REL/density.txt $REPO/release/$VER/density_fullfill.txt 2>/dev/null; cp $REL
   echo "Floorplan H13 + side-move / obstruction ECO rounds A-$prev (\`SoC2611-main/Flow/scripts/signoff/eco_round.sh\`), OpenROAD dcf36133, IHP-Open-PDK sg13cmos5l unmodified."
   echo "Known open items: shorts inside the SRAM macros listed above, antenna, hold timing, LVS, waivers."
 } > $REPO/release/$VER/ReleaseNote.md
-cd $REPO && git add release/$VER doc/info.json && git -c user.name=aravindgp -c user.email=sai@deepgridsemi.com commit -q -m "release $VER: overnight routed state (ECO round $prev, $inside inside-macro shorts), seal ring, fill, density, netlists, hashes" && git push -q origin main 2>&1 | tail -1
+cd $REPO && git add release/$VER doc/info.json && git -c user.name=aravindgp -c user.email=sai@soc2611semi.com commit -q -m "release $VER: overnight routed state (ECO round $prev, $inside inside-macro shorts), seal ring, fill, density, netlists, hashes" && git push -q origin main 2>&1 | tail -1
 log "release $VER pushed: $(git log --oneline -1)"
 
 # ---------------------------------------------------------------- 4. DRC on the full-fill GDS (runs on)

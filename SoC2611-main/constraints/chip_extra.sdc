@@ -1,4 +1,4 @@
-# HW/asic/constraints/dgrid_soc1_chip.sdc adapted to the Yosys netlist names and to the engine's clock block
+# HW/asic/constraints/soc2611_chip.sdc adapted to the Yosys netlist names and to the engine's clock block
 # (pnr.tcl already did: create_clock core_clock 10 ns on clk_x2_in, uncertainty, default IO delays vs core_clock).
 # Yosys renamed the divider flops: clk_div2_i/div_r_reg -> clk_div2_i/_2_, camera sys_clk_reg -> _1577_.
 create_generated_clock -name clk_main -divide_by 2 -source [get_ports clk_x2_in] [get_pins clk_div2_i/_2_/Q]

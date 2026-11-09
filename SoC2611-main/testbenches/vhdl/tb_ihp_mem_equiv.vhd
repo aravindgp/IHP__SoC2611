@@ -3,7 +3,7 @@
 -- library `ihp`) against the behavioural ASIC wrappers (HW/platform/asic,
 -- library `golden`), seen from the core clock.
 --
--- For every geometry of the DGrid-SoC1 inventory one `pair_*` block drives
+-- For every geometry of the SoC2611 inventory one `pair_*` block drives
 -- the golden and the ihp wrapper with identical random traffic (small
 -- address range to force collisions, same-address read/write in one cycle,
 -- write bursts, idle stretches, random byte enables) and compares the read

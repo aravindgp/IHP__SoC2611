@@ -125,7 +125,7 @@ def s_intro(layer, t, dur):
     if a > 0:
         col = rgba(C_GREY, 255 * a)
         text(d, (540, 1052), '6.6 × 6.6 mm  ·  IHP SG13CMOS5L  ·  5 metal layers', 26, col, 'Medium', 'mm')
-        text(d, (540, 1095), f'{len(MACS)} SRAM macros  ·  RISC-V + DeepGrid AI accelerator', 26, col, 'Medium', 'mm')
+        text(d, (540, 1095), f'{len(MACS)} SRAM macros  ·  RISC-V + ztachip AI accelerator', 26, col, 'Medium', 'mm')
 
 DONE_ITEMS = [('Floorplan H13', 'dead spaces blocked; overflow 9,522 → 3,061'),
               ('Detailed route to the floor', 'H10 complete at 996 violations'),
@@ -434,8 +434,8 @@ def s_dates(layer, t, dur):
 def s_end(layer, t, dur):
     fp = FP(340, 420, 400); draw_die(layer, fp, dim=True)
     d = ImageDraw.Draw(layer)
-    text(d, (540, 900), 'SoC2611 · DGrid-SoC1', 40, C_WHITE, 'Bold', 'mm')
-    text(d, (540, 955), 'DeepGrid Semi · 9 November 2026', 24, C_GREY, 'Medium', 'mm')
+    text(d, (540, 900), 'SoC2611 · SoC2611', 40, C_WHITE, 'Bold', 'mm')
+    text(d, (540, 955), 'the design team · 9 November 2026', 24, C_GREY, 'Medium', 'mm')
 
 SCENES = [
     ('SoC2611: where the chip stands', s_intro,

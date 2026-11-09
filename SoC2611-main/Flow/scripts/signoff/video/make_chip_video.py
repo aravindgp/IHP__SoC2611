@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Explainer of the whole chip: DGrid-SoC1 / SoC2611 blocks, data flow, memory, pins, numbers, boot.
+"""Explainer of the whole chip: SoC2611 / SoC2611 blocks, data flow, memory, pins, numbers, boot.
 Facts from doc/Specification.md and doc/Datasheet.md of the IHP repo.  Reuses make_status_video.py.
 usage: make_chip_video.py <out_dir> [--preview]"""
 import math, os, sys
@@ -26,14 +26,14 @@ def s_intro(layer, t, dur):
         for (x, y, lab, col) in ((870, 300, 'SRAM: 298 macros', C_TEAL), (870, 600, 'accelerator rows', C_PURPLE), (330, 980, 'pad ring: 64 pads', C_GREY)):
             pass
         text(d, (540, 975), '6.6 × 6.6 mm  ·  IHP SG13CMOS5L  ·  QFN64', 26, rgba(C_WHITE, 255 * a), 'SemiBold', 'mm')
-        text(d, (540, 1018), 'RISC-V CPU + DeepGrid AI accelerator + 214 KiB SRAM', 24, rgba(C_GREY, 255 * a), 'Medium', 'mm')
+        text(d, (540, 1018), 'RISC-V CPU + ztachip AI accelerator + 214 KiB SRAM', 24, rgba(C_GREY, 255 * a), 'Medium', 'mm')
         text(d, (540, 1060), 'camera in, HyperBus memory out, UART / SPI / GPIO / JTAG', 22, rgba(C_GREY, 255 * a), 'Medium', 'mm')
 
 DOES = [('sees', 'camera frames on the 8-bit port, written to memory as they arrive', C_AMBER),
         ('thinks', 'neural-network inference and vision kernels on the 4 PCOREs: classify, detect, filter, resize, convert', C_PURPLE),
         ('tells', 'results over UART or SPI, GPIO lines for triggers, a host reads them', C_TEAL)]
 USES = ['edge AI camera: recognise what is in front of it without a cloud', 'machine vision in low-power devices: sorting, inspection, presence',
-        'first silicon of the DeepGrid architecture: measure, learn, scale']
+        'first silicon of the SoC2611 architecture: measure, learn, scale']
 
 def s_does(layer, t, dur):
     d = ImageDraw.Draw(layer)
@@ -57,7 +57,7 @@ def s_does(layer, t, dur):
         text(d, (540, 1030), 'limits: 214 KiB on chip plus HyperRAM, so small models and tiled frames, not large networks', 19, rgba(C_DIM, 255 * b), 'Medium', 'mm')
 
 BLOCKS = [((80, 260, 500, 400), 'VexRiscv CPU', 'RV32IM, I/D caches, JTAG debug', C_BLUE, 0.3),
-          ((580, 260, 1000, 400), 'DeepGrid accelerator', '4 PCOREs, data path, scratchpad', C_PURPLE, 0.8),
+          ((580, 260, 1000, 400), 'SoC2611 accelerator', '4 PCOREs, data path, scratchpad', C_PURPLE, 0.8),
           ((80, 470, 1000, 560), 'AXI interconnect', 'lean split / merge, APB bridge', C_TEAL, 1.3),
           ((80, 630, 380, 760), 'HyperBus', 'HyperRAM / HyperFlash, 8-bit', C_AMBER, 1.8),
           ((400, 630, 700, 760), 'Camera in', '8-bit DVP + video stream writer', C_AMBER, 2.1),
@@ -198,18 +198,18 @@ def s_status(layer, t, dur):
         text(d, (540, 858), 'HyperFlash, SPI master, 4-bit camera port, smaller configuration', 21, rgba(C_GREY, 255 * b), 'Medium', 'mm')
 
 V.SCENES = [
-    ('DGrid-SoC1 in one picture', s_intro,
-     'This is DGrid {S o C one|SoC1}, taped out as {S o C twenty six eleven|SoC2611}: a RISC-V system on chip with the '
-     'DeepGrid AI accelerator, on IHP\'s one hundred and thirty nanometre CMOS process. Six point six millimetres a side, '
+    ('SoC2611 in one picture', s_intro,
+     'This is SoC2611 {S o C one|SoC1}, taped out as {S o C twenty six eleven|SoC2611}: a RISC-V system on chip with the '
+     'ztachip AI accelerator, on IHP\'s one hundred and thirty nanometre CMOS process. Six point six millimetres a side, '
      'in a sixty-four pin QFN. Here is what is inside.'),
     ('What it does', s_does,
      'What does it do? It sees: camera frames come in on the eight-bit port and are written to memory as they arrive. It '
      'thinks: the four processing cores run neural-network inference and classical vision kernels, classify, detect, filter, '
      'resize, convert. And it tells: results go out over UART or SPI, with GPIO lines for triggers. It is an edge AI camera '
-     'chip, for machine vision in low-power devices, and the first silicon of the DeepGrid architecture. Its limits are '
+     'chip, for machine vision in low-power devices, and the first silicon of the SoC2611 architecture. Its limits are '
      'honest: two hundred and fourteen kilobytes on chip plus HyperRAM, so small models and tiled frames, not large networks.'),
     ('The blocks', s_blocks,
-     'A VexRiscv CPU, thirty-two bit with caches and JTAG debug. The DeepGrid accelerator: four processing cores with a '
+     'A VexRiscv CPU, thirty-two bit with caches and JTAG debug. The SoC2611 accelerator: four processing cores with a '
      'data path and a scratchpad. A lean AXI interconnect joins them to a HyperBus memory port, a camera input with a video '
      'stream writer, and the peripherals: UART, SPI, timer and GPIO. All of it on one main clock with clock gating.'),
     ('How data flows', s_flow,

@@ -7,7 +7,7 @@ import re
 import sys
 
 src, out = sys.argv[1:3]
-title = sys.argv[3] if len(sys.argv) > 3 else 'DGrid-SoC1 floorplan'
+title = sys.argv[3] if len(sys.argv) > 3 else 'SoC2611 floorplan'
 prev = sys.argv[4] if len(sys.argv) > 4 else None
 S = 0.22  # px per um
 PAD = 90

@@ -13,7 +13,7 @@ import numpy as np
 from matplotlib.patches import Rectangle
 
 src, out = sys.argv[1], sys.argv[2]
-title = sys.argv[3] if len(sys.argv) > 3 else 'DGrid-SoC1: measured standard-cell density'
+title = sys.argv[3] if len(sys.argv) > 3 else 'SoC2611: measured standard-cell density'
 BIN = float(sys.argv[4]) if len(sys.argv) > 4 else 100.0
 U = 1000.0  # dbu per um
 

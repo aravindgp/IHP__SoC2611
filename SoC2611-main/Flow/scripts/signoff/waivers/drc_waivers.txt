@@ -1,4 +1,4 @@
-# DRC waivers for DGrid-SoC1 on IHP SG13CMOS5L (read by summarize_lyrdb.py via run_drc.sh).
+# DRC waivers for SoC2611 on IHP SG13CMOS5L (read by summarize_lyrdb.py via run_drc.sh).
 # Format: <rule pattern>[@<cell pattern>]   (fnmatch; cell = cell the marker is reported in, deep mode)
 # Every entry needs a reason and must be confirmed with IHP at tape-out submission.
 

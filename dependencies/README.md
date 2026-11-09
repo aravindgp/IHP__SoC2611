@@ -17,9 +17,9 @@ reproduced. See also `doc/info.json` ("dependencies", "tools").
 
 | Item | Version | Notes |
 |---|---|---|
-| ztachip (AI accelerator, SoC fabric) | DGrid-SoC1 fork `aravindgp/DGrid-SoC1`, branch `worktree-asic-rtl-prep` | VHDL, Apache-2.0 |
+| ztachip (AI accelerator, SoC fabric) | design repository, branch `worktree-asic-rtl-prep`; exported here as `SoC2611-main/rtl/SoC2611.v` | VHDL, Apache-2.0 |
 | VexRiscv (RISC-V CPU) | VexRiscv commit `5ef1bc775fdbe942875dd7906f22aa98e6cffaaf`, generated with SpinalHDL v1.9.3 | JTAG debug TAP, reset vector 0, black-boxed cache memories |
-| HyperBus controller, camera, UART, SPI, GPIO, timer, boot ROM | DGrid-SoC1 `HW/asic/rtl/`, `HW/src/soc/`, `HW/asic/fw/bootrom/` | |
+| HyperBus controller, camera, UART, SPI, GPIO, timer, boot ROM | design repository `HW/asic/rtl/`, `HW/src/soc/`, `HW/asic/fw/bootrom/` | |
 
 ## Tools
 

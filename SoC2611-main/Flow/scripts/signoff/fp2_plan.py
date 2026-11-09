@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Hand floorplan (run G) for DGrid-SoC1 on SG13CMOS5L: macros grouped by the logic that drives them, packed in row
+"""Hand floorplan (run G) for SoC2611 on SG13CMOS5L: macros grouped by the logic that drives them, packed in row
 PAIRS whose signal-pin edges (SRAM pins are on the bottom edge in R0) face each other across a STRIP of standard-cell
 rows (the logic that drives them sits right at the pins; no row crossing), BB between the pinless backs of
 neighbouring pairs, G between macros in a row (vertical escape, kept free of cells by a placement blockage).  Regions per block are given in um
@@ -294,7 +294,7 @@ for b, s in summary.items():
                  color='white', fontweight='bold', bbox=dict(fc='black', alpha=0.4, lw=0))
 hs = [Rectangle((0, 0), 1, 1, fc=COL[b]) for b in COL]
 axes[1].legend(hs, list(COL), loc='upper left', bbox_to_anchor=(1.01, 1.0), fontsize=9, title='macro owner')
-fig.suptitle('DGrid-SoC1 (DSOC2610) floorplan: current vs proposed  (black edge = SRAM signal-pin side)', fontsize=15)
+fig.suptitle('SoC2611 (DSOC2610) floorplan: current vs proposed  (black edge = SRAM signal-pin side)', fontsize=15)
 fig.subplots_adjust(left=0.04, right=0.9, top=0.9, bottom=0.07, wspace=0.15)
 fig.savefig(outp + '_before_after.png', dpi=100)
 print('wrote', outp + '_before_after.png')

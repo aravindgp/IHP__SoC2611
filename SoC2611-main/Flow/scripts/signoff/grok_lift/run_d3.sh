@@ -7,7 +7,7 @@
 # usage: run_d3.sh [NAME=d3] [THREADS=16] [END=3]; env WAIT_PID = process to wait for before starting (memory gate)
 N=${1:-d3}; T=${2:-16}; END=${3:-3}
 D=/workspace/chip_fp2/eco/lift
-G=/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/signoff/grok_lift
+G=<design-repo>/HW/asic/signoff/grok_lift
 OR=/nix/store/2y36a4sr078y15ick388dncqjdzmlxga-openroad-2026-02-17/bin/openroad
 if [ -n "${WAIT_PID:-}" ]; then while kill -0 "$WAIT_PID" 2>/dev/null; do sleep 60; done; fi
 echo "[run_d3 $(date +%H:%M:%S)] start $N"

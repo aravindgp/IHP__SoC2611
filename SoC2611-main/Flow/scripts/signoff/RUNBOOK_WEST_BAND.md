@@ -1,7 +1,7 @@
 # Runbook: close the DSOC2610 chip route (run B + west-band ECO "run D")
 
 Written 3 Nov 2026 23:45 IST. Execute step by step; every step has a gate. Do not reason past a failed gate: stop
-and report. Paths: `S=/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/signoff`,
+and report. Paths: `S=<design-repo>/HW/asic/signoff`,
 `OR=/nix/store/2y36a4sr078y15ick388dncqjdzmlxga-openroad-2026-02-17/bin/openroad`, work dir `/workspace/chip_drt`.
 Shell rules on this pod: plain commands only (no `sed -n Np`, no `xargs sh`, no `cd` chains outside the worktree);
 side jobs through `$S/lowprio.sh`; keep the pod under 95 GB (run B ~17 GB, a check_drc ~15 GB, a DRT ~16 GB).

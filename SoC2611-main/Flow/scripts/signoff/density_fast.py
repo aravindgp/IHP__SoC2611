@@ -40,7 +40,7 @@ from pathlib import Path
 
 import klayout.db as db
 
-TECH = Path(os.environ.get('KLAYOUT_TECH', '/workspace/dgrid_658ac326/tmp/pdk_root/'
+TECH = Path(os.environ.get('KLAYOUT_TECH', '/workspace/soc2611_658ac326/tmp/pdk_root/'
                            'ihp-sg13cmos5l/libs.tech/klayout/tech'))
 
 # name: (positive (layer, dt) list, subtracted list)

@@ -1,13 +1,13 @@
 # Functional simulation results (RTL, typical case)
 
-All runs: GHDL + cocotb on the design repository (DGrid-SoC1), 31 Oct 2026, with the IHP SRAM macro models and
+All runs: GHDL + cocotb on the design repository, 31 Oct 2026, with the IHP SRAM macro models and
 the JTAG VexRiscv core, i.e. the configuration that was synthesised. Testbench sources: `../../testbenches/`.
 
 | Log | Testbench | What it proves | Result |
 |---|---|---|---|
-| `cocotb_icg.log` | `tb_dgrid_soc1_hb` (chip top, HyperRAM model, ICG clock gating) | firmware suite T01-T06: CPU boots through the AXI fabric, main-memory path (LFSR word / half-word / byte writes), APB write and read (LEDs, buttons), timer, UART receive, accelerator status registers | **6/6 PASS**, 3.6 ms simulated |
+| `cocotb_icg.log` | `tb_soc2611_hb` (chip top, HyperRAM model, ICG clock gating) | firmware suite T01-T06: CPU boots through the AXI fabric, main-memory path (LFSR word / half-word / byte writes), APB write and read (LEDs, buttons), timer, UART receive, accelerator status registers | **6/6 PASS**, 3.6 ms simulated |
 | `cocotb_results.xml` | same | JUnit record of the suite | 1 test, 0 failures |
-| `cocotb_bootldr.log` | `tb_dgrid_soc1_fw` | boot ROM from the TCM: `BOOT`, image received over UART, `GO`, application prints `HELLO`, LEDs 0xA | **PASS** |
+| `cocotb_bootldr.log` | `tb_soc2611_fw` | boot ROM from the TCM: `BOOT`, image received over UART, `GO`, application prints `HELLO`, LEDs 0xA | **PASS** |
 | `hb_check2.log` | `tb_hyperbus` | HyperBus controller unit tests (single and burst read/write, RWDS latency, register access) | **6/6 PASS** |
 | `tb_ihp_mem6.log` | `tb_ihp_mem_equiv` | every IHP SRAM macro wrapper against its behavioural reference model, including the dual-clock DPRAM | **37 pairs PASS** |
 

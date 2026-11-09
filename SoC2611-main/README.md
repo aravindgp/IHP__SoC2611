@@ -1,12 +1,12 @@
 # SoC2611-main — sources, flow and source-to-release mapping
 
-SoC2611 is the IHP release name of the DeepGrid SoC **DGrid-SoC1** (internal top-level name `dgrid_soc1_chip_top`).
+SoC2611 is the IHP release name of the chip (internal top-level name `soc2611_chip_top`).
 This directory holds what is needed to understand and reproduce the release in `../release/v.1.0.0/`.
 
 ## Contents
 | Path | What |
 |---|---|
-| `rtl/SoC2611.v` | Complete RTL as one Verilog file, exported from the VHDL/Verilog sources of DGrid-SoC1 (GHDL `--synth` export of the VHDL, VexRiscv Verilog, ztachip). Top module renamed `dgrid_soc1_chip_top` → `SoC2611`. |
+| `rtl/SoC2611.v` | Complete RTL as one Verilog file, exported from the VHDL/Verilog sources of SoC2611 (GHDL `--synth` export of the VHDL, VexRiscv Verilog, ztachip). Top module renamed `soc2611_chip_top` → `SoC2611`. |
 | `synthesis/` | Yosys script (`synth.ys`), statistics, SRAM inventory (298 RM_IHPSG13 macros) |
 | `constraints/` | SDC (`design.sdc`, `chip_extra.sdc`), QFN64 pad ring + port map (`padring_qfn64.json`, `portmap_qfn64.json`), bond table |
 | `Flow/scripts/signoff/` | Chip integration (pads, pad↔core power straps), GDS stream, CDL, seal ring, tiled fill, DRC/LVS, release scripts |
@@ -18,7 +18,7 @@ This directory holds what is needed to understand and reproduce the release in `
    files. SG13CMOS5L uses the **identical** standard-cell library (same 84 cells, same layouts) under the prefix
    `sg13cmos5l_`, and the same RM_IHPSG13 SRAM macros (Metal1-4 only). The P&R netlist is the Yosys netlist with the
    textual rename `sg13g2_` → `sg13cmos5l_` (no other change; checked byte-for-byte against the P&R input).
-   The script still names the internal top `dgrid_soc1_chip_top`; the release renames it to `SoC2611`.
+   The script still names the internal top `soc2611_chip_top`; the release renames it to `SoC2611`.
 2. **P&R**: DGSE flow (OpenROAD dcf36133) on IHP-Open-PDK `dcb03b1e2d24250bccbb2e8783d55d2b4f734f14`,
    `ihp-sg13cmos5l`, die 6600 × 6600 µm, core 340..6260 µm; PDN `Flow/scripts/dgse/pdn_c5l_sram_v2.tcl`.
 3. **Chip integration**: `Flow/scripts/signoff/run_chip_integrate.sh` adds the 64 sg13cmos5l IO cells, bondpads and

@@ -8,7 +8,7 @@ read_lef $pdk/sg13cmos5l_stdcell/lef/sg13cmos5l_stdcell.lef
 read_lef $pdk/sg13cmos5l_io/lef/sg13cmos5l_io.lef
 read_lef $pr/bondpad_70x70.lef
 read_verilog $pr/padring_stub.v
-link_design dgrid_padring
+link_design soc2611_padring
 initialize_floorplan -die_area {0 0 6600 6600} -core_area {340 340 6260 6260} -site CoreSite
 source $pr/padring.tcl
 write_def $pr/padring_openroad.def

@@ -8,7 +8,7 @@ E=${1:-d2}; T=${2:-16}; HALO=${3:-8}; GRID=${4:-4}
 # east edge (x 2826-2834), through the old jog, and they collided at its top-right corner (6 elbow-square markers).
 WAIT_PID=${WAIT_PID:-}   # memory gate: wait for this process (the v.1.3.1 chain) before any OpenROAD load
 D=/workspace/chip_fp2/eco/lift
-S=/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/signoff
+S=<design-repo>/HW/asic/signoff
 OR=/nix/store/2y36a4sr078y15ick388dncqjdzmlxga-openroad-2026-02-17/bin/openroad
 W=/root/.claude/jobs/658ac326/tmp/grok_onehour/out/d1_watch.sh
 MAC=/workspace/chip_fp2/handoff/macros_name_w_h_um.txt

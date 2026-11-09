@@ -9,7 +9,7 @@ from collections import Counter
 import klayout.db as db
 
 defp, gdsp = sys.argv[1], sys.argv[2]
-top = sys.argv[3] if len(sys.argv) > 3 else 'dgrid_padring'
+top = sys.argv[3] if len(sys.argv) > 3 else 'soc2611_padring'
 txt = open(defp).read()
 units = int(re.search(r'UNITS DISTANCE MICRONS (\d+)', txt).group(1))
 comps = re.search(r'COMPONENTS \d+ ;(.*?)END COMPONENTS', txt, re.S).group(1)

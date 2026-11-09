@@ -30,10 +30,10 @@ read_liberty -lib /root/.claude/jobs/658ac326/tmp/pdk/sg13g2/lib/../sram/RM_IHPS
 read_liberty -lib /root/.claude/jobs/658ac326/tmp/pdk/sg13g2/lib/../sram/RM_IHPSG13_2P_512x8_c2_bm_bist_typ_1p20V_25C.lib
 read_liberty -lib /root/.claude/jobs/658ac326/tmp/pdk/sg13g2/lib/../sram/RM_IHPSG13_2P_64x22_c2_bm_bist_typ_1p20V_25C.lib
 read_liberty -lib /root/.claude/jobs/658ac326/tmp/pdk/sg13g2/lib/../sram/RM_IHPSG13_2P_64x32_c2_typ_1p20V_25C.lib
-read_verilog -sv /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/build/chip7_w32/synth/input_icg.v
-hierarchy -check -top dgrid_soc1_chip_top
+read_verilog -sv <design-repo>/HW/asic/build/chip7_w32/synth/input_icg.v
+hierarchy -check -top soc2611_chip_top
 
-synth -top dgrid_soc1_chip_top -extra-map +/choices/kogge-stone.v -noabc
+synth -top soc2611_chip_top -extra-map +/choices/kogge-stone.v -noabc
 abc -exe /root/.claude/jobs/658ac326/tmp/tools/oss-cad-suite/bin/yosys-abc
 opt -fast
 dfflibmap -liberty /root/.claude/jobs/658ac326/tmp/pdk/sg13g2/lib/sg13g2_stdcell_typ_1p20V_25C.lib
@@ -46,6 +46,6 @@ opt_clean -purge
 insbuf -buf sg13g2_buf_1 A X
 setundef -zero
 check
-tee -o /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/build/chip7_w32/synth/synth_stat.json stat -json -liberty /root/.claude/jobs/658ac326/tmp/pdk/sg13g2/lib/sg13g2_stdcell_typ_1p20V_25C.lib
-tee -o /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/build/chip7_w32/synth/synth_stat.txt stat -liberty /root/.claude/jobs/658ac326/tmp/pdk/sg13g2/lib/sg13g2_stdcell_typ_1p20V_25C.lib
-write_verilog -noattr -noexpr -nohex -nodec /root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/build/chip7_w32/synth/dgrid_soc1_chip_top_synth.v
+tee -o <design-repo>/HW/asic/build/chip7_w32/synth/synth_stat.json stat -json -liberty /root/.claude/jobs/658ac326/tmp/pdk/sg13g2/lib/sg13g2_stdcell_typ_1p20V_25C.lib
+tee -o <design-repo>/HW/asic/build/chip7_w32/synth/synth_stat.txt stat -liberty /root/.claude/jobs/658ac326/tmp/pdk/sg13g2/lib/sg13g2_stdcell_typ_1p20V_25C.lib
+write_verilog -noattr -noexpr -nohex -nodec <design-repo>/HW/asic/build/chip7_w32/synth/soc2611_chip_top_synth.v

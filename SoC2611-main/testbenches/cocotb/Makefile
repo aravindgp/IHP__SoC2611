@@ -1,4 +1,4 @@
-# cocotb firmware-level tests for dgrid_soc1_asic_top (GHDL, VHDL-2008).
+# cocotb firmware-level tests for soc2611_asic_top (GHDL, VHDL-2008).
 #
 #   make                 # build firmware, compile RTL, run all tests
 #   make FW=smoke        # choose the firmware image (HW/asic/fw/<FW>.c)
@@ -25,20 +25,20 @@ ifeq ($(FAST_UART),1)
 FILELIST := $(patsubst $(ROOT)/HW/asic/rtl/config.vhd,$(ROOT)/HW/asic/tb/config_sim.vhd,$(FILELIST))
 export MAIN_CLOCK_HZ := 12500000
 endif
-# CHIP=hb: the QFN64 chip top (dgrid_soc1_chip_top) with two HyperRAM device models on its HyperBus
+# CHIP=hb: the QFN64 chip top (soc2611_chip_top) with two HyperRAM device models on its HyperBus
 # instead of the generic ASIC top with the DDR model; test_fw.py is the same.
 CHIP ?= asic
 ifeq ($(CHIP),hb)
 VHDL_SOURCES := $(FILELIST) \
                 $(ROOT)/HW/asic/tb/hyperram_model.vhd \
-                $(ROOT)/HW/asic/tb/tb_dgrid_soc1_hb.vhd
-TOPLEVEL := tb_dgrid_soc1_hb
+                $(ROOT)/HW/asic/tb/tb_soc2611_hb.vhd
+TOPLEVEL := tb_soc2611_hb
 else
 VHDL_SOURCES := $(FILELIST) \
                 $(ROOT)/HW/simulation/mem128.vhd \
-                $(ROOT)/HW/asic/tb/tb_dgrid_soc1_fw.vhd
+                $(ROOT)/HW/asic/tb/tb_soc2611_fw.vhd
 
-TOPLEVEL := tb_dgrid_soc1_fw
+TOPLEVEL := tb_soc2611_fw
 endif
 COCOTB_TEST_MODULES ?= test_fw
 export PYTHONPATH := $(ROOT)/HW/asic/cocotb:$(PYTHONPATH)

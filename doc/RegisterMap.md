@@ -1,6 +1,6 @@
 # SoC2611 memory map and register map
 
-Sources of record in the design repository (DGrid-SoC1): `HW/src/ztachip_pkg.vhd` (APB offsets, accelerator
+Sources of record in the design repository: `HW/src/ztachip_pkg.vhd` (APB offsets, accelerator
 register numbers), `SW/src/soc.h` (APB word indices used by the firmware), `SW/base/zta.h` (accelerator host
 registers), `HW/asic/fw/bootrom/boot.c` (boot ROM), `HW/asic/fw/smoke.c` (firmware suite). The firmware suite in
 `SoC2611-main/verification/sim/cocotb_icg.log` exercises every register listed under "APB peripherals" and the

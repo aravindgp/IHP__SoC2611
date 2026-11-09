@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""DPASS (Deep Probe using Autoresearch, Score and Select) -- DSOC2610 (DGrid-SoC1, SG13CMOS5L, 6.6 mm) hand-FLOORPLAN
+"""DPASS (Deep Probe using Autoresearch, Score and Select) -- DSOC2610 (SoC2611, SG13CMOS5L, 6.6 mm) hand-FLOORPLAN
 campaign, 5 Nov 2026.  Hypotheses and kill criteria are written here BEFORE a probe runs; every probe is the real
 engine flow (fixed macro placements -> PDN -> GPL -> repair -> DPL -> CTS -> GRT) stopped after the groute
 checkpoint, scored on the global-route overflow (GRT-0096 Total), the number detailed routing inherits.
@@ -31,9 +31,9 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 DG = Path('/root/.claude/jobs/658ac326/tmp/dgse/DGSE')
-A = Path('/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic')
+A = Path('<design-repo>/HW/asic')
 BASE_CFG = DG / 'runs/c7w32-6600-respread/config.json'
-NET = DG / 'runs/soc1-c5l-chip7w32-net/dgrid_soc1_chip_top_synth.v'
+NET = DG / 'runs/soc1-c5l-chip7w32-net/soc2611_chip_top_synth.v'
 PLACE_TXT = Path('/workspace/chip_drt/density/place_F7.txt')
 CELLS_TXT = Path('/workspace/chip_fp2/cellgroups_F7.txt')
 OUT = Path('/workspace/chip_fp2/dpass')

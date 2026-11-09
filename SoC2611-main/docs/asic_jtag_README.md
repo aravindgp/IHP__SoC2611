@@ -1,4 +1,4 @@
-# VexRiscv for the DGrid-SoC1 ASIC: JTAG debug, reset vector 0, black-boxed memories
+# VexRiscv for the SoC2611 ASIC: JTAG debug, reset vector 0, black-boxed memories
 
 Drop-in replacement for `HW/riscv/asic/riscv.vhd` (same entity `riscv`, all existing ports
 unchanged), with three differences:
@@ -74,7 +74,7 @@ and `cpu0.yaml` from this directory:
 
 ```tcl
 adapter speed 1000
-set _CHIPNAME dgrid
+set _CHIPNAME soc2611
 jtag newtap $_CHIPNAME bridge -expected-id 0x10001fff -irlen 4 -ircapture 0x1 -irmask 0xF
 target create $_CHIPNAME.cpu0 vexriscv -endian little -chain-position $_CHIPNAME.bridge
 vexriscv readWaitCycles 12
@@ -101,6 +101,6 @@ vector 0 (boot ROM).
 cd HW/asic/cocotb
 make VHDL_SOURCES="<filelist.f with HW/riscv/asic/riscv.vhd replaced by
      HW/riscv/asic_jtag/ram_blackboxes_ref.vhd HW/riscv/asic_jtag/riscv.vhd>
-     HW/simulation/mem128.vhd HW/asic/tb/tb_dgrid_soc1_fw.vhd" \
-     TOPLEVEL=tb_dgrid_soc1_fw COCOTB_TEST_MODULES=test_fw FAST_UART=1 SIM_BUILD=/tmp/sim_jtag
+     HW/simulation/mem128.vhd HW/asic/tb/tb_soc2611_fw.vhd" \
+     TOPLEVEL=tb_soc2611_fw COCOTB_TEST_MODULES=test_fw FAST_UART=1 SIM_BUILD=/tmp/sim_jtag
 ```

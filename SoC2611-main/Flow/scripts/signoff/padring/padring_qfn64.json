@@ -1,8 +1,8 @@
 {
   "_comment": [
-    "DGrid-SoC1 QFN64 pad ring, IHP SG13CMOS5L, sg13cmos5l_io (3.3 V IO / 1.2 V core).",
+    "SoC2611 QFN64 pad ring, IHP SG13CMOS5L, sg13cmos5l_io (3.3 V IO / 1.2 V core).",
     "Source of the pad budget: HW/asic/dgse/padlist_qfn64.md (48 signal + 16 supply).",
-    "Signal names = ports of HW/asic/rtl/dgrid_soc1_chip_top.vhd (bidir pads carry the _in/_out/_oe triple).",
+    "Signal names = ports of HW/asic/rtl/soc2611_chip_top.vhd (bidir pads carry the _in/_out/_oe triple).",
     "Side lists follow the package pin numbering, counter-clockwise starting top-left:",
     "  west  top->bottom (pins 1-16), south left->right (17-32), east bottom->top (33-48), north right->left (49-64).",
     "Each side: one VDD/VSS (core 1.2 V) and one IOVDD/IOVSS (3.3 V) pair.  Order is a DRAFT: re-order freely,",

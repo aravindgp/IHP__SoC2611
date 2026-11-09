@@ -1,4 +1,4 @@
-density_fast: /workspace/chip_fp2/release_1200/dgrid_soc1_chip_top_final.gds top=dgrid_soc1_chip_top chip=EdgeSeal.boundary 43560000 um2, 256 windows/layer, grid 200 um, read 11.0 s + tiles 1107.9 s + macros 220.2 s (8 threads)
+density_fast: /workspace/chip_fp2/release_1200/soc2611_chip_top_final.gds top=soc2611_chip_top chip=EdgeSeal.boundary 43560000 um2, 256 windows/layer, grid 200 um, read 11.0 s + tiles 1107.9 s + macros 220.2 s (8 threads)
 global: Activ 43.978%  GatPoly 24.530%  Metal1 49.303%  Metal2 38.133%  Metal3 46.211%  Metal4 57.446%  TopMetal1 32.993%
   AFil.g    >= 35%   global 43.978%                       PASS
   AFil.g1   <= 55%   global 43.978%                       PASS

@@ -29,7 +29,7 @@ added on 9 November 2026 with the testbench sources and the simulation logs they
   `SoC2611-main/README.md`.
 - [x] Are functional simulation results of the IP reported for a typical case?
   `SoC2611-main/verification/sim/cocotb_icg.log`: firmware suite T01-T06 **6/6 PASS** on the chip top
-  (`tb_dgrid_soc1_hb`: HyperRAM model, IHP SRAM macro models, JTAG VexRiscv core, clock gating), 31 Oct 2026;
+  (`tb_soc2611_hb`: HyperRAM model, IHP SRAM macro models, JTAG VexRiscv core, clock gating), 31 Oct 2026;
   `SoC2611-main/verification/sim/cocotb_results.xml` (JUnit, 0 failures);
   `SoC2611-main/verification/sim/cocotb_bootldr.log`: boot-ROM UART loader BOOT -> GO -> HELLO **PASS**.
   Test list and pass criteria: `SoC2611-main/verification/sim/README.md`.
@@ -46,7 +46,7 @@ added on 9 November 2026 with the testbench sources and the simulation logs they
   `doc/RegisterMap.md`: memory map, APB peripheral registers, accelerator host registers (sources:
   `HW/src/ztachip_pkg.vhd`, `SW/src/soc.h`, `SW/base/zta.h` of the design repository).
 - [x] Do authors supply a complete test bench to validate the IP block-level architecture?
-  `SoC2611-main/testbenches/vhdl/tb_dgrid_soc1_hb.vhd` (chip top + HyperRAM model), `tb_dgrid_soc1_fw.vhd`
+  `SoC2611-main/testbenches/vhdl/tb_soc2611_hb.vhd` (chip top + HyperRAM model), `tb_soc2611_fw.vhd`
   (ASIC top + DDR model), `tb_hyperbus.vhd`, `tb_ihp_mem_equiv.vhd`, `tb_ramw_equiv.vhd`, `tb_fp32.vhd`;
   cocotb drivers `SoC2611-main/testbenches/cocotb/test_fw.py`, `test_bootrom.py`, `test_hyperbus.py`.
 - [x] Is any verification procedure given to check the IP block-level performance figures?
@@ -129,7 +129,7 @@ added on 9 November 2026 with the testbench sources and the simulation logs they
 ## TRL9 - Commercial application
 
 - [ ] Are the IP authors providing support for bug fixing or enhancement requests?
-  Yes, through GitHub issues on `https://github.com/aravindgp/IHP__SoC2611` (DeepGrid Semi); not ticked because the
+  Yes, through GitHub issues on `https://github.com/aravindgp/IHP__SoC2611` (the design team); not ticked because the
   level is not reached.
 - [ ] Does the IP documentation include any training materials?
   Programmer guides for the accelerator are in `SoC2611-main/docs/` (not ticked for the same reason).

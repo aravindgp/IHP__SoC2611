@@ -1,8 +1,8 @@
 ---------------------------------------------------------------------------
--- cocotb harness for dgrid_soc1_chip_top: the chip with two HyperRAM
+-- cocotb harness for soc2611_chip_top: the chip with two HyperRAM
 -- device models on its HyperBus (pad-level tri-state resolution, RWDS
 -- delay line as on a board), firmware preloaded into device 0 from an
--- Intel HEX file. Same cocotb-facing ports as tb_dgrid_soc1_fw so
+-- Intel HEX file. Same cocotb-facing ports as tb_soc2611_fw so
 -- HW/asic/cocotb/test_fw.py runs unchanged.
 ---------------------------------------------------------------------------
 library ieee;
@@ -11,11 +11,11 @@ use ieee.numeric_std.all;
 use work.config.all;
 use work.ztachip_pkg.all;
 
-entity tb_dgrid_soc1_hb is
+entity tb_soc2611_hb is
    generic
    (
       HEX_FILE          : string  := "fw.hex";
-      CLK_X2_PERIOD     : time    := 4 ns;      -- as tb_dgrid_soc1_fw (sim runs the FPGA-like 250/125 MHz)
+      CLK_X2_PERIOD     : time    := 4 ns;      -- as tb_soc2611_fw (sim runs the FPGA-like 250/125 MHz)
       HB_POWERUP_CYCLES : natural := 20000;     -- chip default: >= tVCS (150 us) at the simulated 125 MHz core clock too (160 us)
       RWDS_DELAY        : time    := 2 ns;      -- board/pad delay of RWDS into the controller (~1/4 CK)
       HB_MEM_BYTES      : natural := 1048576    -- per device in the model (firmware + test window live below 1 MB)
@@ -30,9 +30,9 @@ entity tb_dgrid_soc1_hb is
       clk_x2_out   : OUT STD_LOGIC;
       hb_error_out : OUT STD_LOGIC_VECTOR(1 downto 0)   -- sticky protocol/timing errors of the two device models
    );
-end tb_dgrid_soc1_hb;
+end tb_soc2611_hb;
 
-architecture sim of tb_dgrid_soc1_hb is
+architecture sim of tb_soc2611_hb is
 signal clk_x2    : std_logic := '0';
 -- controller side
 signal c_ck, c_resetn : std_logic;
@@ -57,7 +57,7 @@ begin
 clk_x2 <= not clk_x2 after CLK_X2_PERIOD/2;
 clk_x2_out <= clk_x2;
 
-dut : entity work.dgrid_soc1_chip_top
+dut : entity work.soc2611_chip_top
    generic map(HB_POWERUP_CYCLES => HB_POWERUP_CYCLES)
    port map
    (

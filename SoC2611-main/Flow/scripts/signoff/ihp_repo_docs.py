@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fill the documentation of an IHP Open-Silicon-MPW IP repository (gen_structure.py layout) for DGrid-SoC1.
+"""Fill the documentation of an IHP Open-Silicon-MPW IP repository (gen_structure.py layout) for SoC2611.
 
 usage: ihp_repo_docs.py <ip_repo> <name> <bond_table.csv> [status=preliminary|final]
 Writes README.md, doc/Specification.md, doc/Datasheet.md (pinout from the bond table), release/<ver>/ReleaseNote.md,
@@ -39,9 +39,9 @@ readme = R / 'README.md'
 if readme.exists() and 'Single-technology IP library.' not in readme.read_text():
     print(f'{readme}: kept (owner README); update its status wording by hand for a final release')
 else:
-    readme.write_text(f"""# {name} — DGrid-SoC1
+    readme.write_text(f"""# {name} — SoC2611
 
-{banner}RISC-V SoC with an AI accelerator (DeepGrid Semi), IHP SG13CMOS5L, QFN64, die 6.6 × 6.6 mm.
+{banner}RISC-V SoC with an AI accelerator (the design team), IHP SG13CMOS5L, QFN64, die 6.6 × 6.6 mm.
 Category Digital / RiscV based digital SoC (RVSoC). Top cell `{name}` in every view. License: Apache-2.0.
 
 - `doc/` — Specification, Datasheet (pinout), TRL assessment, `info.json`
@@ -50,7 +50,7 @@ Category Digital / RiscV based digital SoC (RVSoC). Top cell `{name}` in every v
 - `dependencies/` — none (SRAM macros and IO cells are IHP library cells from the PDK)
 """)
 
-(R / 'doc' / 'Specification.md').write_text(f"""# {name} (DGrid-SoC1) — Specification
+(R / 'doc' / 'Specification.md').write_text(f"""# {name} (SoC2611) — Specification
 
 {banner}## Function
 - VexRiscv RISC-V CPU (RV32IM, JTAG debug, I/D caches), boot ROM copy to a tightly-coupled memory, UART loader.
@@ -73,7 +73,7 @@ Category Digital / RiscV based digital SoC (RVSoC). Top cell `{name}` in every v
 rows = list(csv.DictReader(open(bond)))
 lines = ['| Pin | Side | Signal | Pad cell |', '|---:|---|---|---|']
 lines += [f"| {r['pkg_pin']} | {r['side']} | {r['signal']} | {r['pad_cell'].replace('sg13cmos5l_', '')} |" for r in rows]
-(R / 'doc' / 'Datasheet.md').write_text(f"""# {name} (DGrid-SoC1) — Datasheet
+(R / 'doc' / 'Datasheet.md').write_text(f"""# {name} (SoC2611) — Datasheet
 
 {banner}## Supplies
 VDD/VSS: 1.2 V core, IOVDD/IOVSS: 3.3 V IO (one pair of each per side).
@@ -95,7 +95,7 @@ Pin numbering counter-clockwise from top-left (west 1-16, south 17-32, east 33-4
 
 lic = R / 'LICENSE'
 if not (lic.exists() and 'TERMS AND CONDITIONS FOR USE' in lic.read_text()):   # keep the full Apache-2.0 text
-  lic.write_text("""Copyright 2026 DeepGrid Semi
+  lic.write_text("""Copyright 2026 the design team
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this design except in compliance with
 the License. You may obtain a copy of the License at

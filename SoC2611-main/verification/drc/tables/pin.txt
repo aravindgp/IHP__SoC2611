@@ -1,3 +1,3 @@
 # lyrdb files: 1
-#   /workspace/chip_rehearsal2/drc_tables/pin/dgrid_soc1_chip_top_lvsview_dgrid_soc1_chip_top_pin.lyrdb
+#   /workspace/chip_rehearsal2/drc_tables/pin/soc2611_chip_top_lvsview_soc2611_chip_top_pin.lyrdb
 DRC CLEAN: 0 violations

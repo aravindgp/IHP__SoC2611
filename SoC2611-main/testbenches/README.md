@@ -1,6 +1,6 @@
 # Testbenches
 
-Copied from the design repository (DGrid-SoC1, `HW/asic/tb`, `HW/asic/cocotb`, `HW/asic/scripts`). They run on
+Copied from the design repository (SoC2611, `HW/asic/tb`, `HW/asic/cocotb`, `HW/asic/scripts`). They run on
 the RTL in the design repository (VHDL sources plus the generated VexRiscv core); this folder documents what was
 run and how. Results: `../verification/sim/`.
 
@@ -8,8 +8,8 @@ run and how. Results: `../verification/sim/`.
 
 | File | Device under test | Purpose |
 |---|---|---|
-| `tb_dgrid_soc1_hb.vhd` | `dgrid_soc1_chip_top` (= SoC2611) | chip top with the HyperRAM model (`hyperram_model.vhd`); firmware suite and boot loader run on it |
-| `tb_dgrid_soc1_fw.vhd` | `dgrid_soc1_asic_top` | ASIC top with a DDR model; earlier firmware-suite runs |
+| `tb_soc2611_hb.vhd` | `soc2611_chip_top` (= SoC2611) | chip top with the HyperRAM model (`hyperram_model.vhd`); firmware suite and boot loader run on it |
+| `tb_soc2611_fw.vhd` | `soc2611_asic_top` | ASIC top with a DDR model; earlier firmware-suite runs |
 | `tb_hyperbus.vhd` | HyperBus controller | AXI to HyperBus unit tests |
 | `tb_ihp_mem_equiv.vhd` | IHP SRAM macro wrappers | each wrapper against its reference model (`run.log`: pairs PASS) |
 | `tb_ramw_equiv.vhd` | memory wrapper | wrapper equivalence |

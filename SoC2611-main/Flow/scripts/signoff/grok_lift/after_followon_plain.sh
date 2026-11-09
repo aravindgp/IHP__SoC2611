@@ -3,7 +3,7 @@
 # clean-up on its guided database <E>g.odb.  usage: after_followon_plain.sh <E> <out name> [THREADS=12] [END=16]
 E=$1; N=$2; T=${3:-12}; END=${4:-16}
 D=/workspace/chip_fp2/eco/lift
-S=/root/DGrid-SoC1/.claude/worktrees/asic-rtl-prep/HW/asic/signoff
+S=<design-repo>/HW/asic/signoff
 OR=/nix/store/2y36a4sr078y15ick388dncqjdzmlxga-openroad-2026-02-17/bin/openroad
 MAX_POWER=${MAX_POWER:-5}; MAX_INMACRO=${MAX_INMACRO:-40}; MAX_RSS_GB=${MAX_RSS_GB:-100}
 while ! grep -q "all done" $D/${E}_followon.log 2>/dev/null; do sleep 60; done

@@ -1,7 +1,7 @@
 # SoC2611 interfaces: pins, protocols, clocks, supplies
 
 Pin numbers and pad cells per pin: `doc/Datasheet.md` (QFN64 table) and `SoC2611-main/constraints/bond_table.csv`.
-Timing constraints: `SoC2611-main/constraints/design.sdc`, `chip_extra.sdc`. Top entity: `dgrid_soc1_chip_top`
+Timing constraints: `SoC2611-main/constraints/design.sdc`, `chip_extra.sdc`. Top entity: `soc2611_chip_top`
 (exported as `SoC2611`). All signal pads are 3.3 V `sg13cmos5l_io` cells; the core runs at 1.2 V.
 
 ## 1. Pin groups and protocols (48 signal pins)

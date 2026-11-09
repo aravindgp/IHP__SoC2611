@@ -5,7 +5,7 @@
 set -u
 HERE=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REL=$1; VER=$2; RND=$3; INSIDE=$4; BOTH=$5; TOTAL=$6
-REPO=/workspace/ihp_ip_repo/IHP__DSOC2610; TOP=dgrid_soc1_chip_top; NAME=SoC2611
+REPO=/workspace/ihp_ip_repo/IHP__DSOC2610; TOP=soc2611_chip_top; NAME=SoC2611
 log() { echo "[stage $(date -u +%T)] $*"; }
 cd $REPO || exit 1
 git pull -q --ff-only origin main 2>/dev/null
@@ -43,5 +43,5 @@ DENS="density check: running at staging time, result file follows"
   echo "Same day, on a trial database (round H + explicit channel guides), the supply shorts are at zero; see \`../../STATUS_2026-11-09.md\`."
   echo "Known open items: the signal-short knot, antenna, hold timing, LVS, waivers."
 } > $REPO/release/$VER/ReleaseNote.md
-cd $REPO && git add release/$VER doc/info.json && git -c user.name=aravindgp -c user.email=aravind@deepgridsemi.com commit -q -m "release $VER: routed state after ECO round $RND ($INSIDE inside-macro shorts, $BOTH supply-short nets, $TOTAL violations), seal ring, fill, netlists, hashes" && git push -q origin main 2>&1 | tail -1
+cd $REPO && git add release/$VER doc/info.json && git -c user.name=aravindgp -c user.email= commit -q -m "release $VER: routed state after ECO round $RND ($INSIDE inside-macro shorts, $BOTH supply-short nets, $TOTAL violations), seal ring, fill, netlists, hashes" && git push -q origin main 2>&1 | tail -1
 log "release $VER pushed: $(git log --oneline -1)"

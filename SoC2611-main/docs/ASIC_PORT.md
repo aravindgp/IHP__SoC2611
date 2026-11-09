@@ -1,4 +1,4 @@
-# DGrid-SoC1 — RTL preparation for ASIC
+# SoC2611 — RTL preparation for ASIC
 
 Status of the RTL after the ASIC-preparation pass (branch `worktree-asic-rtl-prep`,
 October 2026). This document records what in the FPGA-proven design was not
@@ -139,7 +139,7 @@ the branch (details in `HW/asic/dgse/RUN-ihp-synth-01.md`):
 
 ### 2.6 ASIC integration (`HW/asic/`)
 
-* `rtl/dgrid_soc1_asic_top.vhd`: `soc_base` + `clk_div2` (core clock =
+* `rtl/soc2611_asic_top.vhd`: `soc_base` + `clk_div2` (core clock =
   clk_x2/2, guarantees the edge alignment 2.2 relies on) + four
   `reset_sync` instances (clk_main, clk_camera, clk_vga, clk_ddr;
   asynchronous assert, synchronous release). The 128-bit AXI4 master to
@@ -148,7 +148,7 @@ the branch (details in `HW/asic/dgse/RUN-ihp-synth-01.md`):
 * `rtl/config.vhd`: ASIC configuration, **8 PCOREs** (`pid_gen_max_c=8`,
   per the March/April 2026 architecture decision), 128-bit external
   memory bus, FPU off, 125 MHz core clock constant.
-* `constraints/dgrid_soc1.sdc`: primary clocks, generated clocks
+* `constraints/soc2611.sdc`: primary clocks, generated clocks
   (`clk_main`, camera `MCLK`), asynchronous clock groups, reset and CDC
   exceptions, placeholder I/O delays.
 * `filelist.f`: ordered compile list (VHDL-2008, library `work`).
@@ -162,12 +162,12 @@ the branch (details in `HW/asic/dgse/RUN-ihp-synth-01.md`):
 
 | Check | Command | Result |
 |---|---|---|
-| Whole design analyses (VHDL-2008) and `dgrid_soc1_asic_top` elaborates with the ASIC platform, ASIC config and the VexRiscv VHDL | `HW/asic/scripts/analyze.sh asic` | `ok=94 fail=0`, elaborate OK |
+| Whole design analyses (VHDL-2008) and `soc2611_asic_top` elaborates with the ASIC platform, ASIC config and the VexRiscv VHDL | `HW/asic/scripts/analyze.sh asic` | `ok=94 fail=0`, elaborate OK |
 | Same with the simulation platform / FPGA config (`soc_base`) | `HW/asic/scripts/analyze.sh simulation` | `ok=92 fail=0`, elaborate OK |
 | Double-pumped memories equivalent to legacy | `HW/asic/scripts/run_tb_ramw.sh` | PASS, 19,994 cycles, 0 mismatches |
 | FP32 units bit-exact vs. an integer reference (44,979 vectors × LATENCY 2/4/6, random + directed corners) and latch-free under `ghdl --synth` | `HW/asic/scripts/run_tb_fp32.sh` | 134,937/134,937 passed; synth OK |
 | `ghdl --synth` of the full top (synthesizability / latch report / memory inference) | `SYNTH=1 HW/asic/scripts/analyze.sh asic` | OK: 166k-line vendor-free netlist, **0 latches**, 54 RAM configurations inferred (§4). Residual notes: 1 unbound output (`dp_core.writemaster3_filler_data_out`, unused), `sram_rid` never assigned in `soc_base` (unused), the rest inside the generated VexRiscv |
-| Firmware-level simulation of `dgrid_soc1_asic_top` (boot from DDR model, AXI fabric, APB peripherals, accelerator host bus, reset release) — §7 | `make -C HW/asic/cocotb` (cocotb + GHDL) | firmware `SUMMARY pass=6 fail=0` (T01–T06), cocotb `test_firmware_suite` PASS |
+| Firmware-level simulation of `soc2611_asic_top` (boot from DDR model, AXI fabric, APB peripherals, accelerator host bus, reset release) — §7 | `make -C HW/asic/cocotb` (cocotb + GHDL) | firmware `SUMMARY pass=6 fail=0` (T01–T06), cocotb `test_firmware_suite` PASS |
 
 Firmware-level simulation of the whole ASIC top is in §7 (cocotb). Not done:
 the YOLO workload itself (needs the ztachip kernel compiler and a very long
@@ -184,7 +184,7 @@ frequency — e.g. 250 MHz for a 125 MHz core — must be within the macro's
 range or the core clock lowered).
 
 Counted by walking the hierarchy of the `ghdl --synth` netlist of
-`dgrid_soc1_asic_top` (ASIC config: 8 PCOREs, 128-bit external bus, FPU
+`soc2611_asic_top` (ASIC config: 8 PCOREs, 128-bit external bus, FPU
 off). Each row is one SRAM-primitive configuration; "Instances" is the
 chip-level count.
 
@@ -327,8 +327,8 @@ Done in this pass (verified by `analyze.sh` on both platforms):
 
 Same approach as the dg32-max firmware catalogue, on the SoC's own CPU:
 `HW/asic/fw/smoke.c` (bare metal, RV32IM, linked at the VexRiscv reset vector
-0x4000 in external memory) runs on `dgrid_soc1_asic_top` inside
-`HW/asic/tb/tb_dgrid_soc1_fw.vhd` (ASIC top + `HW/simulation/mem128.vhd` DDR
+0x4000 in external memory) runs on `soc2611_asic_top` inside
+`HW/asic/tb/tb_soc2611_fw.vhd` (ASIC top + `HW/simulation/mem128.vhd` DDR
 model preloaded from the firmware's Intel HEX). cocotb
 (`HW/asic/cocotb/test_fw.py`, GHDL backend) drives reset, push-buttons and the
 UART RX byte, decodes UART TX and watches the LEDs. One line per test:
@@ -421,8 +421,8 @@ consequences: `HW/asic/dgse/lean_sw_notes.md`.
 
 1. **SRAM macros**: done for IHP in `HW/platform/ihp/` (1P time-multiplexed / 2P wrappers, macro models with PDK names, tiler; equivalence TB `HW/asic/scripts/run_tb_ihp_mem.sh`). Open: BIST hookup (BIST ports tied off), dual-clock FIFOs still flops, macro timing at the slow corner in STA.
 2. **PLL / clock tree**: `clk_x2`, `clk_camera`, `clk_vga` from a PLL; keep `clk_main` as `clk_x2`/2 (divider flop at the tree root, balanced trees) or a PLL /2 output with the same generated-clock definition.
-3. **Main memory**: done — `HW/asic/rtl/hyperbus/` (AXI4 → HyperBus, 2 × HyperRAM, CK = core/2) inside the chip top `HW/asic/rtl/dgrid_soc1_chip_top.vhd`; firmware suite runs through the HyperRAM device model (`make CHIP=hb`). **Boot path done**: the ASIC core (`HW/riscv/asic/riscv.vhd`) resets to 0x0 = TCM; `tcm.vhd` copies the boot ROM (`HW/asic/rtl/boot_rom_pkg.vhd`, generated from `HW/asic/fw/bootrom`, 396 bytes) into the RAM at power-up while holding the CPU; the ROM jumps to 0x4000 when strap `gpio_in(3)` is high, otherwise runs a UART loader (`test_bootrom.py`). Open: HyperBus register-space access (CR0) if a non-default latency is wanted.
-4. **Pads**: QFN64 pin set and pad cells in `HW/asic/dgse/padlist_qfn64.md` (45 signal + 19 supply); open-drain camera SDA and the HyperBus DQ/RWDS as `_in/_out/_oe` triples; constraints `HW/asic/constraints/dgrid_soc1_chip.sdc`. Open: JTAG pins, pad-ring instantiation in the DGSE flow.
+3. **Main memory**: done — `HW/asic/rtl/hyperbus/` (AXI4 → HyperBus, 2 × HyperRAM, CK = core/2) inside the chip top `HW/asic/rtl/soc2611_chip_top.vhd`; firmware suite runs through the HyperRAM device model (`make CHIP=hb`). **Boot path done**: the ASIC core (`HW/riscv/asic/riscv.vhd`) resets to 0x0 = TCM; `tcm.vhd` copies the boot ROM (`HW/asic/rtl/boot_rom_pkg.vhd`, generated from `HW/asic/fw/bootrom`, 396 bytes) into the RAM at power-up while holding the CPU; the ROM jumps to 0x4000 when strap `gpio_in(3)` is high, otherwise runs a UART loader (`test_bootrom.py`). Open: HyperBus register-space access (CR0) if a non-default latency is wanted.
+4. **Pads**: QFN64 pin set and pad cells in `HW/asic/dgse/padlist_qfn64.md` (45 signal + 19 supply); open-drain camera SDA and the HyperBus DQ/RWDS as `_in/_out/_oe` triples; constraints `HW/asic/constraints/soc2611_chip.sdc`. Open: JTAG pins, pad-ring instantiation in the DGSE flow.
 5. **Per-domain reset release** for camera/VGA (`rst_cam_n`, `rst_vga_n` are already generated in the top).
 6. **RISC-V host**: the ASIC build uses `HW/riscv/asic/riscv.vhd` (the sim core with the reset vector moved to 0x0; synchronous reset). The Xilinx variant (`xilinx_jtag/riscv.v`) uses `BSCANE2` and must not be used. **JTAG debug**: requires regenerating the core from `HW/riscv/sim/riscv.scala` with `DebugPlugin` + `JtagBridge` (raw TCK/TMS/TDI/TDO) — needs a Java/sbt toolchain and the VexRiscv sources (not available on the prep machine; pin budget: 4 pins = HyperRAM CS#1 + 3 GPIOs, or 4 supply pins). One signal initialiser remains in the generated VexRiscv file (regenerate with reset-initialised registers or accept as undefined power-up).
 7. **Timing**: SDC periods mirror the FPGA (125/250 MHz); re-target with `main_clock_c` (firmware timer/UART constants depend on it) and the I/O budgets.

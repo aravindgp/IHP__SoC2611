@@ -1,4 +1,4 @@
-# Physical signoff flow: DGrid-SoC1 on IHP SG13CMOS5L
+# Physical signoff flow: SoC2611 on IHP SG13CMOS5L
 
 DRC, LVS, seal ring, pad ring and density fill for the QFN64 tape-out (IHP order 2 Nov 2026). Every
 script calls the PDK's own KLayout decks and fill recipes (IHP-Open-PDK dev branch, `ihp-sg13cmos5l`).
@@ -68,7 +68,7 @@ processes running at once. Use `-j 3`/`-j 4` while P&R jobs are running (cgroup 
 
 `make_padring.py` writes into `work/padring/`:
 
-- **`padring.gds`** (top cell `dgrid_padring`, 6600 x 6600 um), containing:
+- **`padring.gds`** (top cell `soc2611_padring`, 6600 x 6600 um), containing:
   - the seal ring;
   - 4 `sg13cmos5l_Corner` cells;
   - 64 pads: 48 signal plus 16 supply (VDD/VSS/IOVDD/IOVSS on each side);
@@ -165,8 +165,8 @@ lattice-only M4 had 37 M4Fil.h windows below 25 %.
 
 ```bash
 S=HW/asic/signoff
-python3 $S/fill_tiled.py chip_seal.gds chip_pdkfill.gds --top dgrid_soc1_chip_top -j 2 --abstract-macros 'RM_IHPSG13_.*'
-python3 $S/fill_topup.py chip_pdkfill.gds chip_final.gds --top dgrid_soc1_chip_top -j 12
+python3 $S/fill_tiled.py chip_seal.gds chip_pdkfill.gds --top soc2611_chip_top -j 2 --abstract-macros 'RM_IHPSG13_.*'
+python3 $S/fill_topup.py chip_pdkfill.gds chip_final.gds --top soc2611_chip_top -j 12
 python3 $S/density_fast.py chip_final.gds -j 12 --attrib --json density.json      # exit 0 = all pass
 python3 $S/check_fill.py chip_final.gds --cell DG_TOPUP_FILL -j 8                  # optional, flat drawn layers: slow
 ```
@@ -235,7 +235,7 @@ PDN=HW/asic/dgse/runs/cmos5l-01/pdn_c5l_sram_v2.tcl     # = config pdn_tcl of th
 # 0. pad ring files + port-map check (seconds)
 python3 $S/make_padring.py --portmap $S/padring/portmap_qfn64.json        # -> $S/work/padring
 python3 $S/padring/check_portmap.py $S/padring/padring_qfn64.json $S/padring/portmap_qfn64.json \
-        $R/build/dgrid_soc1_chip_top_synth.v                                # expect "0 error(s)"
+        $R/build/soc2611_chip_top_synth.v                                # expect "0 error(s)"
 
 # 1-3. integrate the routed core (final.odb when the engine has written it; else the last ck_droute*.odb)
 bash $S/run_chip_integrate.sh $R/build/final.odb $S/work/padring $O $PDN 16
@@ -243,13 +243,13 @@ bash $S/run_chip_integrate.sh $R/build/final.odb $S/work/padring $O $PDN 16
 #    look at: $O/1_place.log  2_straps.log  3_route.log  route_drc.rpt (must be empty)
 
 # 4. GDS
-bash $S/stream_chip.sh $O/chip.def dgrid_soc1_chip_top $O/gds/chip.gds $S/work/padring
+bash $S/stream_chip.sh $O/chip.def soc2611_chip_top $O/gds/chip.gds $S/work/padring
 
 # 5. LVS netlist
-bash $S/make_chip_cdl.sh $O/chip.v $O/chip.def dgrid_soc1_chip_top $O/lvs/chip.cdl
+bash $S/make_chip_cdl.sh $O/chip.v $O/chip.def soc2611_chip_top $O/lvs/chip.cdl
 
-# 6. seal ring + fill + DRC + LVS  (final tape-out GDS: $O/signoff/dgrid_soc1_chip_top_final.gds)
-bash $S/run_signoff.sh $O/gds/chip.gds dgrid_soc1_chip_top $O/lvs/chip.cdl -o $O/signoff --die 6600 -j 3 --srams
+# 6. seal ring + fill + DRC + LVS  (final tape-out GDS: $O/signoff/soc2611_chip_top_final.gds)
+bash $S/run_signoff.sh $O/gds/chip.gds soc2611_chip_top $O/lvs/chip.cdl -o $O/signoff --die 6600 -j 3 --srams
 #    results: $O/signoff/drc/summary.txt, $O/signoff/lvs/run_lvs.stdout (+ lvsdb_report.py *.lvsdb)
 ```
 

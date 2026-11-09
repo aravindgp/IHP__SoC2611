@@ -1,6 +1,6 @@
 ------------------------------------------------------------------------------
 -- Prints the IHP macro tiling that ihp_sram_pkg.tile_plan picks for the
--- DGrid-SoC1 memory inventory (HW/asic/dgse/inventory_8pcore_camera.md,
+-- SoC2611 memory inventory (HW/asic/dgse/inventory_8pcore_camera.md,
 -- natural geometries) together with the macro area, as a markdown table.
 -- Elaboration-only: no clocks, no simulation time.
 --

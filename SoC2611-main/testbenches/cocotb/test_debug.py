@@ -37,7 +37,7 @@ async def test_debug_uart_tx(dut):
     assert u is not None, "UART instance not found"
     names = sorted(c._name for c in u)
     dut._log.info("UART children: %s", [n for n in names if "tx" in n.lower() or "fifo" in n.lower()][:30])
-    await uart.wait_line(r"DGRID-SOC1 FW", SUITE_TIMEOUT_MS)
+    await uart.wait_line(r"SoC2611-SOC1 FW", SUITE_TIMEOUT_MS)
 
     def dump(tag):
         dut._log.info("%s @%.0f ns: tx=%s state=%s cnt=%s empty=%s full=%s wused=%s q=%s byte=%s | raddr_r=%s waddr_r=%s | pc=%s",

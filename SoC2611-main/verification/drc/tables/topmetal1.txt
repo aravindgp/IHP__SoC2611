@@ -1,6 +1,6 @@
 # lyrdb files: 1
-#   /workspace/chip_rehearsal2/drc_tables/topmetal1/dgrid_soc1_chip_top_lvsview_dgrid_soc1_chip_top_topmetal1.lyrdb
+#   /workspace/chip_rehearsal2/drc_tables/topmetal1/soc2611_chip_top_lvsview_soc2611_chip_top_topmetal1.lyrdb
 rule                            count  waived  top cells / description
-TM1.b                            1840       0  dgrid_soc1_chip_top:1840  | 5.22. TM1.b: Min. TopMetal1 (drawing + filler) space or notch: 1.64 μm
-TM1.a                               8       0  dgrid_soc1_chip_top:8  | 5.22. TM1.a: Min. TopMetal1 width: 1.64 μm.
+TM1.b                            1840       0  soc2611_chip_top:1840  | 5.22. TM1.b: Min. TopMetal1 (drawing + filler) space or notch: 1.64 μm
+TM1.a                               8       0  soc2611_chip_top:8  | 5.22. TM1.a: Min. TopMetal1 width: 1.64 μm.
 TOTAL 1848 violations in 2 rules; unwaived 1848 in 2 rules

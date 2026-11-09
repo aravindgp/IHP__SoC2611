@@ -5617,7 +5617,7 @@
    Chip area for module '\dp_gen_Bdp_gen_behaviour_3_1_5b55ec37559bb110228a6591713076b7fa2ce5e8': 290336.886000
      of which used for sequential elements: 142508.419200 (49.08%)
 
-=== dgrid_soc1_chip_top ===
+=== soc2611_chip_top ===
 
         +----------Local Count, excluding submodules.
         |        +-Local Area, excluding submodules.
@@ -5650,7 +5650,7 @@
    Area for cell type \RM_IHPSG13_2P_64x22_c2_bm_bist is unknown!
    Area for cell type \RM_IHPSG13_2P_64x32_c2 is unknown!
 
-   Chip area for module '\dgrid_soc1_chip_top': 7.257600
+   Chip area for module '\soc2611_chip_top': 7.257600
      of which used for sequential elements: 0.000000 (0.00%)
 
 === clk_gen_icg_Brtl ===
@@ -8189,7 +8189,7 @@
         +----------Count including submodules.
         |        +-Area including submodules.
         |        | 
-   290724  6205826 dgrid_soc1_chip_top
+   290724  6205826 soc2611_chip_top
         7  183.254 clk_gen_icg_Brtl
         1   27.216   clk_gate_Bbehav
      1351 3.08E+04 hyperbus_axi_Brtl_1_6_128_20000_bf8b4530d8d246dd74ac53a13471bba17941dff7
@@ -8916,6 +8916,6 @@
    Area for cell type \RM_IHPSG13_2P_64x22_c2_bm_bist is unknown!
    Area for cell type \RM_IHPSG13_2P_64x32_c2 is unknown!
 
-   Chip area for top module '\dgrid_soc1_chip_top': 6205825.999800
+   Chip area for top module '\soc2611_chip_top': 6205825.999800
      of which used for sequential elements: 3603126.240000 (58.06%)
 

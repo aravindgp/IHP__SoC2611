@@ -1,4 +1,4 @@
-# DGrid-SoC1 lean test chip — QFN64 pad budget (draft 2026-10-30)
+# SoC2611 lean test chip — QFN64 pad budget (draft 2026-10-30)
 
 Package: IHP open-source MPW packaging service, **QFN64, 9 × 9 mm body, 0.5 mm
 pitch, maximum die 6.6 × 6.6 mm**, 320 € bonding-diagram setup, 10 / 20 / 40
@@ -25,7 +25,7 @@ the SoC's 128-bit AXI master.
 | SPI SCLK, MOSI, MISO, CS# | 4 | Out4mA ×3 / In | flash or SD (`spi_csn_out`) |
 | GPIO out[3:0] / in[3:0] | 8 | IOPadOut4mA / IOPadIn | LEDs / buttons of the firmware suite; **in[3] is the boot strap** (1 = run image at 0x4000, 0 = UART loader in the TCM boot ROM) |
 | JTAG TCK, TMS, TDI / TDO | 4 | IOPadIn ×3 / IOPadOut4mA | VexRiscv debug TAP (`HW/riscv/asic_jtag`, openocd irlen 4, idcode 0x10001fff) |
-| **Signal total** | **48** | | matches `dgrid_soc1_chip_top` |
+| **Signal total** | **48** | | matches `soc2611_chip_top` |
 | VDD core (1.2 V) / VSS | 4 + 4 | IOPadVdd / IOPadVss | one pair per side |
 | VDDIO (3.3 V) / VSSIO | 4 + 4 | IOPadIOVdd / IOPadIOVss | one pair per side |
 | **Supply total** | **16** | | one core and one IO pair per side; enough for ~200 mW at 50 MHz (to be checked by IR analysis) |
@@ -39,7 +39,7 @@ Pad-ring geometry: 64 pads around a ≈ 6.0 mm die edge = 16 per side at a
 ≈ 350 µm pad pitch — comfortable for the 3.3 V IO cells; fillers take up the
 rest. The die-size limit 6.6 mm is the binding constraint, not pad count.
 
-The chip top `HW/asic/rtl/dgrid_soc1_chip_top.vhd` exposes exactly this set:
+The chip top `HW/asic/rtl/soc2611_chip_top.vhd` exposes exactly this set:
 `clk_x2_in`, `porst_n_in`, HyperBus (`hb_ck_out`, `hb_csn_out[1:0]`,
 `hb_resetn_out`, `hb_rwds_in/out/oe_out`, `hb_dq_in/out/oe_out[7:0]`), camera
 (`cam_pclk_in`, `cam_d_in[7:0]`, `cam_vs_in`, `cam_hs_in`, `cam_mclk_out`,

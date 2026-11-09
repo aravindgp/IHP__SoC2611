@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# One-shot physical signoff of a routed DGrid-SoC1 chip GDS on IHP SG13CMOS5L.
+# One-shot physical signoff of a routed SoC2611 chip GDS on IHP SG13CMOS5L.
 #
 # usage: run_signoff.sh <chip.gds> <topcell> <chip.cdl> [-o DIR] [--die 6600] [--has-sealring]
 #                       [--no-fill] [--no-topup] [--pdk-density] [-j N] [--srams] [--blackbox PAT]...

@@ -1,6 +1,6 @@
-"""cocotb firmware-level tests for dgrid_soc1_asic_top.
+"""cocotb firmware-level tests for soc2611_asic_top.
 
-DUT: HW/asic/tb/tb_dgrid_soc1_fw.vhd (ASIC top + DDR model preloaded with
+DUT: HW/asic/tb/tb_soc2611_fw.vhd (ASIC top + DDR model preloaded with
 HW/asic/fw/<FW>.hex). The firmware prints one line per test over the UART:
 
     Tnn name PASS|FAIL key=value ...
@@ -117,7 +117,7 @@ async def test_firmware_suite(dut):
     cocotb.start_soon(leds.run())
     await reset(dut)
 
-    banner = await uart.wait_line(r"DGRID-SOC1 FW", SUITE_TIMEOUT_MS)
+    banner = await uart.wait_line(r"SoC2611-SOC1 FW", SUITE_TIMEOUT_MS)
     dut._log.info("boot banner received: %s", banner)
 
     # T05 handshake: firmware asks, we send 'K'
@@ -158,7 +158,7 @@ async def test_firmware_suite(dut):
     assert seq[-1] == 0x0, f"final LED value should be 0 (no failures), saw {seq[-1]:#x}"
     dut._log.info("firmware suite: %d/%d PASS, LED sequence %s", npass, npass + nfail,
                   [hex(v) for v in seq])
-    # HyperRAM harness (tb_dgrid_soc1_hb): the device models latch any protocol/timing violation
+    # HyperRAM harness (tb_soc2611_hb): the device models latch any protocol/timing violation
     if hasattr(dut, "hb_error_out"):
         hb_err = int(dut.hb_error_out.value)
         assert hb_err == 0, f"HyperRAM device model flagged a protocol/timing error (hb_error_out={hb_err:#x}); see 'report error' lines"

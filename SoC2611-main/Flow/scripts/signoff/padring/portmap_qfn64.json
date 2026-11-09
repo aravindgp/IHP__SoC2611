@@ -1,13 +1,13 @@
 {
   "_comment": [
-    "Pad (name in padring_qfn64.json) -> core-side pad pins -> chip-top ports of dgrid_soc1_chip_top",
-    "(HW/asic/rtl/dgrid_soc1_chip_top.vhd / synthesized netlist port names).  Pad cell pins:",
+    "Pad (name in padring_qfn64.json) -> core-side pad pins -> chip-top ports of soc2611_chip_top",
+    "(HW/asic/rtl/soc2611_chip_top.vhd / synthesized netlist port names).  Pad cell pins:",
     "  IOPadIn: p2c (pad -> core);  IOPadOut*: c2p (core -> pad);  IOPadInOut*: c2p, c2p_en (1 = drive), p2c.",
     "cam_sda is open drain: c2p = cam_sda_out (driven low), c2p_en = cam_sda_oe_out; p2c unused (the chip",
     "top has no cam_sda_in -- SCCB read-back not possible; ok for write-only camera setup).",
     "Supplies (VDD/VSS/IOVDD/IOVSS pads) have no core-side signal pins."
   ],
-  "chip_top": "dgrid_soc1_chip_top",
+  "chip_top": "soc2611_chip_top",
   "pads": {
     "clk_x2":    {"p2c": "clk_x2_in"},
     "porst_n":   {"p2c": "porst_n_in"},

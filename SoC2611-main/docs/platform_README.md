@@ -1,7 +1,7 @@
 # DGSEV2 platform entry for IHP SG13CMOS5L (prepared 2026-10-30)
 
 Everything the DGSE engine (`aravindgp/DGSE`, branch `DGSEV2`) needs to place and route
-`dgrid_soc1_chip_top` on **SG13CMOS5L** -- the CMOS-only SG13G2 variant with a
+`soc2611_chip_top` on **SG13CMOS5L** -- the CMOS-only SG13G2 variant with a
 Metal1-Metal4 + TopMetal1 backend (5 routing layers, no Metal5 / TopMetal2) -- staged here
 to be copied into the engine. Nothing in this directory has been run through OpenROAD
 (no OpenROAD on the prep machine); every file says where its numbers come from.
@@ -146,7 +146,7 @@ Groups (what belongs together; see `macro_floorplan.md` for the table):
 * **DPFIFO** (109 macros, 4.63 mm2): the remaining 1P_256x64/256x48/256x32/256x8/64x64/64x16 --
   DP sink/instruction/fetch FIFOs and AXI fabric FIFOs; central, rows facing the DP logic.
   Attribution of DPFIFO and of the iregister split is from the inventory, not the netlist: rerun
-  with `--netlist build/dgrid_soc1_chip_top_synth.v` to bind real instance names.
+  with `--netlist build/soc2611_chip_top_synth.v` to bind real instance names.
 
 Result (default: 3 PCOREs on S, 3 on N, PCORE6 + LOOKUP on W, PCORE7 + SOC + AFIFO on E, DPFIFO
 central, halo 30, util 0.65):
@@ -182,17 +182,17 @@ cp -r HW/asic/dgse/platform_ihp-sg13cmos5l/platforms/ihp-sg13cmos5l-dgse  $DGSE/
 #    orchestrator.py: make the KLayout DRC runner path come from pdk["klayout_drc_runner"] (item 3.1)
 
 # 2. netlist for the engine (GHDL >= 3 from oss-cad-suite; the engine reads rtl/*.v only)
-MEM=ihp HW/asic/dgse/export_verilog.sh                      # -> source/rtl/dgrid_soc1_chip_top.v (TOP in the script)
-HW/asic/scripts/ihp_fix_macro_names.py source/rtl/dgrid_soc1_chip_top.v source/rtl/dgrid_soc1_chip_top.v --no-stubs
+MEM=ihp HW/asic/dgse/export_verilog.sh                      # -> source/rtl/soc2611_chip_top.v (TOP in the script)
+HW/asic/scripts/ihp_fix_macro_names.py source/rtl/soc2611_chip_top.v source/rtl/soc2611_chip_top.v --no-stubs
 #    (restores RM_IHPSG13_* module/pin spelling, drops the behavioural macro bodies: the flow reads the macro Liberty files)
 
 # 3. project config (config/base.json): pdk ihp-sg13cmos5l, macros = 13 names (+ macro_overrides), die_area_um /
 #    core_area_um / macro_halo / macro_placements from config_floorplan_fragment.json, pin_constraints =
 #    <abs path>/pin_constraints.tcl, place_density_override 0.55, checkpoints true
-#    -> bin/dgse-pd decide dgrid-soc1 --change KEY=VALUE ... for each (never edit a run's config directly)
+#    -> bin/dgse-pd decide soc2611-soc1 --change KEY=VALUE ... for each (never edit a run's config directly)
 
 # 4. run
-bin/dgse-pd brief dgrid-soc1            # then the normal run: synth -> floorplan checkpoint
+bin/dgse-pd brief soc2611-soc1            # then the normal run: synth -> floorplan checkpoint
 dgse-pd floorplan <run>                 # macro geometry / channel checks on ck_macros.odb
 dgse-pd pdn <run> --checkpoint floorplan   # IR / connectivity of the Metal4 + TopMetal1 grid (VDD, VSS; macro VDDARRAY! on VDD)
 #    then global route (the 1 h gate), not detailed route, to see whether the channels hold

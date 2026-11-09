@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# GHDL front-end gate for the DGrid-SoC1 RTL.
+# GHDL front-end gate for the SoC2611 RTL.
 #
 #   HW/asic/scripts/analyze.sh [asic|simulation] [top]
 #
 # Analyses the whole design (VHDL-2008) in dependency order against the
 # chosen platform primitives, then elaborates `top` (default:
-# dgrid_soc1_asic_top for the asic platform, soc_base otherwise). Fails on
+# soc2611_asic_top for the asic platform, soc_base otherwise). Fails on
 # the first file that does not analyse and on an elaboration error, so it
 # doubles as a lint pass for the ASIC hand-off. Set SYNTH=1 to also run
 # `ghdl --synth` on the top and write a vendor-free Verilog netlist (slow).
@@ -25,17 +25,17 @@ CPU_CORE=( "$ROOT"/HW/riscv/sim/riscv.vhd )   # FPGA/sim core; asic/ihp: only th
 JTAG_CORE=()      # asic/ihp: regenerated VexRiscv riscv_jtag + its memory implementation
 RISCV_DIR=sim      # simulation/FPGA core (reset vector 0x4000); asic/ihp use HW/riscv/asic (reset vector 0 = TCM boot ROM)
 if [ "$PLAT" = asic ]; then
-  TOP=${2:-dgrid_soc1_asic_top}
+  TOP=${2:-soc2611_asic_top}
   CONFIG=$A/config.vhd
   RISCV_DIR=asic
   BOOTROM_PKG=$A/boot_rom_pkg.vhd
   JTAG_CORE=( "$ROOT"/HW/riscv/asic_jtag/ram_blackboxes_ref.vhd "$ROOT"/HW/riscv/asic_jtag/riscv.vhd ); CPU_CORE=( "${JTAG_CORE[@]}" )
   PLATFILES=( "$P"/CCD_SYNC.vhd "$P"/SLL.vhd "$P"/SLA.vhd "$P"/SRL.vhd "$P"/SRA.vhd
               "$P"/DPRAM.vhd "$P"/DPRAM_BE.vhd "$P"/DPRAM_DUAL_CLOCK.vhd "$P"/SPRAM.vhd "$P"/SPRAM_BE.vhd )
-  EXTRA=( "$A"/reset_sync.vhd "$A"/clk_div2.vhd "$A"/clk_gate.vhd "$A"/dgrid_soc1_asic_top.vhd "$A"/hyperbus/hyperbus_rx.vhd "$A"/hyperbus/hyperbus_core.vhd "$A"/hyperbus/hyperbus_axi.vhd "$A"/dgrid_soc1_chip_top.vhd )
+  EXTRA=( "$A"/reset_sync.vhd "$A"/clk_div2.vhd "$A"/clk_gate.vhd "$A"/soc2611_asic_top.vhd "$A"/hyperbus/hyperbus_rx.vhd "$A"/hyperbus/hyperbus_core.vhd "$A"/hyperbus/hyperbus_axi.vhd "$A"/soc2611_chip_top.vhd )
 elif [ "$PLAT" = ihp ]; then
   # IHP memory layer: generic primitives from platform/asic, memories from platform/ihp (1P macros time-multiplexed at clk_x2)
-  TOP=${2:-dgrid_soc1_asic_top}
+  TOP=${2:-soc2611_asic_top}
   CONFIG=$A/config.vhd
   RISCV_DIR=asic
   BOOTROM_PKG=$A/boot_rom_pkg.vhd
@@ -46,7 +46,7 @@ elif [ "$PLAT" = ihp ]; then
               "$P"/ihp_sram_tile_1p.vhd "$P"/ihp_sram_tile_2p.vhd "$S"/util/x2_phase.vhd
               "$P"/DPRAM.vhd "$P"/DPRAM_BE.vhd "$P"/DPRAM_DUAL_CLOCK.vhd "$P"/SPRAM.vhd "$P"/SPRAM_BE.vhd )
   X2_IN_PLAT=1
-  EXTRA=( "$A"/reset_sync.vhd "$A"/clk_div2.vhd "$A"/clk_gate.vhd "$A"/dgrid_soc1_asic_top.vhd "$A"/hyperbus/hyperbus_rx.vhd "$A"/hyperbus/hyperbus_core.vhd "$A"/hyperbus/hyperbus_axi.vhd "$A"/dgrid_soc1_chip_top.vhd )
+  EXTRA=( "$A"/reset_sync.vhd "$A"/clk_div2.vhd "$A"/clk_gate.vhd "$A"/soc2611_asic_top.vhd "$A"/hyperbus/hyperbus_rx.vhd "$A"/hyperbus/hyperbus_core.vhd "$A"/hyperbus/hyperbus_axi.vhd "$A"/soc2611_chip_top.vhd )
   RAMW_OVERRIDE=( "$P"/ramw.vhd "$P"/ramw2.vhd )
   P=$G
 else

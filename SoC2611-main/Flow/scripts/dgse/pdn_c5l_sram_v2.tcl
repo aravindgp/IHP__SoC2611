@@ -25,7 +25,7 @@
 # 50 um pitch is the LibreLane starting point, not a verdict -- judge it with `dgse-pd pdn` on the
 # floorplan checkpoint; the denser alternative is commented below.
 #
-# DGrid-SoC1 run variant (HW/asic/dgse/runs/cmos5l-01, config pdn_tcl): TopMetal1 straps at 16 um pitch (see the
+# SoC2611 run variant (HW/asic/dgse/runs/cmos5l-01, config pdn_tcl): TopMetal1 straps at 16 um pitch (see the
 # macro grid note) and row slivers removed. cut_rows on the explicit-placement path has no -row_min_width, so the
 # gaps between shelf-packed macros leave row fragments a few um wide that no Metal4 strap reaches (PSM-0038 on VSS).
 set _dbu [[ord::get_db_tech] getDbUnitsPerMicron]

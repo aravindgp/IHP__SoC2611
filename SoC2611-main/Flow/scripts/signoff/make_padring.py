@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""DGrid-SoC1 pad ring + seal ring generator for IHP SG13CMOS5L (sg13cmos5l_io).
+"""SoC2611 pad ring + seal ring generator for IHP SG13CMOS5L (sg13cmos5l_io).
 
 Reads a pad-ring config (padring/padring_qfn64.json) and writes into --outdir:
   padring.gds        empty pad frame: seal ring (die edge), 4 corners, 64 pads, IO fillers,
-                     64 bondpads; top cell `--top` (default dgrid_padring).  PDK IO cells merged in.
+                     64 bondpads; top cell `--top` (default soc2611_padring).  PDK IO cells merged in.
   bondpad_70x70.gds  CMOS5L bondpad (TopMetal1 + Passiv opening + dfpad, PCell 'bondpad' shape=square,
   bondpad_70x70.lef    stack=nil defaults: Pas_c = 2.1 um passivation enclosure)
   padring.tcl        OpenROAD script placing the SAME ring (make_io_sites/place_pad/place_corners/
@@ -18,7 +18,7 @@ Geometry (LibreLane sg13cmos5l_io config + PDK sealring PCell):
   (DGSE uses a 340 um core inset). 16 pads per side, evenly pitched between the corners.
 
 usage: python3 make_padring.py [--config padring/padring_qfn64.json] [--outdir work/padring]
-                               [--top dgrid_padring] [--no-sealring]
+                               [--top soc2611_padring] [--no-sealring]
 """
 import argparse
 import csv
@@ -126,7 +126,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--config', default=str(HERE / 'padring' / 'padring_qfn64.json'))
     ap.add_argument('--outdir', default=str(HERE / 'work' / 'padring'))
-    ap.add_argument('--top', default='dgrid_padring')
+    ap.add_argument('--top', default='soc2611_padring')
     ap.add_argument('--no-sealring', action='store_true')
     ap.add_argument('--portmap', help='pad -> core port map JSON (padring/portmap_qfn64.json); writes '
                     'pad_connect.tcl for chip_integrate.tcl')

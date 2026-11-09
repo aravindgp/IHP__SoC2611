@@ -16,7 +16,7 @@
 ----------
 -- Firmware-level simulation harness for the ASIC core top (cocotb DUT).
 --
--- dgrid_soc1_asic_top + the behavioural DDR model (HW/simulation/mem128.vhd)
+-- soc2611_asic_top + the behavioural DDR model (HW/simulation/mem128.vhd)
 -- preloaded with a firmware image (Intel HEX, generic HEX_FILE). Clocks are
 -- generated here (fast) and only reset, UART and GPIO are driven/observed
 -- from cocotb (HW/asic/cocotb/test_fw.py).
@@ -34,7 +34,7 @@ use IEEE.numeric_std.all;
 use work.ztachip_pkg.all;
 use work.config.all;
 
-entity tb_dgrid_soc1_fw is
+entity tb_soc2611_fw is
    generic
    (
       HEX_FILE          : string := "fw.hex";
@@ -54,9 +54,9 @@ entity tb_dgrid_soc1_fw is
       clk_x2_out   : OUT STD_LOGIC;
       clk_ddr_out  : OUT STD_LOGIC
    );
-end tb_dgrid_soc1_fw;
+end tb_soc2611_fw;
 
-architecture sim of tb_dgrid_soc1_fw is
+architecture sim of tb_soc2611_fw is
 
 signal clk_x2     : std_logic := '0';
 signal clk_ddr    : std_logic := '0';
@@ -104,7 +104,7 @@ clk_ddr_out <= clk_ddr;
 ddr_rst_i : entity work.reset_sync
    port map(clock_in=>clk_ddr, arst_n_in=>porst_n_in, rst_n_out=>rst_ddr_n);
 
-dut : entity work.dgrid_soc1_asic_top
+dut : entity work.soc2611_asic_top
    port map
    (
       clk_x2_in        => clk_x2,
