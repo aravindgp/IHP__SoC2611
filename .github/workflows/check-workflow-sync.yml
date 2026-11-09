@@ -33,8 +33,10 @@ jobs:
           raw_base="https://raw.githubusercontent.com/${TARGET_REPO}/${TARGET_BRANCH}/workflows"
 
           mapfile -t files < <(
-            python3 -c 'import json,sys,urllib.request;url=sys.argv[1];data=json.load(urllib.request.urlopen(url));files=[item.get("name","") for item in data if isinstance(data,list) and item.get("name","").endswith((".yml",".yaml")) and item.get("name","") != "check-workflow-sync.yml"];print("\n".join(sorted(files)))' "$api_url"
+            python3 -c 'import json,sys,urllib.request;url=sys.argv[1];data=json.load(urllib.request.urlopen(url));files=[item.get("name","") for item in data if isinstance(data,list) and item.get("name","").endswith((".yml",".yaml")) and item.get("name","") != "check-workflow-sync.yml"];print("\n".join(sorted(files)))' "$api_url" | grep -v '^$' || true
           )
+          # the python prints one empty line when there is nothing to sync; without the grep that line becomes one
+          # empty filename, its download returns 404 and the step fails (every scheduled run 3-9 Nov 2026)
 
           if [ ${#files[@]} -eq 0 ]; then
             echo "::warning::No workflow files to sync from ${TARGET_REPO}:${TARGET_BRANCH}/workflows. Skipping sync."
