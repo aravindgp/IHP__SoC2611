@@ -9,8 +9,8 @@
 |---|---|
 | Detailed routing (OpenROAD TritonRoute) | 0 violations |
 | Power grid check, VDD and VSS | both pass |
-| IHP minimum DRC, without fill | running, result to follow |
-| LVS (deep) | running, result to follow |
+| IHP minimum DRC, deep mode, without fill | **0 violations**, 23 of 23 rule tables completed (10 Nov, 04:58 UTC); seal ring, filler, Nwell and density tables run on the filled GDS |
+| LVS (deep) | device extraction done, netlist comparison running |
 | Fill and density | running, next candidate |
 | Antenna check (OpenROAD) | 6,129 nets above the ratio limit; repair not applied |
 | Timing after the last macro moves | not re-checked |
