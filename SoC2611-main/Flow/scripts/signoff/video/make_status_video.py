@@ -127,13 +127,13 @@ def s_intro(layer, t, dur):
         text(d, (540, 1052), '6.6 × 6.6 mm  ·  IHP SG13CMOS5L  ·  5 metal layers', 26, col, 'Medium', 'mm')
         text(d, (540, 1095), f'{len(MACS)} SRAM macros  ·  RISC-V + ztachip AI accelerator', 26, col, 'Medium', 'mm')
 
-DONE_ITEMS = [('Floorplan H13', 'dead spaces blocked; overflow 9,522 → 3,061'),
-              ('Detailed route to the floor', 'H10 complete at 996 violations'),
-              ('Bond-pad pins, DEF, Verilog', 'chip_finish, 3 minutes'),
-              ('DEF → GDS stream', '60 s, 750 MB; SRAM cells verified'),
-              ('Seal ring and label', 'make_sealring; label fixed'),
-              ('Fill and density', 'PDK + top-up fill: 0 density violations'),
-              ('Release v1.3.1 (preliminary)', 'on GitHub; 0 supply shorts, 1,624 violations')]
+DONE_ITEMS = [('Detailed routing', '641 violations down to 0 in one night'),
+              ('Power grid', 'VDD and VSS pass the grid check'),
+              ('Seal ring, fill, corners', 'PDK + top-up fill; fill at the die corners cleaned'),
+              ('Density', '0 violations on every layer'),
+              ('IHP minimum DRC', '27 of 28 rule tables clean; Nwell still running'),
+              ('Release candidate rc2', 'on GitHub main, with SHA-256 hashes'),
+              ('Timing analysis', 'first full report of the routed chip: see next')]
 
 def checklist(layer, t, items, y0=240, rh=118, t0=0.4, dt=0.5, status=('DONE', C_GREEN)):
     d = ImageDraw.Draw(layer)
@@ -326,29 +326,23 @@ def s_eco(layer, t, dur):
 
 def s_progress(layer, t, dur):
     d = ImageDraw.Draw(layer)
-    text(d, (330, 250), 'shorts inside the SRAM macros', 24, C_TEAL, 'SemiBold', 'mm')
-    d.line([(60, 660), (640, 660)], fill=rgba(C_DIM), width=2)
-    vals = [('start', 687, C_TEAL), ('A', 439, C_TEAL), ('B', 208, C_TEAL), ('C', 165, C_TEAL), ('D', 156, C_TEAL),
-            ('E', 105, C_PURPLE), ('F', 90, C_PURPLE), ('G', 95, C_PURPLE), ('H', 42, C_GREEN), ('I', 0, C_GREEN)]
+    text(d, (540, 250), 'router violations, night of 9 to 10 November', 26, C_TEAL, 'SemiBold', 'mm')
+    d.line([(110, 700), (970, 700)], fill=rgba(C_DIM), width=2)
+    vals = [('start', 641, C_RED), ('detour', 347, C_AMBER), ('lift + detour', 174, C_AMBER), ('24 passes', 11, C_TEAL), ('again', 0, C_GREEN)]
     for i, (lab, v, c) in enumerate(vals):
-        bar(d, 66 + i * 57, 660, 42, 340, v, 700, c, lab, f'{v}', seg(t, 0.3 + i * 0.25, 0.6), 20)
-    text(d, (850, 250), 'nets touching VDD and VSS', 24, C_RED, 'SemiBold', 'mm')
-    d.line([(690, 660), (1010, 660)], fill=rgba(C_DIM), width=2)
-    both = [('E', 13), ('F', 8), ('G', 8), ('H', 5), ('I', 0)]
-    for i, (lab, v) in enumerate(both):
-        bar(d, 700 + i * 62, 660, 46, 340, v, 15, C_RED, lab, f'{v}', seg(t, 1.2 + i * 0.3, 0.6), 24)
-    a = seg(t, 3.0, 0.5)
+        bar(d, 150 + i * 165, 700, 110, 360, v, 700, c, lab, f'{v}', seg(t, 0.4 + i * 0.6, 0.7), 34)
+    a = seg(t, 3.6, 0.5)
     if a > 0:
-        rrect(d, (90, 780, 990, 1010), 18, fill=rgba((20, 26, 38), 230 * a), outline=rgba((40, 48, 64), 255 * a))
-        text(d, (540, 825), 'A to D: side moves · E to G: obstructions + full re-route', 22, rgba(C_WHITE, 255 * a), 'SemiBold', 'mm')
-        text(d, (540, 870), 'H: loads of SRAM data pins moved into the pocket in front of the pin', 22, rgba(C_GREEN, 255 * a), 'SemiBold', 'mm')
-        text(d, (540, 915), 'I: explicit channel routes for the last 17 nets → 0 inside, 0 nets on VDD and VSS', 20, rgba(C_GREEN, 255 * a), 'SemiBold', 'mm')
-        text(d, (540, 955), 'the red bars decide whether the chip powers up: zero since this morning', 21, rgba(C_WHITE, 255 * a), 'SemiBold', 'mm')
-        text(d, (540, 990), 'released as v1.3.1; what remains is a congestion knot, not a power fault', 20, rgba(C_DIM, 255 * a), 'Medium', 'mm')
+        rrect(d, (90, 790, 990, 1010), 18, fill=rgba((20, 26, 38), 230 * a), outline=rgba((40, 48, 64), 255 * a))
+        text(d, (540, 830), 'most shorted nets only pass through a congested spot', 23, rgba(C_WHITE, 255 * a), 'SemiBold', 'mm')
+        text(d, (540, 872), 'detour: route them around it, with every spot closed to every detour', 22, rgba(C_AMBER, 255 * a), 'SemiBold', 'mm')
+        text(d, (540, 914), 'lift: one 64x16 SRAM macro moved 63 um, power grid repaired under it', 22, rgba(C_AMBER, 255 * a), 'SemiBold', 'mm')
+        text(d, (540, 956), 'the late, high-cost repair passes clear the rest: 128 to 11, then to 0', 22, rgba(C_GREEN, 255 * a), 'SemiBold', 'mm')
+        text(d, (540, 992), 'the independent DRC on that database: 0 violations', 20, rgba(C_DIM, 255 * a), 'Medium', 'mm')
 
-NOW = [('1', 'the knot: 1,532 of 1,624 violations in one 50 µm square', 'two SRAM slices overlap by 2.8 µm; the 60 µm channel dead-ends into a 20 µm turn', C_RED),
-       ('2', 'the lift: move the 64x16 slice 63 µm east, re-route 571 nets', 'power grid repaired under it; elbow 1,532 → 0; both rails pass the grid check', C_TEAL),
-       ('3', 'tonight: 16-pass clean-up on the lifted database', 'tomorrow: the residue net by net (guides, strips), measured in 20-minute loops', C_GREEN)]
+NOW = [('1', 'SRAM clock arrives 4.6 ns after the flip-flop clock', 'the time-multiplexed SRAMs need aligned edges; 10,324 SRAM pins fail hold', C_RED),
+       ('2', 'the fix: put the three clocks in order', 'SRAM first, then phase and core flip-flops; repeaters on the 10 mm clock root', C_TEAL),
+       ('3', 'tonight: hold buffers, re-route, repeat the checks', 'about 7,600 buffers at the fast corner; 24 repair passes', C_GREEN)]
 
 def s_now(layer, t, dur):
     d = ImageDraw.Draw(layer)
@@ -364,16 +358,16 @@ def s_now(layer, t, dur):
     b = seg(t, 3.4, 0.6)
     if b > 0:
         rrect(d, (90, 850, 990, 1010), 18, fill=rgba((20, 26, 38), 230 * b), outline=rgba((40, 48, 64), 255 * b))
-        text(d, (540, 895), 'why a floorplan move and not more passes: 32 passes left the square at 1,532', 22, rgba(C_WHITE, 255 * b), 'SemiBold', 'mm')
-        text(d, (540, 940), 'three lift runs today: window 554 → 731 → 209, footprint 124 → 131 → 44', 22, rgba(C_GREY, 255 * b), 'Medium', 'mm')
-        text(d, (540, 980), 'each run 50 minutes; the fix between runs is what moves the count', 20, rgba(C_DIM, 255 * b), 'Medium', 'mm')
+        text(d, (540, 895), 'a hold failure does not go away at a lower clock: it has to be fixed', 22, rgba(C_WHITE, 255 * b), 'SemiBold', 'mm')
+        text(d, (540, 940), 'with the fix in analysis: SRAM hold failures 10,324 to 0, at all three corners', 22, rgba(C_GREY, 255 * b), 'Medium', 'mm')
+        text(d, (540, 980), 'speed after the fix: about 35 MHz core typical, 22 MHz worst case', 20, rgba(C_DIM, 255 * b), 'Medium', 'mm')
 
-NEXT_ITEMS = [('Routing closure', 'supply shorts 0; knot lifted; clean-up runs tonight', 'RUNNING', C_BLUE),
-              ('Antenna repair', 'diodes + re-route; 6,052 → 581 nets in rehearsal', 'REHEARSED', C_PURPLE),
-              ('IHP minimum DRC', 'on the closed GDS, with waiver records', 'PENDING', C_GREY),
-              ('LVS vs the released CDL', '328k instances; about 7 hours', 'PENDING', C_GREY),
-              ('Timing report', 'setup and hold, CPU–SRAM paths', 'PENDING', C_GREY),
-              ('Final release', 'one GDS under 100 MB, SHA-256, issue #79', 'PENDING', C_GREY)]
+NEXT_ITEMS = [('Timing fix', 'clock order, root repeaters, hold buffers; routing tonight', 'RUNNING', C_BLUE),
+              ('Antenna repair', '11,513 diodes on 6,105 nets; repair pass 14 of 24', 'RUNNING', C_BLUE),
+              ('IHP minimum DRC', '27 of 28 clean on rc2; repeated on the final file', 'REPEAT', C_PURPLE),
+              ('LVS vs the released CDL', 'devices extracted; netlist comparison running', 'RUNNING', C_BLUE),
+              ('Dry run at IHP', 'requested on release candidate rc2', 'ASKED', C_AMBER),
+              ('Final release v.2.0.0', 'GDS, hashes, DRC result files, issue #79', 'PENDING', C_GREY)]
 
 def s_next(layer, t, dur):
     d = ImageDraw.Draw(layer)
@@ -402,9 +396,9 @@ def s_dates(layer, t, dur):
     y = 560; x0, x1 = 120, 960
     a = seg(t, 0.2, 0.8)
     d.line([(x0, y), (lerp(x0, x1, a), y)], fill=rgba((60, 70, 90)), width=4)
-    pts = [(150, '9 Nov', 'open run', 'not used', (120, 130, 150), 0.6),
-           (330, '12 Nov', 'checked GDS', 'target', C_TEAL, 0.9),
-           (560, '20 Nov', 'paid slot', 'requested', C_AMBER, 1.2),
+    pts = [(170, '9 Nov', 'open run', 'not used', (120, 130, 150), 0.6),
+           (400, '13 Nov', 'checked GDS', 'target', C_TEAL, 0.9),
+           (620, '15 Nov', '23:59 CET', 'requested', C_AMBER, 1.2),
            (880, '14 Mar 2027', 'next MPW run', 'fallback', (120, 130, 150), 1.8)]
     for x, dt, lab, st, col, t0 in pts:
         b = seg(t, t0, 0.5)
@@ -418,69 +412,54 @@ def s_dates(layer, t, dur):
             d.line([(x - 8, y - 8), (x + 8, y + 8)], fill=rgba(BG), width=4); d.line([(x - 8, y + 8), (x + 8, y - 8)], fill=rgba(BG), width=4)
         text(d, (x, y - 60), dt, 34, rgba(C_WHITE, 255 * b), 'Bold', 'mm')
         text(d, (x, y + 50), lab, 22, rgba(C_GREY, 255 * b), 'Medium', 'mm')
-        text(d, (x, y + 84), st, 22, rgba(col, 255 * b), 'SemiBold', 'mm')
+        text(d, (x, y + 84), 'hard deadline' if st == 'requested' else st, 22, rgba(col, 255 * b), 'SemiBold', 'mm')
     c = seg(t, 0.9, 0.4)
     if c > 0:
-        d.line([(110, y - 20), (110, y + 20)], fill=rgba(C_WHITE, 200 * c), width=3)
-        text(d, (110, y - 120), 'today · 9 Nov', 20, rgba(C_WHITE, 220 * c), 'Medium', 'mm')
+        d.line([(230, y - 20), (230, y + 20)], fill=rgba(C_WHITE, 200 * c), width=3)
+        text(d, (230, y - 120), 'today · 10 Nov', 20, rgba(C_WHITE, 220 * c), 'Medium', 'mm')
     e = seg(t, 2.6, 0.6)
     if e > 0:
         rrect(d, (120, 790, 960, 1010), 20, fill=rgba((20, 26, 38), 230 * e), outline=rgba((40, 48, 64), 255 * e))
-        text(d, (540, 840), 'v1.3.1 on GitHub today: 0 supply shorts, 1,624 violations, density clean', 24, rgba(C_WHITE, 255 * e), 'SemiBold', 'mm')
-        text(d, (540, 895), 'every step scripted in Flow/scripts/signoff', 23, rgba(C_GREY, 255 * e), 'Medium', 'mm')
-        text(d, (540, 940), 'the final GDS is a re-run of the chain, not a rebuild', 23, rgba(C_GREY, 255 * e), 'Medium', 'mm')
+        text(d, (540, 840), 'rc2 on GitHub: routing clean, density clean, DRC 27 of 28 tables', 24, rgba(C_WHITE, 255 * e), 'SemiBold', 'mm')
+        text(d, (540, 895), 'no run on 20 November: 15 November is the last date, one attempt', 23, rgba(C_GREY, 255 * e), 'Medium', 'mm')
+        text(d, (540, 940), 'the final GDS is a re-run of the scripted chain on the fixed database', 23, rgba(C_GREY, 255 * e), 'Medium', 'mm')
         text(d, (540, 985), 'chip_finish → stream → seal ring → fill → DRC → LVS → release', 20, rgba(C_TEAL, 255 * e), 'Medium', 'mm')
 
 def s_end(layer, t, dur):
     fp = FP(340, 420, 400); draw_die(layer, fp, dim=True)
     d = ImageDraw.Draw(layer)
-    text(d, (540, 900), 'SoC2611 · SoC2611', 40, C_WHITE, 'Bold', 'mm')
-    text(d, (540, 955), 'the design team · 9 November 2026', 24, C_GREY, 'Medium', 'mm')
+    text(d, (540, 900), 'SoC2611', 40, C_WHITE, 'Bold', 'mm')
+    text(d, (540, 955), 'status · 10 November 2026', 24, C_GREY, 'Medium', 'mm')
 
 SCENES = [
-    ('SoC2611: where the chip stands', s_intro,
+    ('SoC2611: status, 10 November', s_intro,
      'This is {S o C twenty six eleven|SoC2611}: a RISC-V chip with an AI accelerator, built for IHP\'s one hundred and thirty '
-     'nanometre process. Six point six millimetres a side, with two hundred and ninety-eight SRAM macros. Here is where we are '
-     'on the way to a final GDS.'),
-    ('What is already done', s_done,
-     'Most of the chain is in place. The floorplan, the detailed route, the bond-pad pins, the GDS stream, the seal ring, '
-     'fill and density, and a preliminary release, version one point three point one, on GitHub since this afternoon.'),
-    ('Where we are stuck', s_stuck,
-     'One thing is in the way. The router left about a thousand violations, and nearly all of them are the same fault: a signal '
-     'wire crossing an SRAM on Metal four, straight through its power stripes.'),
-    ('Why there is no way over', s_layers,
-     'This process has five metal layers. Inside a macro the first four are taken, and the top one only runs horizontally. '
-     'So there is no legal path over a macro from north to south.'),
-    ('Where the crossings come from', s_pockets,
-     'The global router crosses anyway, because standard cells sit in the dead spaces between the macro rows. Ninety-eight of '
-     'the one hundred and twelve crossing nets started in one of those pockets.'),
-    ('Floorplan H13', s_h13,
-     'Floorplan {H thirteen|H13} blocks all one hundred and forty-six of them. Global-route overflow fell from nine and a half '
-     'thousand to three thousand. But a floor of about eight hundred shorts remained, and a fresh route simply pushes other '
-     'nets through the same rows.'),
-    ('The fix: side-move ECO', s_eco,
-     'So we fix it after routing. For every net that still crosses, the cells on the minority side are moved across the macro '
-     'row. Only those nets are re-routed. Everything else stays frozen.'),
-    ('How it is going', s_progress,
-     'Nine rounds since yesterday morning: six hundred and eighty-seven shorts inside the macros down to forty-two after '
-     'round {H|H}, and to zero after round {I|I}, which gave the last seventeen nets explicit routes down the channels. '
-     'No net touches VDD or VSS any more. Those red bars decide whether the chip powers up, and they have been at zero '
-     'since this morning. That state is released as version one point three point one.'),
-    ('What we are doing now', s_now,
-     'What remains is a congestion knot. Of the sixteen hundred violations left, fifteen hundred sit in one square of fifty '
-     'micrometres, where two SRAM slices overlap by under three micrometres and the channel dead-ends into a twenty-micrometre '
-     'turn. Thirty-two passes did not move it. So we moved the slice: sixty-three micrometres east, with the power grid '
-     'repaired under it and the five hundred and seventy-one affected nets re-routed. Three runs today took the square from '
-     'fifteen hundred to zero, and both power rails pass the grid check. The sixteen-pass clean-up runs tonight; tomorrow '
-     'the residue is fixed net by net, in twenty-minute loops.'),
+     'nanometre process. Six point six millimetres a side, with two hundred and ninety-eight SRAM macros. Here is where it '
+     'stands on the tenth of November.'),
+    ('How the routing closed', s_progress,
+     'Last night the routing closed. Six hundred and forty-one violations at the start. Most of the shorted nets only passed '
+     'through a congested spot, so we routed them around it: three hundred and forty-seven. One SRAM macro was moved by '
+     'sixty-three micrometres and the same detour applied: one hundred and seventy-four. Then the late repair passes '
+     'took it to eleven, and a second run to zero.'),
+    ('What is done', s_done,
+     'So the list of finished items is long. Routing is clean. The power grid passes. Seal ring and fill are in, and density '
+     'is clean. The IHP minimum DRC is clean on twenty-seven of twenty-eight rule tables, with the last one still running. '
+     'That state is on GitHub as release candidate two.'),
+    ('What the timing check found', s_now,
+     'Then we ran the first full timing report of the routed chip, and it found a real problem. The single-port memories do '
+     'two accesses per cycle, and for that their clock must line up with the flip-flop clock. It does not: the memory clock '
+     'arrives four point six nanoseconds late, and ten thousand memory pins fail hold. A hold failure does not go away at a '
+     'lower clock. The fix is to put the three clocks in order, the memory first, and to add repeaters on the clock root. '
+     'In analysis that brings the memory failures to zero at all three corners. The price is speed: about thirty-five '
+     'megahertz, where fifty was the target.'),
     ('What comes next', s_next,
-     'Once the count reaches zero: antenna diodes, already rehearsed; the IHP DRC deck; LVS against the released netlist; and a '
-     'timing report. Then a tagged release with hashes, in one file under one hundred megabytes.'),
+     'Tonight the timing fix is routed, and the antenna repair runs beside it. Then the checks are repeated on the final '
+     'file: the DRC deck, LVS against the released netlist, and the dry run we asked IHP for. Last comes the tagged '
+     'release with hashes.'),
     ('The dates', s_dates,
-     'Today\'s open-run cutoff passed without a submission, even with the extra hours IHP gave us: we will not send a chip '
-     'with routing shorts. The target is a '
-     'checked GDS by the twelfth, on the paid slot of the twentieth; failing that, the March run. Every step is scripted, '
-     'so the final GDS is a re-run, not a rebuild.'),
+     'There is no run on the twentieth. IHP will wait until the fifteenth of November, with one attempt and no time to '
+     'iterate. Our target for the checked file is the thirteenth. Every step is scripted, so the final GDS is a re-run '
+     'on the fixed database, not a rebuild.'),
     ('', s_end, ''),
 ]
 
