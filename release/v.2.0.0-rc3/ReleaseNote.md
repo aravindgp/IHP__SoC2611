@@ -1,5 +1,14 @@
 # SoC2611 v.2.0.0-rc3 - release note (11 November 2026, 03:11 UTC)
 
+> **Correction, 11 November 2026, 05:00 CET: do not submit this candidate.** After this release was staged, the
+> routed wires themselves were extracted and the timing was repeated on them (the table below used wire estimates
+> from the placement). On the real wires hold is NOT met: about 3,000 endpoints at the fast corner, 1,500 at the
+> typical and 590 at the slow corner, by up to 1.4 ns. Cause: to close the routing, some nets took very long
+> detours (up to 23 mm for pins 150 um apart), among them 16 clock branch nets with more than 0.5 ns of wire delay,
+> so about 3,300 flip-flops get their clock 0.5 to 2.8 ns late. The same applies to rc2. The layout checks of this
+> candidate (routing, DRC, density, connectivity) stand; the timing rows of the table do not. A fixed candidate
+> follows: slow clock nets re-routed short, hold repaired on the extracted wires.
+
 > **Status: release candidate with the timing fix.** This candidate replaces `v.2.0.0-rc2`, which had a clock
 > alignment problem (found by the first full timing report of the routed chip on 10 November). Routing is clean, the IHP minimum rule set is clean on the
 > layout without fill, density is clean on this file, and every signal net was traced in the GDS against the
