@@ -1,0 +1,40 @@
+IHP minimum rule set (run_drc.py --minimum_drc, deep mode) on the full-fill GDS of this release
+(seal ring, PDK fill, top-up fill, die corners cleaned). A table counts only if its own log carries its
+completion line. The Nwell table is left out: all four of its rules are switched off in the minimum set.
+
+26 tables:
+tables: 26 logs, 26 completed; not completed: none; expected but no log: none
+tables killed: 0; exceptions: 0
+DRC CLEAN: 0 violations
+  activ              completed in 996.74 seconds
+  activfiller        completed in 1952.3 seconds
+  cont               completed in 1515.4 seconds
+  contbar            completed in 960.62 seconds
+  forbidden          completed in 453.85 seconds
+  forbidden_cmos5l   completed in 687.99 seconds
+  gatpoly            completed in 860.72 seconds
+  latchup            completed in 786.54 seconds
+  lbe                completed in 534.11 seconds
+  metal1             completed in 1352.03 seconds
+  metaln             completed in 3429.68 seconds
+  metalnfiller       completed in 3465.89 seconds
+  metalslits         completed in 397.02 seconds
+  nbulay             completed in 433.94 seconds
+  pad                completed in 560.23 seconds
+  passiv             completed in 427.83 seconds
+  pin                completed in 720.56 seconds
+  psd                completed in 595.89 seconds
+  pwellblock         completed in 593.5 seconds
+  sealring           completed in 10263.85 seconds
+  thickgateox        completed in 438.21 seconds
+  topmetal1          completed in 553.38 seconds
+  topmetal1filler    completed in 652.93 seconds
+  topvia1            completed in 560.64 seconds
+  via1               completed in 456.77 seconds
+  vian               completed in 528.04 seconds
+
+GatPoly filler table (run apart, it needs the most memory):
+tables: 1 logs, 1 completed; not completed: none; expected but no log: none
+tables killed: 0; exceptions: 0
+DRC CLEAN: 0 violations
+  gatpolyfiller      completed in 11832.75 seconds
