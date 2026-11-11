@@ -95,18 +95,23 @@ rehearsal: they show how long the runs take and whether the setup itself reports
 
 | package | content | size | sha256 |
 |---|---|---|---|
-| `lvs_pkg_rc3.tar` | LVS view of rc3 (seal ring, via cells dissolved), its CDL, the KLayout LVS deck of the PDK, run script (deep mode) | 269,803,520 bytes | `3176e2df733fc88aec1472332956ce8e960e202911e170ae56a994b7aac4c699` |
-| `drc_pkg_rc3.tar` | full-fill GDS of rc3 (die corners cleaned), the KLayout DRC deck of the PDK, run script (minimum rule set with density, deep mode) | 191,580,160 bytes | `f79d4df54f13c842d7f18585e86610a15da5e3f603acf90600932e3ef765d11c` |
+| `lvs_pkg_rc3_v2.tar` | LVS view of rc3 (seal ring, via cells dissolved), its CDL, the KLayout LVS deck of the PDK, run script (deep mode) | 283,822,080 bytes | `f78c093963de7fb018f21e3660b3f3e37454d4d28e306b749f0cd8add51c3159` |
+| `drc_pkg_rc3_v2.tar` | full-fill GDS of rc3 (die corners cleaned), the KLayout DRC deck of the PDK, run script (minimum rule set with density, deep mode) | 205,598,720 bytes | `506a7898c94d486502e0e459be72c178c59812fbc9dc5bd1e66e2189617ea904` |
 
 The packages are not in git (a file in them is over GitHub's 100 MB limit); they are moved machine to machine and
 checked against the hashes above. On the build machine the minimum rule set on the filled rc3 file was stopped after
 18 of 26 tables, all clean, when rc3 was withdrawn; the second machine takes it to the end. The same two packages
 will be made for the final file.
 
+Version 2: the first packages carried the KLayout folder of the PDK with its symbolic links into the sg13g2 folder
+(172 links), which are broken on a machine without the whole PDK. The packages now hold the real files; both decks
+were run from inside the packages with an empty environment on one library cell (LVS: match; DRC: deck loads and
+runs).
+
 | run on the second machine | state at 14:30 CET |
 |---|---|
-| LVS on rc3 | package delivered; no result yet |
-| minimum rule set with density on the filled rc3 file | first transfer arrived damaged, package sent again; no result yet |
+| LVS on rc3 | version 2 of the package sent; no result yet |
+| minimum rule set with density on the filled rc3 file | version 2 of the package sent; no result yet |
 
 ## Running on the build machine at 14:30 CET
 | run | state |
