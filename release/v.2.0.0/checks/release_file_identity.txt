@@ -1,0 +1,12 @@
+Identity of the released full-fill GDS and the GDS the checks ran on (12 November 2026)
+
+The minimum rule set and the density check ran on the full-fill GDS as it left the fill and corner clean-up steps.
+The release packaging then renames the top cell to SoC2611 and saves the file with the KLayout options of the
+Open-Silicon-MPW flow. To show that nothing else changed, the two parts gds/SoC2611_fullfill.gds.gz.00.part and
+.01.part were taken from the pushed branch, joined with cat and compared with the checked file cell by cell
+(KLayout LayoutDiff, every cell paired with its counterpart, all shapes and all instances).
+
+  checked file  : 1774 cells, 51 layers, database unit 0.001 um
+  released file : 1774 cells, 51 layers, database unit 0.001 um
+                  sha256 of the joined .gz: c4fe6e2fec55e63d6c5f504ebc424962c3221f7ff4570858f763c2f1d2b7b553
+  differences other than the name of the top cell: 0

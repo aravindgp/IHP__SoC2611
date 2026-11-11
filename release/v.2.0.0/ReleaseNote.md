@@ -1,5 +1,15 @@
 # SoC2611 v.2.0.0 - release note (11 November 2026, 22:35 UTC)
 
+> **Which GDS to check and to use: the full-fill file.** GitHub does not accept files above 100 MB, and the
+> full-fill GDS is 155 MB compressed. It is therefore stored in two parts:
+> `cat gds/SoC2611_fullfill.gds.gz.00.part gds/SoC2611_fullfill.gds.gz.01.part > SoC2611_fullfill.gds.gz`
+> (sha256 below), and once more as a single file `gds/SoC2611_fullfill.gds.xz`. Every DRC and density result of
+> this note is for that file.
+> The smaller `gds/SoC2611.gds.gz` has the same routing with the PDK lattice fill only. **It does not pass the
+> density rules on its own**: 75 violations (Metal2 global 29.8 % against 35 %, and 74 windows of Metal2, Metal3
+> and Metal4 below 25 %), see `checks/density_pdkfill_only.txt`. It is in the release only as a file that fits
+> under the size limit; it is not the file to submit to the mask shop.
+
 > **Status: candidate for the submission checks.** Routing is clean, the IHP minimum rule set is clean on the
 > filled file of this release (26 rule tables and the GatPoly filler table), density is clean, hold is met with the
 > parasitics of the routed wires, and every signal net was traced in the GDS against the netlist. Three limits are

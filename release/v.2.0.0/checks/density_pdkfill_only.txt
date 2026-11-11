@@ -1,0 +1,29 @@
+Density of gds/SoC2611.gds.gz (PDK lattice fill only, die corners cleaned). This file does NOT pass on its own;
+the full-fill GDS does (density_fullfill.txt).
+
+density_fast: soc2611_chip_top_pdkfill_cc.gds top=soc2611_chip_top chip=EdgeSeal.boundary 43560000 um2, 256 windows/layer, grid 200 um, read 13.2 s + tiles 489.4 s + macros 329.6 s (6 threads)
+global: Activ 38.787%  GatPoly 20.963%  Metal1 35.652%  Metal2 29.806%  Metal3 36.565%  Metal4 38.557%  TopMetal1 25.809%
+  AFil.g    >= 35%   global 38.787%                       PASS
+  AFil.g1   <= 55%   global 38.787%                       PASS
+  AFil.g2   >= 25%   window min 32.97% max 48.20%         PASS
+  AFil.g3   <= 65%   window min 32.97% max 48.20%         PASS
+  GFil.g    >= 15%   global 20.963%                       PASS
+  M1.j      >= 35%   global 35.652%                       PASS
+  M1.k      <= 60%   global 35.652%                       PASS
+  M2.j      >= 35%   global 29.806%                       FAIL x1 (29.81-29.81%)
+  M2.k      <= 60%   global 29.806%                       PASS
+  M3.j      >= 35%   global 36.565%                       PASS
+  M3.k      <= 60%   global 36.565%                       PASS
+  M4.j      >= 35%   global 38.557%                       PASS
+  M4.k      <= 60%   global 38.557%                       PASS
+  M1Fil.h   >= 25%   window min 26.50% max 47.16%         PASS
+  M1Fil.k   <= 75%   window min 26.50% max 47.16%         PASS
+  M2Fil.h   >= 25%   window min 17.42% max 40.00%         FAIL x63 (17.42-24.98%)
+  M2Fil.k   <= 75%   window min 17.42% max 40.00%         PASS
+  M3Fil.h   >= 25%   window min 20.37% max 47.63%         FAIL x10 (20.37-24.34%)
+  M3Fil.k   <= 75%   window min 20.37% max 47.63%         PASS
+  M4Fil.h   >= 25%   window min 20.16% max 50.72%         FAIL x1 (20.16-20.16%)
+  M4Fil.k   <= 75%   window min 20.16% max 50.72%         PASS
+  TM1.c     >= 25%   global 25.809%                       PASS
+  TM1.d     <= 70%   global 25.809%                       PASS
+TOTAL 75 density violations

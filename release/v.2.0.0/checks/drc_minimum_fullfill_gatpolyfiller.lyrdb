@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>Main DRC Run Report at</description>
+ <original-file/>
+ <generator>drc: script='ihp-sg13cmos5l.drc'</generator>
+ <top-cell>soc2611_chip_top</top-cell>
+ <tags>
+ </tags>
+ <categories>
+  <category>
+   <name>GFil.d</name>
+   <description>5.9. GFil.d : Min. GatPoly:filler space to Activ, GatPoly, Cont, pSD, nSD:block, SalBlock is 1.1 um</description>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>soc2611_chip_top</name>
+   <variant/>
+   <layout-name/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+ </items>
+</report-database>
