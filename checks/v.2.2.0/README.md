@@ -15,4 +15,4 @@ Result, checked per table by its own "completed in" line:
 
 Note: run_drc.py merges the per-table lyrdb files into `*_full.lyrdb` and removes them, so there is one
 lyrdb for the 27 tables. The "memory of klayout" lines in progress.log are the sum over all klayout processes.
-Peak process memory on the machine during the run: about 99 GB of 128 GB.
+Peak process memory on the machine during the run: about 106 GB of 128 GB (sampled every 60 s).
