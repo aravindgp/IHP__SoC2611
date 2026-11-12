@@ -1,0 +1,73 @@
+Static timing of the routed database with the parasitics of the routed wires (OpenSTA in OpenROAD, RC
+extracted from the routed wires of every net, clock uncertainty 0.15 ns). In the constraints core_clock is
+the double-rate input clock (10 ns) and clk_main the system clock (20 ns), so a setup slack of -S ns on a
+path into the SRAM pins (half cycle) means the system clock period has to be 2 x (10 + S) ns.
+
+SPEF_LITE nets 343067, resistors 7039239, wire cap 8541.0 pF, nets with a pin the wire does not reach 0, nets whose wire is in more than one piece 0
+#   wire delay >  0.1 ns:   6284 nets, of which clock nets    84
+#   wire delay >  0.2 ns:   3139 nets, of which clock nets     8
+#   wire delay >  0.5 ns:   1296 nets, of which clock nets     3
+#   wire delay >  1.0 ns:    472 nets, of which clock nets     1
+#   wire delay >  2.0 ns:    201 nets, of which clock nets     1
+#   wire delay >  5.0 ns:     54 nets, of which clock nets     0
+
+== fast (routed wires)
+STA_SLACK fast hold  WNS -4.206 ns  TNS -32.4 ns  violating endpoints 14
+STA_SLACK fast setup WNS -21.635 ns  TNS -3070.4 ns  violating endpoints 351
+MX hold  clk_main    -> core_clock  worst    0.060 ns  endpoints  10364  violating      0
+MX hold  core_clock  -> core_clock  worst    0.050 ns  endpoints   2705  violating      0
+MX hold  core_clock  -> clk_main    worst    0.050 ns  endpoints   6606  violating      0
+MX hold  clk_main    -> clk_main    worst   -4.210 ns  endpoints  67834  violating      6
+MX hold  clk_camera  -> clk_camera  worst    0.050 ns  endpoints    116  violating      0
+MX hold  SRAM outputs -> clk_main flops : worst    0.050 ns  endpoints   7092  violating      0
+MX hold  SRAM outputs -> core_clock     : worst    0.080 ns  endpoints    616  violating      0
+MX hold  pads         -> clk_main flops : worst   -4.210 ns  endpoints      6  violating      6
+MX hold  clk_main     -> SRAM pins      : worst    0.150 ns  endpoints  11880  violating      0
+MX hold  core_clock   -> SRAM pins      : worst    0.170 ns  endpoints   2156  violating      0
+MX setup clk_main    -> core_clock  worst  -21.630 ns  endpoints  10364  violating     90
+MX setup clk_main    -> clk_main    worst   -9.400 ns  endpoints  67834  violating    259
+== slow (routed wires)
+STA_SLACK slow hold  WNS -12.163 ns  TNS -111.6 ns  violating endpoints 14
+STA_SLACK slow setup WNS -40.630 ns  TNS -20994.5 ns  violating endpoints 3241
+MX hold  clk_main    -> core_clock  worst    1.090 ns  endpoints  10364  violating      0
+MX hold  core_clock  -> core_clock  worst    0.340 ns  endpoints   2705  violating      0
+MX hold  core_clock  -> clk_main    worst    0.090 ns  endpoints   6606  violating      0
+MX hold  clk_main    -> clk_main    worst  -12.160 ns  endpoints  67834  violating      6
+MX hold  clk_camera  -> clk_camera  worst    0.330 ns  endpoints    116  violating      0
+MX hold  SRAM outputs -> clk_main flops : worst    0.540 ns  endpoints   7092  violating      0
+MX hold  SRAM outputs -> core_clock     : worst    1.540 ns  endpoints    616  violating      0
+MX hold  pads         -> clk_main flops : worst  -12.160 ns  endpoints      6  violating      6
+MX hold  clk_main     -> SRAM pins      : worst    0.930 ns  endpoints  11880  violating      0
+MX hold  core_clock   -> SRAM pins      : worst    2.200 ns  endpoints   2156  violating      0
+MX setup clk_main    -> core_clock  worst  -38.330 ns  endpoints  10364  violating   2078
+MX setup clk_main    -> clk_main    worst  -40.630 ns  endpoints  67834  violating   1155
+== typ (routed wires)
+STA_SLACK typ hold  WNS -7.037 ns  TNS -60.4 ns  violating endpoints 14
+STA_SLACK typ setup WNS -27.775 ns  TNS -6856.2 ns  violating endpoints 1320
+MX hold  clk_main    -> core_clock  worst    0.440 ns  endpoints  10364  violating      0
+MX hold  core_clock  -> core_clock  worst    0.160 ns  endpoints   2705  violating      0
+MX hold  core_clock  -> clk_main    worst    0.150 ns  endpoints   6606  violating      0
+MX hold  clk_main    -> clk_main    worst   -7.040 ns  endpoints  67834  violating      6
+MX hold  clk_camera  -> clk_camera  worst    0.150 ns  endpoints    116  violating      0
+MX hold  SRAM outputs -> clk_main flops : worst    0.210 ns  endpoints   7092  violating      0
+MX hold  SRAM outputs -> core_clock     : worst    0.550 ns  endpoints    616  violating      0
+MX hold  pads         -> clk_main flops : worst   -7.040 ns  endpoints      6  violating      6
+MX hold  clk_main     -> SRAM pins      : worst    0.490 ns  endpoints  11880  violating      0
+MX hold  core_clock   -> SRAM pins      : worst    0.870 ns  endpoints   2156  violating      0
+MX setup clk_main    -> core_clock  worst  -27.770 ns  endpoints  10364  violating    739
+MX setup clk_main    -> clk_main    worst  -20.760 ns  endpoints  67834  violating    578
+
+Hold with the input pads left out (their hold depends on the board, see the note below):
+== fast
+HOLDX all              hold WNS -4.206 TNS -32.4 endpoints 14
+HOLDX inputs-excluded  hold WNS 0.030 TNS 0.0 endpoints 0
+== slow
+HOLDX all              hold WNS -12.163 TNS -111.6 endpoints 14
+HOLDX inputs-excluded  hold WNS 0.087 TNS 0.0 endpoints 0
+== typ
+HOLDX all              hold WNS -7.037 TNS -60.4 endpoints 14
+HOLDX inputs-excluded  hold WNS 0.127 TNS 0.0 endpoints 0
+
+The hold entries 'pads -> clk_main flops' and the remaining entries of 'HOLDX all' are input pins against a
+placeholder input delay (board dependent) and the HyperBus data inputs, whose constraint models capture of
+the previous byte; with the on-chip strobe delay the current byte is captured.
