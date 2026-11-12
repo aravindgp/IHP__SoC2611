@@ -7,8 +7,8 @@
 
 > **Status: candidate for the submission checks.** Routing is clean, the IHP minimum rule set is clean on the GDS of
 > this release (26 rule tables and the GatPoly filler table), density is clean, hold is met with the parasitics of
-> the routed wires, and every signal net was traced in the GDS against the netlist. Three limits are known and listed
-> below: the speed on the routed wires, the antenna ratios, and LVS, which has not completed on this chip.
+> the routed wires, every signal net was traced in the GDS against the netlist, and LVS matches (result of
+> 12 November 2026). Two limits are known and listed below: the speed on the routed wires and the antenna ratios.
 
 ## What changed since v.2.0.0
 The routing, all cells, the seal ring and the PDK fill are those of v.2.0.0. Two things were removed to bring the
@@ -39,7 +39,7 @@ The minimum rule set and the density check were run again on exactly this file.
 | Hold at the SRAM pins, routed-wire parasitics | +0.20 / +0.49 / +0.93 ns (fast / typical / slow) |
 | Setup, routed-wire parasitics | system clock 15.0 MHz fast, 12.7 MHz typical, 10.0 MHz slow (the double-rate input clock is twice that) |
 | Antenna check (OpenROAD) | 6,129 nets above the ratio limit; not repaired in this file (a repaired routing with 590 such nets is in sign-off as the next release) |
-| LVS (deep) | not completed. After corrections to the LVS view the net extraction of the chip now completes in about an hour; the comparison of the current run is pending. |
+| LVS (KLayout, IHP deck, deep mode) | netlists match, 0 errors: 66 of 66 circuits, 344,865 instances and 352,928 nets of the chip top. SRAM macros and pad cells are black boxes with their pins; the layout is the one before fill. A copy of the layout with one removed via and one bridge between two wires is reported as a mismatch on exactly those three nets. Scope and the changes to view and deck: `checks/lvs_summary.txt` |
 
 Notes on the checks:
 - **Nwell table.** In the minimum rule set all four rules of the Nwell table are switched off (`!PRECHECK_DRC`); the
