@@ -7,7 +7,8 @@
 > **Status: candidate for the submission checks, with the antenna repair.** Routing is clean, the IHP minimum rule
 > set is clean on the GDS of this release (26 rule tables and the GatPoly filler table), density is clean, hold is
 > met with the parasitics of the routed wires, and every signal net was traced in the GDS against the netlist.
-> Known limits, listed below: the speed on the routed wires, 590 nets still above the antenna ratio limit, and LVS.
+> LVS matches (result of 12 November 2026). Known limits, listed below: the speed on the routed wires and 590 nets
+> still above the antenna ratio limit.
 
 ## What changed since v.2.0.1
 1. **Antenna repair.** 7,213 diode cells at gate pins and 1,315 small buffers at SRAM and pad pins were added and
@@ -38,7 +39,7 @@ The floorplan, the macros, the pads and the clock scheme are those of v.2.0.1.
 | Hold at the SRAM pins, routed-wire parasitics | +0.15 / +0.49 / +0.93 ns (fast / typical / slow) |
 | Setup, routed-wire parasitics | system clock 15.8 MHz fast, 13.2 MHz typical, 10.3 MHz slow (the double-rate input clock is twice that) |
 | Antenna check (OpenROAD) | 590 nets above the ratio limit (6,129 before the repair) |
-| LVS (deep) | not completed. After corrections to the LVS view (seal ring instance, resistor markers inside the macros, unused subcircuits, row filler cells) the net extraction of the chip completes in about an hour. The comparison step is in progress on the v.2.0.1 layout; the view of this release is built the same way and follows. |
+| LVS (KLayout, IHP deck, deep mode) | netlists match, 0 errors: 67 of 67 circuits, 353,402 instances and 354,252 nets of the chip top. SRAM macros and pad cells are black boxes with their pins; the layout is the one before fill. A negative control on the v.2.0.1 layout, one removed via and one bridge between two wires, is reported as a mismatch on exactly those three nets. Scope and the changes to view and deck: `checks/lvs_summary.txt` |
 
 Notes on the checks:
 - **Nwell table.** In the minimum rule set all four rules of the Nwell table are switched off (`!PRECHECK_DRC`); the
