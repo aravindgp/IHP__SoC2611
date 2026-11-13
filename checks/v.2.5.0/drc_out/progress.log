@@ -1,0 +1,63 @@
+[drc] rule deck: IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14
+[drc] start 2026-11-13 06:57:32 UTC on 8e54483c835d, KLayout KLayout 0.30.5, 5 tables at a time, density slot: 1, 8 threads per table; tables: activ activfiller cont contbar forbidden forbidden_cmos5l gatpoly gatpolyfiller latchup lbe metal1 metaln metalnfiller metalslits nbulay pad passiv pin psd pwellblock sealring thickgateox topmetal1 topmetal1filler topvia1 via1 vian
+[drc] 2026-11-13 07:07:34 UTC  tables finished: 0 of 28  memory of klayout: 25.9 GB
+[drc] 2026-11-13 07:17:34 UTC  tables finished: 3 of 28  memory of klayout: 52.5 GB
+[drc] 2026-11-13 07:27:34 UTC  tables finished: 5 of 28  memory of klayout: 62.1 GB
+[drc] 2026-11-13 07:37:34 UTC  tables finished: 8 of 28  memory of klayout: 68.0 GB
+[drc] 2026-11-13 07:47:34 UTC  tables finished: 9 of 28  memory of klayout: 85.0 GB
+[drc] 2026-11-13 07:57:34 UTC  tables finished: 10 of 28  memory of klayout: 95.3 GB
+[drc] 2026-11-13 08:07:34 UTC  tables finished: 12 of 28  memory of klayout: 83.8 GB
+[drc] 2026-11-13 08:17:35 UTC  tables finished: 14 of 28  memory of klayout: 90.7 GB
+[drc] 2026-11-13 08:27:35 UTC  tables finished: 14 of 28  memory of klayout: 98.0 GB
+[drc] 2026-11-13 08:37:35 UTC  tables finished: 16 of 28  memory of klayout: 80.1 GB
+[drc] 2026-11-13 08:47:35 UTC  tables finished: 18 of 28  memory of klayout: 90.4 GB
+[drc] 2026-11-13 08:57:35 UTC  tables finished: 18 of 28  memory of klayout: 90.8 GB
+[drc] 2026-11-13 09:07:35 UTC  tables finished: 21 of 28  memory of klayout: 61.7 GB
+[drc] 2026-11-13 09:17:35 UTC  tables finished: 24 of 28  memory of klayout: 68.5 GB
+[drc] 2026-11-13 09:27:35 UTC  tables finished: 25 of 28  memory of klayout: 80.0 GB
+[drc] 2026-11-13 09:37:35 UTC  tables finished: 25 of 28  memory of klayout: 54.8 GB
+[drc] density deck end 2026-11-13 09:41:46 UTC, exit 0
+[drc] 2026-11-13 09:47:35 UTC  tables finished: 27 of 28  memory of klayout: 8.9 GB
+[drc] 2026-11-13 09:57:35 UTC  tables finished: 27 of 28  memory of klayout: 21.7 GB
+[drc] 2026-11-13 10:07:35 UTC  tables finished: 27 of 28  memory of klayout: 15.5 GB
+[drc] 2026-11-13 10:17:35 UTC  tables finished: 27 of 28  memory of klayout: 17.8 GB
+[drc] 2026-11-13 10:27:35 UTC  tables finished: 27 of 28  memory of klayout: 13.5 GB
+[drc] 2026-11-13 10:37:35 UTC  tables finished: 27 of 28  memory of klayout: 14.0 GB
+[drc] 2026-11-13 10:47:35 UTC  tables finished: 27 of 28  memory of klayout: 16.1 GB
+[drc] 2026-11-13 10:57:35 UTC  tables finished: 27 of 28  memory of klayout: 4.3 GB
+[drc] 2026-11-13 11:07:36 UTC  tables finished: 27 of 28  memory of klayout: 3.5 GB
+[drc] 2026-11-13 11:17:36 UTC  tables finished: 27 of 28  memory of klayout: 4.8 GB
+[drc] 2026-11-13 11:27:36 UTC  tables finished: 27 of 28  memory of klayout: 3.9 GB
+[drc] 2026-11-13 11:37:36 UTC  tables finished: 27 of 28  memory of klayout: 2.9 GB
+[drc] tables end 2026-11-13 11:38:14 UTC, exit 0
+[drc] end 2026-11-13 11:38:14 UTC; tables finished: 28 of 28; killed by the system: 0
+KLayout DRC run for tables 'forbidden' completed in 763.5 seconds
+KLayout DRC run for tables 'activ' completed in 893.3 seconds
+KLayout DRC run for tables 'contbar' completed in 917.79 seconds
+KLayout DRC run for tables 'forbidden_cmos5l' completed in 744.25 seconds
+KLayout DRC run for tables 'cont' completed in 1531.75 seconds
+KLayout DRC run for tables 'gatpoly' completed in 1024.51 seconds
+KLayout DRC run for tables 'activfiller' completed in 2285.09 seconds
+KLayout DRC run for tables 'lbe' completed in 772.82 seconds
+KLayout DRC run for tables 'latchup' completed in 938.27 seconds
+KLayout DRC run for tables 'metalslits' completed in 606.52 seconds
+KLayout DRC run for tables 'nbulay' completed in 756.9 seconds
+KLayout DRC run for tables 'metal1' completed in 2010.03 seconds
+KLayout DRC run for tables 'pad' completed in 719.01 seconds
+KLayout DRC run for tables 'passiv' completed in 753.2 seconds
+KLayout DRC run for tables 'psd' completed in 766.44 seconds
+KLayout DRC run for tables 'pin' completed in 1016.67 seconds
+KLayout DRC run for tables 'metaln' completed in 4160.41 seconds
+KLayout DRC run for tables 'pwellblock' completed in 1007.02 seconds
+KLayout DRC run for tables 'metalnfiller' completed in 5066.44 seconds
+KLayout DRC run for tables 'thickgateox' completed in 956.79 seconds
+KLayout DRC run for tables 'topmetal1' completed in 973.5 seconds
+KLayout DRC run for tables 'topmetal1filler' completed in 756.31 seconds
+KLayout DRC run for tables 'topvia1' completed in 786.43 seconds
+KLayout DRC run for tables 'via1' completed in 795.43 seconds
+KLayout DRC run for tables 'vian' completed in 700.19 seconds
+KLayout DRC run for tables 'gatpolyfiller' completed in 8913.51 seconds
+KLayout DRC run for tables 'sealring' completed in 11256.24 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.
+KLayout DRC run for density table completed in 9845.01 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.
