@@ -1,0 +1,28 @@
+IHP minimum rule set (run_drc.py --minimum_drc, deep mode) on the layout with seal ring, without fill
+A table counts only if its own log carries its completion line.
+tables: 23 logs, 23 completed; not completed: none; expected but no log: none
+tables killed: 0; exceptions: 0
+DRC CLEAN: 0 violations
+  activ              completed in 634.03 seconds
+  cont               completed in 1182.84 seconds
+  contbar            completed in 681.79 seconds
+  forbidden          completed in 457.5 seconds
+  forbidden_cmos5l   completed in 405.82 seconds
+  gatpoly            completed in 644.49 seconds
+  latchup            completed in 614.56 seconds
+  lbe                completed in 424.22 seconds
+  metal1             completed in 1182.64 seconds
+  metaln             completed in 3508.29 seconds
+  metalslits         completed in 362.79 seconds
+  nbulay             completed in 635.88 seconds
+  pad                completed in 534.72 seconds
+  passiv             completed in 504.89 seconds
+  pin                completed in 513.7 seconds
+  psd                completed in 472.65 seconds
+  pwellblock         completed in 648.15 seconds
+  thickgateox        completed in 499.25 seconds
+  topmetal1          completed in 458.22 seconds
+  topmetal1filler    completed in 477.84 seconds
+  topvia1            completed in 425.63 seconds
+  via1               completed in 460.6 seconds
+  vian               completed in 429.72 seconds

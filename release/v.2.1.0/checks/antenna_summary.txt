@@ -1,0 +1,3 @@
+Antenna check of the routed database (OpenROAD check_antennas, ratio limits of the technology LEF)
+ANT-0002 Found 590 net violations.
+ANT-0001 Found 668 pin violations.

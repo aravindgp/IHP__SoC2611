@@ -1,0 +1,13 @@
+Identity of the GDS of this release and the GDS the checks ran on
+
+The minimum rule set and the density check ran on the filled GDS before the release packaging, which renames
+the top cell to SoC2611 and saves with the KLayout options of the Open-Silicon-MPW flow. The packaged file
+gds/SoC2611.gds.gz was compared with the checked file cell by cell (KLayout LayoutDiff, all shapes and instances):
+  checked file  : 1775 cells, dbu 0.001, 51 layers
+  released file : 1775 cells, dbu 0.001, 51 layers
+  differences other than the name of the top cell: 0
+
+The filled GDS is the full-fill file of the sign-off run with a thinner top-up fill: every fill shape in it is
+a shape of that file, no fill shape was added or moved. The one other change is the row filler
+fix next to one SRAM macro (rule NW.f, see the release note), counted in the same line:
+  shapes removed from the top-up fill cell: 2407476; row fillers next to macros: 18 removed, 32 smaller ones added, 18 NWell shapes of removed fillers kept (edge fix list: 18 / 32 / 18); differences that are not a removal inside the top-up fill cell: 0 besides the edge fix 

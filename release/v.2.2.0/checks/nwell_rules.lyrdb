@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>Maximum DRC Run Report at</description>
+ <original-file/>
+ <generator>drc: script='nwell_rules.drc'</generator>
+ <top-cell>soc2611_chip_top</top-cell>
+ <tags>
+ </tags>
+ <categories>
+  <category>
+   <name>NW.a</name>
+   <description>Min. NWell width = 0.62</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.c</name>
+   <description>Min. NWell enclosure of P+Activ not inside ThickGateOx = 0.31</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.c1</name>
+   <description>Min. NWell enclosure of P+Activ inside ThickGateOx = 0.62</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.d</name>
+   <description>Min. NWell space to external N+Activ not inside ThickGateOx = 0.31</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.d1</name>
+   <description>Min. NWell space to external N+Activ inside ThickGateOx = 0.62</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.e</name>
+   <description>Min. NWell enclosure of NWell tie surrounded entirely by NWell in N+Activ not inside ThickGateOx = 0.24</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.e1</name>
+   <description>Min. NWell enclosure of NWell tie surrounded entirely by NWell in N+Activ inside ThickGateOx = 0.62</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.f</name>
+   <description>Min. NWell space to substrate tie in P+Activ not inside ThickGateOx = 0.24</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.f1</name>
+   <description>Min. NWell space to substrate tie in P+Activ inside ThickGateOx = 0.62</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.c1.dig</name>
+   <description>Min. NWell enclosure of P+Activ inside ThickGateOx inside DigiBnd = 0.31</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.d1.dig</name>
+   <description>Min. NWell space to external N+Activ inside ThickGateOx inside DigiBnd = 0.31</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.e1.dig</name>
+   <description>Min. NWell enclosure of NWell tie surrounded entirely by NWell in N+Activ inside ThickGateOx inside DigiBnd = 0.24</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.f1.dig</name>
+   <description>Min. NWell space to substrate tie in P+Activ inside ThickGateOx inside DigiBnd = 0.24</description>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>soc2611_chip_top</name>
+   <variant/>
+   <layout-name/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+ </items>
+</report-database>

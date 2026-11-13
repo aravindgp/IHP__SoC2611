@@ -1,0 +1,32 @@
+NWell rules without connectivity, on the GDS of this release (12 November 2026)
+
+The Nwell table of the IHP deck has no rules in the minimum rule set and is left out of the DRC table count.
+Two checks cover the NWell rules directly:
+
+1. The NWell rules of IHP's maximal rule deck that need no connectivity, IHP's rule text unchanged
+   (13 rules with the 60 layer derivations they depend on, deep mode), result database nwell_rules.lyrdb:
+   Rule NW.a: 0 error(s)
+   Rule NW.c: 0 error(s)
+   Rule NW.c1: 0 error(s)
+   Rule NW.d: 0 error(s)
+   Rule NW.d1: 0 error(s)
+   Rule NW.e: 0 error(s)
+   Rule NW.e1: 0 error(s)
+   Rule NW.f: 0 error(s)
+   Rule NW.f1: 0 error(s)
+   Rule NW.c1.dig: 0 error(s)
+   Rule NW.d1.dig: 0 error(s)
+   Rule NW.e1.dig: 0 error(s)
+   Rule NW.f1.dig: 0 error(s)
+   All 13 rules are at 0. On v.2.0.1 NW.f (NWell space to a substrate tie, 0.24 um) had 9 markers at one SRAM macro
+   edge, x = 1630.88 um: the row filler cell in the first site put its tie strap 0.16 um from the macro NWell. In this
+   release the fillers of that site give way: 18 fillers removed, 32 smaller ones set one site further out. The
+   NWell of the removed fillers stays as 18 shapes in the top cell, so no new NWell gap opens next to the macro.
+
+2. NWell width and gaps measured without nets, sorted by place:
+   NWell narrower than 0.62 um (NW.a): 0 places; inside SRAM macros 0, inside pad ring cells 0, in the chip assembly 0
+   NWell space or notch below 0.62 um (NW.b, whatever the nets): 42 places; inside SRAM macros 42, inside pad ring cells 0, in the chip assembly 0
+   gap below 1.80 um between two SEPARATE NWell regions (NW.b1 if their nets differ): 23448 places; inside SRAM macros 23448, inside pad ring cells 0, in the chip assembly 0
+   notch below 1.80 um inside ONE NWell region (same net: not NW.b1; NW.b needs 0.62 um): 19930 places; inside SRAM macros 19928, inside pad ring cells 0, in the chip assembly 2
+   The 2 notches in the chip assembly are 1.38 um wide, inside one NWell region each; NW.b asks for 0.62 um.
+   The counts are those of v.2.0.1: the filler change next to the macro added no gap and no notch.
