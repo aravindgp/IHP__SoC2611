@@ -28,6 +28,34 @@ Important design notes:
 - Functional verification (RTL): firmware suite 6/6 PASS on the chip top, boot loader, HyperBus and SRAM-wrapper tests PASS (`SoC2611-main/verification/sim/`).
 - A final release will supersede this repository snapshot.
 
+## Antenna nets per release
+
+Number of nets above the antenna ratio limit in each release, from the router's antenna check (OpenROAD
+`check_antennas`, ratio limits of the technology LEF) on the routed database. State of 13 November 2026.
+
+| Release | Date | Nets above the limit | Gate pins above the limit | Antenna repair in the file | System clock, fast / typical / slow |
+|---|---|---|---|---|---|
+| `v.1.0.0` | 2 Nov | not checked | | none | |
+| `v.1.1.0` | 8 Nov | about 6,000 | | none | |
+| `v.1.2.0`, `v.1.3.0`, `v.1.3.1` | 9 Nov | not counted on these files | | none | |
+| `v.2.0.0-rc1`, `v.2.0.0-rc2` | 10 Nov | 6,129 | | none | |
+| `v.2.0.1` | 12 Nov | 6,129 | 7,222 | none | 15.0 / 12.7 / 10.0 MHz |
+| `v.2.1.0` | 12 Nov | 590 | 668 | first pass: 7,213 diodes and 1,315 buffers | 15.8 / 13.2 / 10.3 MHz |
+| `v.2.2.0` | 12 Nov | 582 | 656 | first pass | 45.7 / 30.0 / 18.9 MHz |
+| `v.2.3.0` | 13 Nov | 592 | 671 | first pass | 54.2 / 44.3 / 28.7 MHz |
+| `v.2.4.0`, candidate | 13 Nov | 78 | 101 | three passes: 865 more diodes, 98 buffers at SRAM pins | 54.7 / 45.5 / 29.4 MHz |
+| `v.2.5.0`, candidate | 13 Nov | **0** | **0** | four passes: 91 more diodes directly under the wires, long Metal2 runs of 7 nets moved to Metal4 | 54.7 / 45.5 / 29.4 MHz |
+
+- Only `v.2.5.0` has no net above the limit. It is a candidate: its release folder follows when every check on its
+  GDS has finished. The numbers of `v.2.4.0` and `v.2.5.0` are those of their routed databases.
+- The antenna rules are not part of the IHP minimum rule set of the precheck. A net above the limit is a risk for
+  the gate oxide of one transistor during manufacturing, not a logic error.
+- In `v.2.2.0` and `v.2.3.0` no net is at 20 times the limit or more; in `v.2.4.0` none is above 4 times the limit.
+- From `v.2.2.0` to `v.2.3.0` the count rose by 10 because the wires of the nets with new drive buffers were laid
+  again; the two later passes repaired those nets as well.
+- The releases `v.2.0.0` and `v.2.0.0-rc3`, which exist on their own branches only, are the chip of `v.2.0.1`
+  (6,129 and 6,111 nets).
+
 ## Repository structure
 
 ```text
