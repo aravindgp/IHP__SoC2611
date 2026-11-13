@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>DRC Run Report at</description>
+ <original-file/>
+ <generator>drc: script='antenna.drc'</generator>
+ <top-cell>soc2611_chip_top</top-cell>
+ <tags>
+  <tag>
+   <name>m4_ratio</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>tv1_ratio</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>sum_m1_m2</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>v1_ratio</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>m3_ratio</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>m1_ratio</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>v2_ratio</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>v3_ratio</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>tm1_ratio</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>has_diode</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>m2_ratio</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>sum_m1_tm1</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>sum_m1_m3</name>
+   <description/>
+  </tag>
+  <tag>
+   <name>sum_m1_m4</name>
+   <description/>
+  </tag>
+ </tags>
+ <categories>
+  <category>
+   <name>Ant.a</name>
+   <description>7.1 Ant.a: Max. ratio of GatPoly over field oxide area to connected Gate area: 200.0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.c</name>
+   <description>7.1 Ant.c: Max. ratio of Cont area to connected Gate area: 20.0</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.b_Metal1</name>
+   <description>7.1 Ant.b_Metal1: Max. ratio of cumulative Metal1 area to connected Gate area (without protection diode) = 200.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.e_Metal1</name>
+   <description>7.1 Ant.e_Metal1: Max. ratio of cumulative Metal1 area to connected Gate area (with protection diode) = 20000.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.b_Metal2</name>
+   <description>7.1 Ant.b_Metal2: Max. ratio of cumulative Metal2 area to connected Gate area (without protection diode) = 200.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.e_Metal2</name>
+   <description>7.1 Ant.e_Metal2: Max. ratio of cumulative Metal2 area to connected Gate area (with protection diode) = 20000.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.b_Metal3</name>
+   <description>7.1 Ant.b_Metal3: Max. ratio of cumulative Metal3 area to connected Gate area (without protection diode) = 200.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.e_Metal3</name>
+   <description>7.1 Ant.e_Metal3: Max. ratio of cumulative Metal3 area to connected Gate area (with protection diode) = 20000.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.b_Metal4</name>
+   <description>7.1 Ant.b_Metal4: Max. ratio of cumulative Metal4 area to connected Gate area (without protection diode) = 200.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.e_Metal4</name>
+   <description>7.1 Ant.e_Metal4: Max. ratio of cumulative Metal4 area to connected Gate area (with protection diode) = 20000.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.b_TopMetal1</name>
+   <description>7.1 Ant.b_TopMetal1: Max. ratio of cumulative TopMetal1 area to connected Gate area (without protection diode) = 200.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.e_TopMetal1</name>
+   <description>7.1 Ant.e_TopMetal1: Max. ratio of cumulative TopMetal1 area to connected Gate area (with protection diode) = 20000.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.d_Via1</name>
+   <description>7.1 Ant.d_Via1: Max. ratio of cumulative Via1 area to connected Gate area (without protection diode) = 20.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.f_Via1</name>
+   <description>7.1 Ant.f_Via1: Max. ratio of cumulative Via1 area to connected Gate area (with protection diode) = 500.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.d_Via2</name>
+   <description>7.1 Ant.d_Via2: Max. ratio of cumulative Via2 area to connected Gate area (without protection diode) = 20.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.f_Via2</name>
+   <description>7.1 Ant.f_Via2: Max. ratio of cumulative Via2 area to connected Gate area (with protection diode) = 500.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.d_Via3</name>
+   <description>7.1 Ant.d_Via3: Max. ratio of cumulative Via3 area to connected Gate area (without protection diode) = 20.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.f_Via3</name>
+   <description>7.1 Ant.f_Via3: Max. ratio of cumulative Via3 area to connected Gate area (with protection diode) = 500.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.d_TopVia1</name>
+   <description>7.1 Ant.d_TopVia1: Max. ratio of cumulative TopVia1 area to connected Gate area (without protection diode) = 20.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.f_TopVia1</name>
+   <description>7.1 Ant.f_TopVia1: Max. ratio of cumulative TopVia1 area to connected Gate area (with protection diode) = 500.0.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.g</name>
+   <description>7.1 Ant.g: Minimum Size of protection diode (um^2): 0.16</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.h</name>
+   <description>7.1. Ant.h: dantenna in NWell not allowed.</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>Ant.i</name>
+   <description>7.1. Ant.i: dpantenna in PWell not allowed.</description>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>soc2611_chip_top</name>
+   <variant/>
+   <layout-name/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3393.17,5861.16;3393.17,5861.58;3393.3,5861.58;3393.3,5861.16)</value>
+    <value>[#m4_ratio] float: 139.628205128</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 3.92673992674</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 1.33608058608</value>
+    <value>[#m1_ratio] float: 2.59065934066</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 22256.5421245</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 1.33608058608</value>
+    <value>[#sum_m1_tm1] float: 22401.4331502</value>
+    <value>[#sum_m1_m3] float: 5.26282051282</value>
+    <value>[#sum_m1_m4] float: 144.891025641</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3393.17,5859.57;3393.17,5859.99;3393.3,5859.99;3393.3,5859.57)</value>
+    <value>[#m4_ratio] float: 139.628205128</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 3.92673992674</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 1.33608058608</value>
+    <value>[#m1_ratio] float: 2.59065934066</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 22256.5421245</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 1.33608058608</value>
+    <value>[#sum_m1_tm1] float: 22401.4331502</value>
+    <value>[#sum_m1_m3] float: 5.26282051282</value>
+    <value>[#sum_m1_m4] float: 144.891025641</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3131.57,618.93;3131.57,619.35;3131.7,619.35;3131.7,618.93)</value>
+    <value>[#m4_ratio] float: 38.7124542125</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 13.3498168498</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 845.704212454</value>
+    <value>[#m1_ratio] float: 2.59065934066</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 22595.3553114</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 10.7591575092</value>
+    <value>[#sum_m1_tm1] float: 23493.1217949</value>
+    <value>[#sum_m1_m3] float: 859.054029304</value>
+    <value>[#sum_m1_m4] float: 897.766483516</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3131.57,617.34;3131.57,617.76;3131.7,617.76;3131.7,617.34)</value>
+    <value>[#m4_ratio] float: 38.7124542125</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 13.3498168498</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 845.704212454</value>
+    <value>[#m1_ratio] float: 2.59065934066</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 22595.3553114</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 10.7591575092</value>
+    <value>[#sum_m1_tm1] float: 23493.1217949</value>
+    <value>[#sum_m1_m3] float: 859.054029304</value>
+    <value>[#sum_m1_m4] float: 897.766483516</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3175.25,626.49;3175.25,626.91;3175.38,626.91;3175.38,626.49)</value>
+    <value>[#m4_ratio] float: 4.97619047619</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 3.92673992674</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 1.33608058608</value>
+    <value>[#m1_ratio] float: 2.59065934066</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 22240.9230769</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 1.33608058608</value>
+    <value>[#sum_m1_tm1] float: 22251.1620879</value>
+    <value>[#sum_m1_m3] float: 5.26282051282</value>
+    <value>[#sum_m1_m4] float: 10.239010989</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3175.25,624.9;3175.25,625.32;3175.38,625.32;3175.38,624.9)</value>
+    <value>[#m4_ratio] float: 4.97619047619</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 3.92673992674</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 1.33608058608</value>
+    <value>[#m1_ratio] float: 2.59065934066</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 22240.9230769</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 1.33608058608</value>
+    <value>[#sum_m1_tm1] float: 22251.1620879</value>
+    <value>[#sum_m1_m3] float: 5.26282051282</value>
+    <value>[#sum_m1_m4] float: 10.239010989</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3178.13,599.4;3178.13,599.82;3178.26,599.82;3178.26,599.4)</value>
+    <value>[#m4_ratio] float: 8.63919413919</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 3.92673992674</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 5.83241758242</value>
+    <value>[#m1_ratio] float: 2.59065934066</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 29035.8095238</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 1.33608058608</value>
+    <value>[#sum_m1_tm1] float: 29054.2078755</value>
+    <value>[#sum_m1_m3] float: 9.75915750916</value>
+    <value>[#sum_m1_m4] float: 18.3983516484</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3178.13,597.81;3178.13,598.23;3178.26,598.23;3178.26,597.81)</value>
+    <value>[#m4_ratio] float: 8.63919413919</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 3.92673992674</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 5.83241758242</value>
+    <value>[#m1_ratio] float: 2.59065934066</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 29035.8095238</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 1.33608058608</value>
+    <value>[#sum_m1_tm1] float: 29054.2078755</value>
+    <value>[#sum_m1_m3] float: 9.75915750916</value>
+    <value>[#sum_m1_m4] float: 18.3983516484</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3268.85,618.93;3268.85,619.35;3268.98,619.35;3268.98,618.93)</value>
+    <value>[#m4_ratio] float: 3.52014652015</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 4.76419413919</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 12.8653846154</value>
+    <value>[#m1_ratio] float: 2.86950549451</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 24678.6959707</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 1.89468864469</value>
+    <value>[#sum_m1_tm1] float: 24699.845696</value>
+    <value>[#sum_m1_m3] float: 17.6295787546</value>
+    <value>[#sum_m1_m4] float: 21.1497252747</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (3268.85,617.34;3268.85,617.76;3268.98,617.76;3268.98,617.34)</value>
+    <value>[#m4_ratio] float: 3.52014652015</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 4.76419413919</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 12.8653846154</value>
+    <value>[#m1_ratio] float: 2.86950549451</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 24678.6959707</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 1.89468864469</value>
+    <value>[#sum_m1_tm1] float: 24699.845696</value>
+    <value>[#sum_m1_m3] float: 17.6295787546</value>
+    <value>[#sum_m1_m4] float: 21.1497252747</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (4906.13,1173.96;4906.13,1174.38;4906.26,1174.38;4906.26,1173.96)</value>
+    <value>[#m4_ratio] float: 20.2509157509</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 3.92673992674</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 4.60531135531</value>
+    <value>[#m1_ratio] float: 2.59065934066</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 20000.1904762</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 1.33608058608</value>
+    <value>[#sum_m1_tm1] float: 20028.9734432</value>
+    <value>[#sum_m1_m3] float: 8.53205128205</value>
+    <value>[#sum_m1_m4] float: 28.782967033</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'Ant.e_TopMetal1'</category>
+   <cell>soc2611_chip_top</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>polygon: (4906.13,1172.37;4906.13,1172.79;4906.26,1172.79;4906.26,1172.37)</value>
+    <value>[#m4_ratio] float: 20.2509157509</value>
+    <value>[#tv1_ratio] float: 1.61538461538</value>
+    <value>[#sum_m1_m2] float: 3.92673992674</value>
+    <value>[#v1_ratio] float: 0.330586080586</value>
+    <value>[#m3_ratio] float: 4.60531135531</value>
+    <value>[#m1_ratio] float: 2.59065934066</value>
+    <value>[#v2_ratio] float: 0.330586080586</value>
+    <value>[#v3_ratio] float: 0.330586080586</value>
+    <value>[#tm1_ratio] float: 20000.1904762</value>
+    <value>[#has_diode] float: 1</value>
+    <value>[#m2_ratio] float: 1.33608058608</value>
+    <value>[#sum_m1_tm1] float: 20028.9734432</value>
+    <value>[#sum_m1_m3] float: 8.53205128205</value>
+    <value>[#sum_m1_m4] float: 28.782967033</value>
+   </values>
+  </item>
+ </items>
+</report-database>
