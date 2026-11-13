@@ -1,0 +1,20 @@
+[drc] rule deck: IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14
+[drc] start 2026-11-12 23:56:47 UTC on 8e54483c835d, KLayout KLayout 0.30.5, 5 tables at a time, density slot: 1, 8 threads per table; tables: activ activfiller cont contbar forbidden forbidden_cmos5l gatpoly gatpolyfiller latchup lbe metal1 metaln metalnfiller metalslits nbulay pad passiv pin psd pwellblock sealring thickgateox topmetal1 topmetal1filler topvia1 via1 vian
+[drc] 2026-11-13 00:06:49 UTC  tables finished: 0 of 28  memory of klayout: 17.4 GB
+[drc] 2026-11-13 00:16:49 UTC  tables finished: 3 of 28  memory of klayout: 37.2 GB
+[drc] 2026-11-13 00:26:50 UTC  tables finished: 6 of 28  memory of klayout: 59.2 GB
+[drc] 2026-11-13 00:36:50 UTC  tables finished: 9 of 28  memory of klayout: 53.8 GB
+[drc] 2026-11-13 00:46:50 UTC  tables finished: 10 of 28  memory of klayout: 78.0 GB
+[drc] 2026-11-13 00:56:50 UTC  tables finished: 12 of 28  memory of klayout: 81.3 GB
+[drc] 2026-11-13 01:06:50 UTC  tables finished: 13 of 28  memory of klayout: 95.7 GB
+[drc] 2026-11-13 01:16:50 UTC  tables finished: 14 of 28  memory of klayout: 87.0 GB
+[drc] 2026-11-13 01:26:50 UTC  tables finished: 16 of 28  memory of klayout: 64.9 GB
+[drc] 2026-11-13 01:36:50 UTC  tables finished: 18 of 28  memory of klayout: 74.1 GB
+[drc] 2026-11-13 01:46:50 UTC  tables finished: 21 of 28  memory of klayout: 73.0 GB
+[drc] 2026-11-13 01:56:50 UTC  tables finished: 23 of 28  memory of klayout: 54.2 GB
+[drc] 2026-11-13 02:06:50 UTC  tables finished: 25 of 28  memory of klayout: 70.1 GB
+[drc] 2026-11-13 02:16:50 UTC  tables finished: 25 of 28  memory of klayout: 38.0 GB
+[drc] density deck end 2026-11-13 02:21:15 UTC, exit 0
+[drc] 2026-11-13 02:26:50 UTC  tables finished: 27 of 28  memory of klayout: 8.7 GB
+[drc] 2026-11-13 02:36:50 UTC  tables finished: 27 of 28  memory of klayout: 23.3 GB
+[drc] 2026-11-13 02:46:50 UTC  tables finished: 27 of 28  memory of klayout: 16.4 GB
