@@ -1,0 +1,52 @@
+IHP minimum rule set (run_drc.py --minimum_drc, deep mode) on the filled GDS of this release
+(seal ring, PDK fill, thinned top-up fill, die corners cleaned). A table counts only if its own log carries its
+completion line. The Nwell table is left out: all four of its rules are switched off in the minimum set.
+
+26 tables:
+tables: 26 logs, 26 completed; not completed: none; expected but no log: none
+tables killed: 0; exceptions: 0
+DRC CLEAN: 0 violations
+  activ              completed in 1430.51 seconds
+  activfiller        completed in 3525.13 seconds
+  cont               completed in 2319.71 seconds
+  contbar            completed in 1370.39 seconds
+  forbidden          completed in 993.04 seconds
+  forbidden_cmos5l   completed in 1021.5 seconds
+  gatpoly            completed in 1829.98 seconds
+  latchup            completed in 1707.88 seconds
+  lbe                completed in 1398.61 seconds
+  metal1             completed in 3036.01 seconds
+  metaln             completed in 5330.0 seconds
+  metalnfiller       completed in 5967.44 seconds
+  metalslits         completed in 1151.44 seconds
+  nbulay             completed in 1182.22 seconds
+  pad                completed in 1044.76 seconds
+  passiv             completed in 869.06 seconds
+  pin                completed in 953.2 seconds
+  psd                completed in 787.42 seconds
+  pwellblock         completed in 990.41 seconds
+  sealring           completed in 11860.14 seconds
+  thickgateox        completed in 888.22 seconds
+  topmetal1          completed in 846.72 seconds
+  topmetal1filler    completed in 880.01 seconds
+  topvia1            completed in 894.25 seconds
+  via1               completed in 717.36 seconds
+  vian               completed in 756.42 seconds
+Tables run on a second machine (second machine 8e54483c835d, results branch checks-v.2.2.0 commit 83df6cb) on the candidate copy of this GDS:
+  activ activfiller cont contbar forbidden forbidden_cmos5l gatpoly latchup lbe metal1 metaln metalnfiller metalslits nbulay pad passiv pin psd pwellblock sealring thickgateox topmetal1 topmetal1filler topvia1 via1 vian 
+  file: branch candidate of the IP repository, sha256 01aa56f73661f142738e370092350b33e90814bf982c05e5862501ccdf90c584; it and the released GDS are two
+  packagings of the same checked file, each compared with it cell by cell (0 differences).
+  rule deck: IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14, deep mode, the same run script options as on the build machine.
+  [drc] start 2026-11-12 17:03:41 UTC on 8e54483c835d, KLayout KLayout 0.30.5, 5 tables at a time, density slot: 1, 8 threads per table; tables: activ activfiller cont contbar forbidden forbidden_cmos
+
+GatPoly filler table (run apart, it needs the most memory):
+tables: 1 logs, 1 completed; not completed: none; expected but no log: none
+tables killed: 0; exceptions: 0
+DRC CLEAN: 0 violations
+  gatpolyfiller      completed in 10893.88 seconds
+Tables run on a second machine (second machine 8e54483c835d, results branch checks-v.2.2.0 commit 83df6cb) on the candidate copy of this GDS:
+  gatpolyfiller 
+  file: branch candidate of the IP repository, sha256 01aa56f73661f142738e370092350b33e90814bf982c05e5862501ccdf90c584; it and the released GDS are two
+  packagings of the same checked file, each compared with it cell by cell (0 differences).
+  rule deck: IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14, deep mode, the same run script options as on the build machine.
+  [drc] start 2026-11-12 17:03:41 UTC on 8e54483c835d, KLayout KLayout 0.30.5, 5 tables at a time, density slot: 1, 8 threads per table; tables: activ activfiller cont contbar forbidden forbidden_cmos

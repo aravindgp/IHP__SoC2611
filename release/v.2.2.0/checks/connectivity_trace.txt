@@ -1,0 +1,8 @@
+GDS net trace: for every signal net the metal connected to its first pin is followed in the GDS
+(Metal1 .. TopMetal1 through all vias, all cell levels); pin points come from the routed database.
+OPEN = pin of the net not reached, SHORT = pin of another net inside the traced metal,
+MACRO = the trace enters a macro or pad cell without the net having a pin there, BIG = trace cut (supply short).
+NET_PINS nets 347574, pins 1224400, pins without a routing-layer shape 0, pins with another orientation 73
+NET_TRACE nets checked 343080: ok 343080, with findings 0, cut at 60000 shapes 0; open pins 0, shorted pins 0, nets entering a macro without a pin there 0; shapes traced 22393918; 765 s
+findings:
+  none

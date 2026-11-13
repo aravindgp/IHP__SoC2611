@@ -1,0 +1,43 @@
+LVS of the layout of this release (13 November 2026)
+
+Tool and deck: KLayout 0.30.5, IHP SG13CMOS5L LVS deck of IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14, deep mode.
+Result: netlists match. 0 warnings, 0 errors. Run time 9,328 s.
+
+What was compared
+  circuits (cell definitions) matched:        67 of 67
+  instances of the chip top matched:          353,641
+  nets of the chip top matched:               354,491 (743 of them from groups of interchangeable nets, KLayout's
+                                              note for equivalent nets such as unloaded outputs)
+  devices in the standard-cell definitions:   412
+
+Scope
+  - Every standard cell with its devices, the antenna diode cells included, and every connection of the chip top:
+    cell to cell, cell to SRAM pin, cell to pad, pad ring and power straps.
+  - SRAM macros and pad cells are black boxes with their pins. They are IHP hard IP; inside them only the drawn
+    metal and the vias are kept, so the connections to their pins and through their rails are the real ones.
+  - The layout is the one before fill. Fill shapes are on their own datatypes, and the minimum rule set, which is
+    clean on the released GDS, checks their spacing to the drawn metal.
+  - The seal ring instance is left out. It holds no device and no signal net.
+
+Changes that made the run finish on this chip (the unchanged flow did not finish in more than 15 hours)
+  View of the layout:
+   1. the seal ring instance is left out: its box covers the chip, and the hierarchical net extraction pairs it
+      with every instance;
+   2. inside SRAM and pad cells only metal drawing, pin and text shapes and via drawing shapes are kept: the bit
+      cells carry metal-resistor markers that the deck turns into 189 million resistors;
+   3. via cells and row filler cells are dissolved into the top cell (4.72 million instances): the align and
+      simplify steps of the deck handle device-less cells one instance at a time.
+  Netlist: SRAM and pad subcircuits emptied with their pins kept, row filler instances removed, subcircuits the
+      chip top does not reach removed (the align step would flatten the unused SRAM-internal subcircuits).
+  Deck, rule text otherwise unchanged: the substrate is one global net instead of a chip-wide polygon, the NMOS
+      bulk terminal is taken on its own layer, and a metal layer is used as drawn when no filler, slit or resistor
+      marker shape exists on it. The changed and the unchanged deck give the same verdict on eight standard cells
+      and the same netlist structure on an SRAM macro.
+
+Negative control (run on the v.2.0.1 layout with the same view recipe, the same deck and its netlist)
+  A copy of the LVS view with two faults:
+    open : the Via2 at (341.28, 5010.18) um of net clk_gen_i/en_main_r removed
+    short: a Metal3 piece at x 370.0 to 370.2, y 5006.40 to 5006.82 um that joins the nets
+           soc_i/ztachip_inst/core_i/gen_stream[2]_stream_i/mul_i/_0766_ and .../mul_i/_0759_
+  Result: "Netlists don't match" after 9,376 s. Mismatched nets: exactly these three, with the four cells on them;
+  all other 352,925 nets and 344,861 instances of that layout still match.

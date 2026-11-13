@@ -1,0 +1,44 @@
+IHP minimum rule set (run_drc.py --minimum_drc, deep mode) on the filled GDS of this release
+(seal ring, PDK fill, thinned top-up fill, die corners cleaned). A table counts only if its own log carries its
+completion line. The Nwell table is left out: all four of its rules are switched off in the minimum set.
+
+26 tables:
+tables: 26 logs, 26 completed; not completed: none; expected but no log: none
+tables killed: 0; exceptions: 0
+DRC CLEAN: 0 violations
+  activ              completed in 616.56 seconds
+  activfiller        completed in 1835.77 seconds
+  cont               completed in 1254.8 seconds
+  contbar            completed in 896.9 seconds
+  forbidden          completed in 541.15 seconds
+  forbidden_cmos5l   completed in 603.31 seconds
+  gatpoly            completed in 786.39 seconds
+  latchup            completed in 748.03 seconds
+  lbe                completed in 591.17 seconds
+  metal1             completed in 1752.02 seconds
+  metaln             completed in 3910.13 seconds
+  metalnfiller       completed in 4023.37 seconds
+  metalslits         completed in 639.4 seconds
+  nbulay             completed in 559.85 seconds
+  pad                completed in 538.37 seconds
+  passiv             completed in 522.78 seconds
+  pin                completed in 600.32 seconds
+  psd                completed in 515.45 seconds
+  pwellblock         completed in 580.59 seconds
+  sealring           completed in 11006.11 seconds
+  thickgateox        completed in 424.82 seconds
+  topmetal1          completed in 511.23 seconds
+  topmetal1filler    completed in 402.67 seconds
+  topvia1            completed in 471.56 seconds
+  via1               completed in 630.0 seconds
+  vian               completed in 680.55 seconds
+
+GatPoly filler table, run on a second machine on the same GDS:
+  Second machine, 12 November 2026, 03:09 to 04:56 UTC: KLayout deep mode, 8 threads, table gatpolyfiller only.
+  Input: the DRC package of this GDS (the same file, gzip compressed), package sha256
+  f844b8e5a8093e96ea4e38f808760fc5455d0b80f459957324da1d565f8d736e, checked on arrival there.
+  Rule deck: the copy inside the package, file by file identical to the deck on the second machine and the build machine.
+  The first run of this table on the build machine was ended by the memory limit of the machine after 3 hours.
+  KLayout DRC run for tables 'gatpolyfiller' completed in 6378.24 seconds
+  KLayout DRC Check Passed: No DRC violations detected in the layout.
+DRC CLEAN: 0 violations (pass line of the second machine's run above)
