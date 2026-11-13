@@ -17,10 +17,22 @@ This repository contains the design assets, documentation, testbenches, signoff 
 
 ## Project status
 
+> **Known defect in every release up to `v.2.4.0` and in the candidates `v.2.5.0`, `v.2.3.1` and `v.2.4.1`
+> (found on 13 November 2026). Do not fabricate them.**
+> 384 buffers at the top of the buffer trees of the 22 signals with the most loads have no connection on their
+> input pin. These 22 signals, among them the reset of the system clock domain with about 50,000 loads, do not
+> reach their loads, so the chip would not work. The trees were built by a script of the flow on 30 October, which
+> moved the loads to the new buffers and did not join the top buffers to the original signal.
+> No check listed below could see it: layout and netlist agree, so LVS matches; static timing analysis skips a pin
+> without a driver; the firmware tests ran on the RTL. It was found by preparing a simulation of the routed netlist.
+> `v.3.0.0` connects the 384 inputs and routes the 22 nets. It is then timed again, because these signals were
+> never timed, and simulated pad to pad with firmware. It is in work and will replace `v.2.4.0` in
+> `doc/info.json` when all its checks have finished.
+
 The design is implemented and released for the submission checks of the IHP Open-Silicon-MPW run (submission
 request: IHP-GmbH/Open-Silicon-MPW issue #79). State of 13 November 2026:
 
-- **Latest release: `release/v.2.4.0`** (13 Nov 2026), the release `doc/info.json` names. Its
+- **Latest release: `release/v.2.4.0`** (13 Nov 2026), the release `doc/info.json` names; see the notice above. Its
   `gds/SoC2611.gds.gz` is the one GDS of the release: fully filled, under 100 MB, and the file every check below
   ran on.
 - Routing: 0 detailed-route violations, 0 signal nets without a wire; the power grid check passes on VDD and VSS.
@@ -29,7 +41,7 @@ request: IHP-GmbH/Open-Silicon-MPW issue #79). State of 13 November 2026:
 - LVS (KLayout, IHP deck): the netlists match, 354,671 instances of the chip top. SRAM macros and pad cells are
   black boxes with their pins.
 - Connectivity: every signal net was traced in the GDS against the netlist, 0 open and 0 shorted pins.
-- Timing, with the parasitics of the routed wires: hold is met at all three corners. System clock 54.7 MHz fast,
+- Timing, with the parasitics of the routed wires, without the 22 signals of the notice: hold is met at all three corners. System clock 54.7 MHz fast,
   45.5 MHz typical, 29.4 MHz slow; the double-rate input clock is twice that. The 100 MHz input clock of the
   constraints is met at the fast corner only, and the slow-corner figure is the one to rate the chip at.
 - Since `v.2.3.0`: a fifth speed step and the registers of the clock generator clocked from the root of the clock
