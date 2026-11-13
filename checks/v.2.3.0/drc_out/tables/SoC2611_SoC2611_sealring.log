@@ -332,3 +332,6 @@
 2026-11-13 01:32:06 +0000: Memory Usage (2726544K) : Starting 6.10 Sealring table
 2026-11-13 01:32:06 +0000: Memory Usage (2726544K) : Tiling mode is enabled for Seal.l rule.
 2026-11-13 01:32:06 +0000: Memory Usage (2726544K) : Executing rule Seal.l
+2026-11-13 04:16:16 +0000: Memory Usage (3093600K) : deep mode is enabled after Seal.l rule.
+2026-11-13 04:16:16 +0000: Memory Usage (3093600K) : Executing rule Seal.n
+2026-11-13 04:16:33 +0000: Memory Usage (3102088K) : KLayout DRC run for tables 'sealring' completed in 10541.42 seconds

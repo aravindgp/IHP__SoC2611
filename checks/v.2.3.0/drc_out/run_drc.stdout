@@ -9077,3 +9077,10 @@
 2026-11-13 02:02:51 +0000: Memory Usage (2953824K) : KLayout DRC run for tables 'vian' completed in 700.58 seconds
 2026-11-13 02:19:03 +0000: Memory Usage (18597736K) : deep mode is enabled after GatPoly:filler table.
 2026-11-13 02:19:03 +0000: Memory Usage (18589544K) : KLayout DRC run for tables 'gatpolyfiller' completed in 7690.1 seconds
+2026-11-13 04:16:16 +0000: Memory Usage (3093600K) : deep mode is enabled after Seal.l rule.
+2026-11-13 04:16:16 +0000: Memory Usage (3093600K) : Executing rule Seal.n
+2026-11-13 04:16:33 +0000: Memory Usage (3102088K) : KLayout DRC run for tables 'sealring' completed in 10541.42 seconds
+13-Nov-2026 04:16:35 | INFO    | =====================================================================================
+13-Nov-2026 04:16:35 | INFO    | KLayout DRC Check Passed: No DRC violations detected in the layout.
+13-Nov-2026 04:16:35 | INFO    | =====================================================================================
+13-Nov-2026 04:16:35 | INFO    | Total DRC Run time: 15584.14 seconds (including execution, analysis, and reporting)
