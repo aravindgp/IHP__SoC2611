@@ -1,0 +1,30 @@
+Simulation of the routed netlist of this release (14 November 2026)
+
+New with v.3.0.0. The netlist that is simulated is the routed netlist the GDS is written from, with the cells that
+carry no logic removed (row fillers, antenna diodes, pad fillers, bond pads, corner cells). After that step it is
+identical byte for byte to the netlist of the released layout. The test bench drives the chip at its pads only: the
+reset pad, the clock pad, a model of the external HyperRAM on the HyperBus pads holding the test firmware, and the
+UART pads. The processor boots from the HyperRAM and reports over the UART.
+
+1. Without delays (Verilator), every cell as its logic function
+   test                       start values of all registers   result
+   quick suite                0                               PASS   UART "W" 1.314 ms, "Q3f" 2.529 ms, "P6F0" 3.723 ms; 281 memory transactions
+   full suite (6 checks)      0                               PASS   ident, ddr, gpio, timer, uart_rx, zta_status; 6 of 6 in 85.8 ms
+   camera capture             0                               PASS   4,842 memory transactions, 408,245 bytes from the camera pads
+   quick suite                random, two patterns            PASS   both
+   camera capture             random, two patterns            PASS   both
+   In every run: 0 times two drivers on a HyperBus wire, memory model error flag 0.
+
+2. With the cell and wire delays of the timing analysis (Icarus Verilog, delay file of the routed wires built in)
+   corner     input clock   system clock   result
+   slow       17.1 ns       29.2 MHz       PASS   "W", "Q3f", "P6F0" 6.365 ms, summary at 6.439 ms; 281 memory transactions; 7 h 20 min
+   typical    11.0 ns       45.5 MHz       PASS   "W", "Q3f", "P6F0" 4.095 ms, summary at 4.143 ms; 281 memory transactions; 7 h 28 min
+   fast        7.8 ns       64.1 MHz       PASS   "W", "Q3f", "P6F0" 2.904 ms, summary at 2.938 ms; 281 memory transactions; 7 h 22 min
+   control     6.0 ns       83.3 MHz       must fail: it does. After 2.4 ms of simulated time it has made 1 memory
+                                           transaction and sent 1 broken UART character, where the run at the rated
+                                           speed had made all 281 transactions and printed its first line by 1.5 ms.
+                                           (The run ends at its 3 ms limit; still running when this file was written.)
+   The control runs far above the rated speed of the typical corner. It shows that the delays in the netlist are
+   real and that the test can fail: a run that passed at every clock would prove nothing.
+   The delays are those of the routed layout before its last 26 antenna diodes. The diodes change no logic, and the
+   timing analysis of the final layout gives the same slack to three decimals at all three corners.

@@ -1,0 +1,6 @@
+IHP density deck (run_drc.py --density_only, minimum rule set, deep mode) on the GDS of this release, run on a second machine
+KLayout DRC run for density table completed in 8241.25 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.
+The same deck was also run on the build machine from the candidate copy of this GDS, hash checked before the run:
+KLayout DRC run for density table completed in 7873.95 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.
