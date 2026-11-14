@@ -57,7 +57,7 @@ def s_does(layer, t, dur):
         text(d, (540, 1030), 'limits: 214 KiB on chip plus HyperRAM, so small models and tiled frames, not large networks', 19, rgba(C_DIM, 255 * b), 'Medium', 'mm')
 
 BLOCKS = [((80, 260, 500, 400), 'VexRiscv CPU', 'RV32IM, I/D caches, JTAG debug', C_BLUE, 0.3),
-          ((580, 260, 1000, 400), 'SoC2611 accelerator', '4 PCOREs, data path, scratchpad', C_PURPLE, 0.8),
+          ((580, 260, 1000, 400), 'AI accelerator', '4 PCOREs, data path, scratchpad', C_PURPLE, 0.8),
           ((80, 470, 1000, 560), 'AXI interconnect', 'lean split / merge, APB bridge', C_TEAL, 1.3),
           ((80, 630, 380, 760), 'HyperBus', 'HyperRAM / HyperFlash, 8-bit', C_AMBER, 1.8),
           ((400, 630, 700, 760), 'Camera in', '8-bit DVP + video stream writer', C_AMBER, 2.1),
@@ -189,9 +189,9 @@ def s_status(layer, t, dur):
     rrect(d, (90, 380, 990, 700), 26, fill=rgba((20, 26, 38), 240 * a), outline=rgba(C_BLUE, 200 * a), width=2)
     text(d, (540, 440), 'where it stands today', 26, rgba(C_BLUE, 255 * a), 'Bold', 'mm')
     text(d, (540, 510), 'placed and routed at 6.6 mm', 32, rgba(C_WHITE, 255 * a), 'Bold', 'mm')
-    text(d, (540, 565), 'routing closure in progress: shorts inside the SRAM macros', 22, rgba(C_GREY, 255 * a), 'Medium', 'mm')
-    text(d, (540, 605), 'then antenna, DRC, LVS, timing, release', 22, rgba(C_GREY, 255 * a), 'Medium', 'mm')
-    text(d, (540, 660), 'preliminary release v1.1.0 on GitHub', 20, rgba(C_TEAL, 255 * a), 'Medium', 'mm')
+    text(d, (540, 565), 'routing clean; DRC 27 of 28 rule tables clean; density clean', 22, rgba(C_GREY, 255 * a), 'Medium', 'mm')
+    text(d, (540, 605), 'in progress: clock timing fix, antenna repair, LVS', 22, rgba(C_GREY, 255 * a), 'Medium', 'mm')
+    text(d, (540, 660), 'release candidate v.2.0.0-rc2 on GitHub', 20, rgba(C_TEAL, 255 * a), 'Medium', 'mm')
     b = seg(t, 2.2, 0.6)
     if b > 0:
         text(d, (540, 820), 'next generation (March 2027): no x2 clock, dual-port SRAM,', 21, rgba(C_GREY, 255 * b), 'Medium', 'mm')
@@ -199,7 +199,7 @@ def s_status(layer, t, dur):
 
 V.SCENES = [
     ('SoC2611 in one picture', s_intro,
-     'This is SoC2611 {S o C one|SoC1}, taped out as {S o C twenty six eleven|SoC2611}: a RISC-V system on chip with the '
+     'This is {S o C twenty six eleven|SoC2611}: a RISC-V system on chip with the '
      'ztachip AI accelerator, on IHP\'s one hundred and thirty nanometre CMOS process. Six point six millimetres a side, '
      'in a sixty-four pin QFN. Here is what is inside.'),
     ('What it does', s_does,
@@ -231,9 +231,9 @@ V.SCENES = [
      'At power-on the boot ROM is copied into the tightly coupled memory and the UART loader waits for the first program. '
      'JTAG gives debug access to the CPU at any time. Then the CPU configures the accelerator and camera frames flow.'),
     ('Where it stands', s_status,
-     'The chip is placed and routed at six point six millimetres. Routing closure is in progress on the shorts inside the '
-     'SRAM macros; antenna, DRC, LVS and timing follow. A preliminary release is on GitHub, and the next generation for '
-     'March is already defined.'),
+     'The chip is placed and routed at six point six millimetres. Routing is clean, and the IHP DRC is clean on '
+     'twenty-seven of twenty-eight rule tables. A clock timing fix and the antenna repair are in progress, and LVS '
+     'follows. A release candidate is on GitHub, and the next generation for March is already defined.'),
     ('', V.s_end, ''),
 ]
 
