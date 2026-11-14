@@ -1,0 +1,27 @@
+[drc] rule deck: IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14
+[drc] start 2026-11-14 00:48:42 UTC on 8e54483c835d, KLayout KLayout 0.30.5, 3 tables at a time, density slot: 1, 8 threads per table; tables: gatpolyfiller sealring
+[drc] 2026-11-14 00:58:45 UTC  tables finished: 0 of 3  memory of klayout: 7.8 GB
+[drc] 2026-11-14 01:08:45 UTC  tables finished: 0 of 3  memory of klayout: 64.6 GB
+[drc] 2026-11-14 01:18:45 UTC  tables finished: 0 of 3  memory of klayout: 70.1 GB
+[drc] 2026-11-14 01:28:45 UTC  tables finished: 0 of 3  memory of klayout: 61.5 GB
+[drc] 2026-11-14 01:38:45 UTC  tables finished: 0 of 3  memory of klayout: 63.7 GB
+[drc] 2026-11-14 01:48:45 UTC  tables finished: 0 of 3  memory of klayout: 73.9 GB
+[drc] 2026-11-14 01:58:45 UTC  tables finished: 0 of 3  memory of klayout: 60.4 GB
+[drc] 2026-11-14 02:08:45 UTC  tables finished: 0 of 3  memory of klayout: 72.0 GB
+[drc] 2026-11-14 02:18:45 UTC  tables finished: 0 of 3  memory of klayout: 56.8 GB
+[drc] 2026-11-14 02:28:46 UTC  tables finished: 0 of 3  memory of klayout: 63.2 GB
+[drc] 2026-11-14 02:38:46 UTC  tables finished: 0 of 3  memory of klayout: 57.6 GB
+[drc] 2026-11-14 02:48:46 UTC  tables finished: 1 of 3  memory of klayout: 17.1 GB
+[drc] 2026-11-14 02:58:46 UTC  tables finished: 1 of 3  memory of klayout: 15.4 GB
+[drc] density deck end 2026-11-14 03:06:13 UTC, exit 0
+[drc] 2026-11-14 03:08:46 UTC  tables finished: 2 of 3  memory of klayout: 3.9 GB
+[drc] 2026-11-14 03:18:46 UTC  tables finished: 2 of 3  memory of klayout: 8.3 GB
+[drc] 2026-11-14 03:28:46 UTC  tables finished: 2 of 3  memory of klayout: 6.1 GB
+[drc] 2026-11-14 03:38:46 UTC  tables finished: 2 of 3  memory of klayout: 3.3 GB
+[drc] tables end 2026-11-14 03:47:53 UTC, exit 0
+[drc] end 2026-11-14 03:47:53 UTC; tables finished: 3 of 3; killed by the system: 0
+KLayout DRC run for tables 'gatpolyfiller' completed in 7030.11 seconds
+KLayout DRC run for tables 'sealring' completed in 10741.11 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.
+KLayout DRC run for density table completed in 8241.25 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.
