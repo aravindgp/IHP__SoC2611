@@ -1,0 +1,52 @@
+IHP minimum rule set (run_drc.py --minimum_drc, deep mode) on the filled GDS of this release
+(seal ring, PDK fill, thinned top-up fill, die corners cleaned). A table counts only if its own log carries its
+completion line. The Nwell table is left out: all four of its rules are switched off in the minimum set.
+
+26 tables:
+tables: 26 logs, 26 completed; not completed: none; expected but no log: none
+tables killed: 0; exceptions: 0
+DRC CLEAN: 0 violations
+  activ              completed in 853.61 seconds
+  activfiller        completed in 1814.9 seconds
+  cont               completed in 1407.16 seconds
+  contbar            completed in 597.76 seconds
+  forbidden          completed in 413.14 seconds
+  forbidden_cmos5l   completed in 588.42 seconds
+  gatpoly            completed in 761.9 seconds
+  latchup            completed in 793.11 seconds
+  lbe                completed in 606.02 seconds
+  metal1             completed in 1306.25 seconds
+  metaln             completed in 3835.75 seconds
+  metalnfiller       completed in 4202.83 seconds
+  metalslits         completed in 542.1 seconds
+  nbulay             completed in 560.72 seconds
+  pad                completed in 508.49 seconds
+  passiv             completed in 651.07 seconds
+  pin                completed in 676.28 seconds
+  psd                completed in 609.75 seconds
+  pwellblock         completed in 905.92 seconds
+  sealring           completed in 10741.11 seconds
+  thickgateox        completed in 669.73 seconds
+  topmetal1          completed in 680.41 seconds
+  topmetal1filler    completed in 662.26 seconds
+  topvia1            completed in 705.59 seconds
+  via1               completed in 742.43 seconds
+  vian               completed in 820.78 seconds
+Tables run on a second machine (second pod) on the candidate copy of this GDS:
+  sealring 
+  file: branch candidate of the IP repository, sha256 c6f22d10f31cf8b4a31dc43026164ea1c3bdd87dcc0786c64c068290b37bc92a; it and the released GDS are two
+  packagings of the same checked file, each compared with it cell by cell (0 differences).
+  rule deck: IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14, deep mode, the same run script options as on the build machine.
+  [drc] start 2026-11-14 00:48:42 UTC on 8e54483c835d, KLayout KLayout 0.30.5, 3 tables at a time, density slot: 1, 8 threads per table; tables: gatpolyfiller sealring
+
+GatPoly filler table (run apart, it needs the most memory):
+tables: 1 logs, 1 completed; not completed: none; expected but no log: none
+tables killed: 0; exceptions: 0
+DRC CLEAN: 0 violations
+  gatpolyfiller      completed in 7030.11 seconds
+Tables run on a second machine (second pod) on the candidate copy of this GDS:
+  gatpolyfiller 
+  file: branch candidate of the IP repository, sha256 c6f22d10f31cf8b4a31dc43026164ea1c3bdd87dcc0786c64c068290b37bc92a; it and the released GDS are two
+  packagings of the same checked file, each compared with it cell by cell (0 differences).
+  rule deck: IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14, deep mode, the same run script options as on the build machine.
+  [drc] start 2026-11-14 00:48:42 UTC on 8e54483c835d, KLayout KLayout 0.30.5, 3 tables at a time, density slot: 1, 8 threads per table; tables: gatpolyfiller sealring

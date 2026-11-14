@@ -1,0 +1,37 @@
+Voltage drop of the core supply on the layout of this release (14 November 2026)
+
+Method
+  OpenROAD PDNSim on the routed database with the wire file of the routed nets. Fast corner, 1.32 V, total power
+  0.78 W (100 MHz input clock, one signal in ten switching per cycle). The two supply rails of the pad ring are in
+  the model as wires, and the sources are the four supply pads of each net, one per chip side. An analysis that puts
+  ideal sources on the power straps of the core does not see the rails of the pad ring at all: it shows 17 mV and
+  27 mV for the layout before the added metal.
+
+Result                          VDD worst   VDD average   VSS worst   VSS average
+  before the added metal          217 mV       150 mV       205 mV       149 mV
+  this release                     71 mV        48 mV       122 mV        89 mV
+  "Before" was measured on the repaired route of this release without the added metal. The supply metal of every
+  earlier file (v.2.4.0, candidate v.2.5.0 and before) is the same as in that layout.
+
+What was weak
+  Each chip side has one core supply pad per net. Only the west and east pads were tied to the power grid, over 125
+  and 126 TopMetal1 straps that start at the pad ring; the current of a pad reached those straps along one Metal4
+  rail of the pad ring, 15.8 um wide. The north and south pads were not tied to the core at all.
+
+What was added (0.762 mm2 of TopMetal1 in 256 boxes, 516 vias, all in the empty strip between pad ring and core)
+  - VDD, west and east: one TopMetal1 bar per side over the VDD rail of the pad ring, 24 um wide, 5.95 mm long.
+  - VSS, west and east: a TopMetal1 bar per side over the VSS rail, in 125 pieces between the VDD straps, each piece
+    joined to the Metal4 rail by vias (255 vias per side).
+  - VDD, north and south: a TopMetal1 bar on the VDD side of the core ring and a tie from the supply pad to it.
+  - VSS, north and south: three Metal4 ties per pad from the pad to the VSS side of the core ring.
+  No signal wire, cell or pad moved.
+
+Checks of the added metal
+  - IHP minimum rule set on the whole chip, tables topmetal1, topvia1, metalslits, pad, passiv: 0 violations;
+    Metal2 to Metal4 rules in windows around the four VSS pads: clean. The complete rule set on the GDS of this
+    release is in drc_minimum_fullfill.txt.
+  - Power grid check of the router: VDD and VSS pass.
+  - Short check in the GDS: starting from a VDD bar, the connected metal reaches the other three VDD bars and the
+    VDD rail, and none of the six VSS probe points (bars, rail, ring, ties).
+  - LVS matches with the bars and ties in the layout (lvs_summary.txt).
+  - Density with the bars: TopMetal1 34.2 % (density.txt).

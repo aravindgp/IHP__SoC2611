@@ -1,0 +1,26 @@
+Open inputs and wiring of the routed netlist of this release (14 November 2026)
+
+Two checks that are new with v.3.0.0. Both read the routed database itself, the one the GDS is written from.
+
+1. Every input pin has a net, every net with loads has a driver
+   Walks every instance of the routed database: standard cells, SRAM macros, pads.
+     input pins without a net:                 0     (384 in every release up to v.2.4.0 and in candidate v.2.5.0)
+     signal nets with loads and no driver:     0
+   The check also lists nets with more than one driver pin. It lists the 10 nets between a bidirectional pad cell
+   and its bond pad, where the pad cell pins on the pad side are of driver type by design; no other net.
+
+2. Wiring of the routed netlist against the netlist after synthesis
+   For every instance that carries logic in the netlist after synthesis (276,003 cells, macros and pads), each input
+   pin is followed back through buffers and inverters to the cell, macro or pad that drives it, in both netlists.
+     instances missing in the routed netlist:  0
+     input pins compared:                      801,501
+     driven by the same source:                801,501
+     driven by another source:                 0
+     instances only in the routed netlist that are not buffers, inverters or tie cells: 0
+   Verdict: same wiring. Nine cells have pins of equal function exchanged by the timing repair; the logic is the same.
+
+What the first check would have found
+   On 30 October a script of the flow built buffer trees for the 22 signals with the most loads. It moved the loads to
+   the new buffers and did not join the 384 top buffers to the original signals. LVS matched, because layout and
+   netlist agreed; timing analysis skipped the pins, because a pin without a driver has no arrival time; the
+   firmware tests ran on the RTL. This check reports each of those 384 pins by name.

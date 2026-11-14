@@ -1,0 +1,20 @@
+Antenna table of the PDK on the layout of this release (14 November 2026)
+
+Tool and deck: KLayout 0.30.5, rule_decks/antenna.drc of IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14, unmodified,
+deep mode, on the layout with seal ring before fill (the table reads drawing layers only). Run time 1 h 46 min.
+
+Rule                                                                     limit    markers
+Ant.a   GatPoly over field oxide to gate area                              200          0
+Ant.b   cumulative metal to gate area, no protection diode, every layer    200          0
+Ant.c   Cont area to gate area                                              20          0
+Ant.d   cumulative via area to gate area, no protection diode               20          0
+Ant.e   cumulative metal to gate area, with protection diode, Metal1-4   20000          0
+Ant.e   the same up to TopMetal1                                         20000          0
+Ant.f   cumulative via area to gate area, with protection diode            500          0
+Ant.g   minimum size of a protection diode, Ant.h, Ant.i                     -          0
+
+All 23 rule groups of the table are at 0. In v.2.4.0 six nets were above Ant.e through TopMetal1 (12 markers): each
+of them now has a buffer with a large gate in front of its receiving pin.
+The table takes the protection diode from the complete net; the antenna check of the router asks for it on the
+layer under check. That check is at 0 nets as well (see antenna_summary.txt).
+Result database: antenna_ihp_table.lyrdb
