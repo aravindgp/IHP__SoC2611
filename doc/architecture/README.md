@@ -11,3 +11,4 @@ netlist and the GDS; each page lists its sources at the end. The figures are SVG
 | [04_boot_and_dataflow.md](04_boot_and_dataflow.md) | boot sequence, data flow | boot ROM copy, strap, UART loader, JTAG path; camera to HyperRAM, accelerator, UART |
 | [05_accelerator.md](05_accelerator.md) | ztachip block diagram | configuration, interfaces, data path, PCORE array, inside a PCORE, the 205 accelerator macros |
 | [06_physical.md](06_physical.md) | floorplan, pin-out, core supply | die to scale from the GDS with all 298 macros by owner block, QFN64 pin-out, supply entry and voltage drop |
+| [07_schematics.md](07_schematics.md) | eight cell-level schematics | clock generator and clock gates, reset synchroniser and tree, pad cells, RWDS delay, one-port SRAM at double rate, clock-domain crossings, buffer tree repair, antenna diode |
