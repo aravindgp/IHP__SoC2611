@@ -8,7 +8,7 @@
 
 ## Function
 - VexRiscv RISC-V CPU (RV32IM, JTAG debug, I/D caches), boot ROM copy to a tightly-coupled memory, UART loader.
-- ztachip AI accelerator: 8 PCOREs (2 cells x 4), 16 threads each, data path, scratchpad SRAM, AXI-lite control
+- ztachip AI accelerator: 4 PCOREs (1 cell x 4), 16 threads each, data path, scratchpad SRAM, AXI-lite control
   (register map in `RegisterMap.md`, interfaces in `Interfaces.md`).
 - AXI interconnect (lean AXI split/merge), HyperBus memory interface, camera input + video stream writer,
   UART, timer, GPIO, APB bridge. Single main clock with integrated clock gating (2 ICG cells).

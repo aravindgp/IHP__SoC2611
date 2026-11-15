@@ -6,7 +6,7 @@ This repository contains the design assets, documentation, testbenches, signoff 
 
 ## Overview
 
-- SoC type: RISC-V based digital SoC (VexRiscv RV32IM + ztachip AI accelerator, 8 PCOREs)
+- SoC type: RISC-V based digital SoC (VexRiscv RV32IM + ztachip AI accelerator, 4 PCOREs)
 - Platform: IHP SG13CMOS5L (1.2 V core, 3.3 V IO)
 - Package: QFN64 (48 signal pads, 16 supply pads)
 - Die size: 6.6 mm × 6.6 mm
@@ -14,6 +14,13 @@ This repository contains the design assets, documentation, testbenches, signoff 
 - Top cell: `SoC2611`
 - Readiness: TRL 6 declared (`doc/TRL-Mixed-Signal-IP.md`), the highest level before silicon
 - License: Apache-2.0
+
+## Architecture
+
+![SoC2611 block diagram: CPU, accelerator, memories, buses, peripherals, pads and the parts on the board](doc/architecture/figures/01_soc_block_diagram.svg)
+
+*Blocks of the chip top, the buses between them, the pads and the parts on the board, drawn from the RTL and the
+released netlist.*
 
 ## Project status
 
