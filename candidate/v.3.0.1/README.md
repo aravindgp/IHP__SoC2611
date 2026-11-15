@@ -1,5 +1,10 @@
 # SoC2611 candidate v.3.0.1, for checking (15 November 2026)
 
+> **WITHDRAWN, do not check or use this candidate.** The two NWell rectangles below join the wells through overlaps
+> of 0.005 um and 0.01 um, so the joined NWell is narrower than 0.62 um at the joints: the NWell rules of IHP's
+> maximal deck report 11 NW.a markers, all at the two rectangles. The fix is candidate-v.3.0.2, which leaves out the
+> two row fillers whose NWell came too close to the macro corners instead of drawing new NWell.
+
 **Not a release.** This branch exists so that the checks can run on a second machine straight from GitHub. The
 release branch follows when every check has finished. Do not submit from this branch.
 
