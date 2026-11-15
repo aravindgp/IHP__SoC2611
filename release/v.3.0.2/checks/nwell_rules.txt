@@ -1,0 +1,38 @@
+NWell rules without connectivity, on the GDS of this release (15 November 2026)
+
+The Nwell table of the IHP deck has no rules in the minimum rule set and is left out of the DRC table count.
+Three checks cover the NWell rules directly:
+
+1. The NWell rules of IHP's maximal rule deck that need no connectivity, IHP's rule text unchanged
+   (13 rules with the 60 layer derivations they depend on, deep mode), result database nwell_rules.lyrdb:
+   Rule NW.a: 0 error(s)
+   Rule NW.c: 0 error(s)
+   Rule NW.c1: 0 error(s)
+   Rule NW.d: 0 error(s)
+   Rule NW.d1: 0 error(s)
+   Rule NW.e: 0 error(s)
+   Rule NW.e1: 0 error(s)
+   Rule NW.f: 0 error(s)
+   Rule NW.f1: 0 error(s)
+   Rule NW.c1.dig: 0 error(s)
+   Rule NW.d1.dig: 0 error(s)
+   Rule NW.e1.dig: 0 error(s)
+   Rule NW.f1.dig: 0 error(s)
+   All 13 rules are at 0.
+
+2. NW.b, NWell space or notch (same net) 0.62 um, which IHP's deck checks per net: every gap below 0.62 um between
+   NWell regions, on NWell not SRAM marker (25/0) as IHP's deck derives it, whatever the nets, sorted as completely
+   inside a macro outline, on a macro outline, or in the chip assembly:
+   0 places (inside a macro 0, on a macro outline 0, in the chip assembly 0).
+   v.3.0.0 had 2 places on a macro outline, 0.485 um each, at the top right corners of two RM_IHPSG13_1P_64x16_c2
+   macros; v.3.0.2 leaves out the two row fillers that caused them (see changes_from_v3.0.0.txt).
+
+3. NWell width and gaps measured on all NWell, SRAM internals included, without nets:
+   NWell narrower than 0.62 um (NW.a): 0 places
+   NWell space or notch below 0.62 um: 40 places, all inside the SRAM macros (the IHP SRAM cells themselves)
+   gap below 1.80 um between two SEPARATE NWell regions (NW.b1 if their nets differ): 23447 places, all inside the
+   SRAM macros
+   notch below 1.80 um inside ONE NWell region (one region is one net: not NW.b1; NW.b needs 0.62 um): 2 places in
+   the chip assembly, 1.38 um wide each, as in v.3.0.0; none is below 0.62 um.
+   Note: in v.3.0.0 this part sorted a gap as inside a macro whenever its marker touched a macro outline, which hid
+   the two gaps of part 2; the sorting above is by "completely inside".

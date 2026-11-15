@@ -1,0 +1,24 @@
+LVS of the layout of this release (15 November 2026)
+
+Tool and deck: KLayout 0.30.5, IHP SG13CMOS5L LVS deck of IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14, deep mode.
+Result: netlists match. 0 warnings, 0 errors. Run time 8,642 s.
+
+What was compared
+  circuits (cell definitions) matched:        67 of 67
+  instances of the chip top matched:          354,825
+  nets of the chip top matched:               354,306 (743 of them from groups of interchangeable nets, KLayout's
+                                              note for equivalent nets such as unloaded outputs)
+  devices in the standard-cell definitions:   412
+
+The same counts as v.3.0.0: the two row fillers that v.3.0.2 leaves out have no devices and no nets, and the LVS
+view leaves row fillers out of the netlist and dissolves them into the top cell of the layout.
+
+Scope, the changes that make the run finish on this chip, and the negative control (one via removed and one bridge
+added, reported as exactly those three mismatched nets) are those described in the LVS summary of v.3.0.0: the same
+view recipe and the same deck were used.
+  - Every standard cell with its devices and every connection of the chip top.
+  - SRAM macros and pad cells are black boxes with their pins; inside them only drawn metal and vias are kept.
+  - The layout is the one before fill. The seal ring instance is left out.
+
+What LVS cannot see: a pin without a net in the netlist has no net in the layout either. The check of every input
+pin for a net (open_inputs.txt) and the simulation of the routed netlist (simulation_summary.txt) cover it.

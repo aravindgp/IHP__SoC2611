@@ -18,12 +18,13 @@ This repository contains the design assets, documentation, testbenches, signoff 
 ## Project status
 
 The design is implemented and released for the submission checks of the IHP Open-Silicon-MPW run (submission
-request: IHP-GmbH/Open-Silicon-MPW issue #79). State of 14 November 2026:
+request: IHP-GmbH/Open-Silicon-MPW issue #79). State of 15 November 2026:
 
-- **Latest release: `release/v.3.0.0`** (14 Nov 2026), the release `doc/info.json` names and the version meant
-  for fabrication. Its `gds/SoC2611.gds.gz` (92,020,915 bytes, SHA-256
-  `5cb1caa218ee16156cb656467195274cfbb17a92be66035459b41e853d3abccf`) is the one GDS of the release: fully filled,
-  under 100 MB, and the file every check below ran on.
+- **Latest release: `release/v.3.0.2`** (15 Nov 2026), the release `doc/info.json` names and the version meant
+  for fabrication. Its `gds/SoC2611.gds.gz` (92,019,858 bytes, SHA-256
+  `4c194fab821fd62ccc8974324e3713bf87c894b57138f9ab4e9b5a81153571e7`) is the one GDS of the release: fully filled,
+  under 100 MB, and the file every check below ran on. It is `v.3.0.0` with two row filler cells left out at two
+  SRAM macro corners (see NWell below); routing, netlist and timing are those of `v.3.0.0`.
 - Routing: 0 detailed-route violations, 0 signal nets without a wire; the power grid check passes on VDD and VSS.
 - Input pins without a net: 0, on every standard cell, pad and SRAM macro; every net with loads has a driver.
   The routed netlist has the same wiring as the netlist after synthesis: 801,501 input pins compared, each driven
@@ -33,7 +34,11 @@ request: IHP-GmbH/Open-Silicon-MPW issue #79). State of 14 November 2026:
 - LVS (KLayout, IHP deck): the netlists match, 354,825 instances of the chip top. SRAM macros and pad cells are
   black boxes with their pins.
 - Connectivity: every signal net was traced in the GDS against the netlist, 343,545 nets, 0 open and 0 shorted pins.
-- NWell rules without connectivity: 13 of 13 at 0.
+- NWell: the 13 rules of IHP's deck that need no nets are at 0, and no gap between NWell regions is below 0.62 um
+  (rule NW.b, which IHP's deck checks per net and which is not in the minimum rule set). `v.3.0.0` had 2 such gaps
+  of 0.485 um, each between the NWell at the top right corner of an RM_IHPSG13_1P_64x16_c2 macro and the NWell of
+  the first cell of the row beside it, both on VDD; in both places that cell was a row filler, and `v.3.0.2` leaves
+  the two fillers out. See `release/v.3.0.2/checks/nwell_rules.txt` and `release/v.3.0.0/checks/nwell_erratum.txt`.
 - Antenna: 0 nets above the limit of the router's check, and 0 violations in every rule of the PDK antenna table.
 - Timing, with the parasitics of the routed wires: hold is met at all three corners. System clock 64.4 MHz fast,
   45.5 MHz typical, 29.4 MHz slow; the double-rate input clock is twice that. The 100 MHz input clock of the
@@ -71,7 +76,7 @@ Two antenna checks are run. The first is the router's check (OpenROAD `check_ant
 technology LEF) on the routed database: it asks for the protection diode on the layer under check. The second is
 the antenna table of the PDK (KLayout, `antenna.drc`, rules Ant.a to Ant.i) on the layout: it takes the protection
 diode from the complete net and allows a cumulative metal-to-gate ratio of 20,000 with a diode. State of
-14 November 2026. Every release before `v.3.0.0` has the defect of the notice above, whatever its antenna count.
+15 November 2026. Every release before `v.3.0.0` has the defect of the notice above, whatever its antenna count.
 
 | Release | Date | Router check: nets above the limit | Router check: gate pins | PDK antenna table: nets above a limit | Antenna repair in the file | System clock, fast / typical / slow |
 |---|---|---|---|---|---|---|
@@ -85,9 +90,11 @@ diode from the complete net and allows a cumulative metal-to-gate ratio of 20,00
 | `v.2.3.0` | 13 Nov | 592 | 671 | 6 | first pass | 54.2 / 44.3 / 28.7 MHz |
 | `v.2.4.0` | 13 Nov | 78 | 101 | 6 | three passes: 865 more diodes, 98 buffers at SRAM pins | 54.7 / 45.5 / 29.4 MHz |
 | `v.2.5.0`, candidate, withdrawn | 13 Nov | 0 | 0 | not finished | four passes: 91 more diodes directly under the wires, long Metal2 runs of 7 nets moved to Metal4 | 54.7 / 45.5 / 29.4 MHz |
-| **`v.3.0.0`**, latest release | 14 Nov | **0** | **0** | **0** | the four passes of `v.2.5.0`, 12 buffers in front of the 6 TopMetal1 nets, 26 more diodes after the repair route | 64.4 / 45.5 / 29.4 MHz |
+| `v.3.0.0` | 14 Nov | 0 | 0 | 0 | the four passes of `v.2.5.0`, 12 buffers in front of the 6 TopMetal1 nets, 26 more diodes after the repair route | 64.4 / 45.5 / 29.4 MHz |
+| **`v.3.0.2`**, latest release | 15 Nov | **0** | **0** | **0** | as `v.3.0.0` (two row fillers left out, which are on no net) | 64.4 / 45.5 / 29.4 MHz |
 
-- `v.3.0.0` is the latest release: both antenna checks are at 0. The result of the PDK antenna table is in
+- `v.3.0.2` is the latest release: both antenna checks are at 0, as in `v.3.0.0`, whose layout it shares except for
+  two row fillers that are on no net. The result of the PDK antenna table is in
   `release/v.3.0.0/checks/antenna_ihp_table.txt`.
 - The 6 nets of the PDK antenna table in `v.2.3.0` and `v.2.4.0` were each one small gate on 1.3 to 1.9 mm of
   TopMetal1, which is 1.64 um wide: rule Ant.e through TopMetal1, ratio 20,029 to 29,054 against the limit of
@@ -126,13 +133,14 @@ diode from the complete net and allows a cumulative metal-to-gate ratio of 20,00
 ├── dependencies/
 │   └── README.md
 ├── release/
-│   ├── v.3.0.0/        (latest; the release doc/info.json names)
+│   ├── v.3.0.2/        (latest; the release doc/info.json names)
 │   │   ├── ReleaseNote.md
 │   │   ├── gds/            (SoC2611.gds.gz: the one GDS, fully filled)
 │   │   ├── netlist/        (SoC2611.cdl.gz, SoC2611.v.gz)
 │   │   ├── density.txt
 │   │   └── checks/         (DRC verdicts and result databases, density on the IHP deck, LVS, net trace, timing, both
 │   │                        antenna checks, NWell rules, input pins without a net, simulation, supply drop)
+│   ├── v.3.0.0/        (complete and working; superseded by v.3.0.2 for two NWell gaps, same layout)
 │   ├── v.2.4.0/, v.2.3.0/, v.2.2.0/, v.2.1.0/, v.2.0.1/     (earlier releases, same layout; open-input defect, not for fabrication)
 │   ├── v.2.0.0-rc2/, v.2.0.0-rc1/                           (release candidates of 10 November)
 │   ├── v.1.3.1/, v.1.3.0/, v.1.2.0/, v.1.1.0/, v.1.0.0/     (preliminary states, not for fabrication)
@@ -163,14 +171,21 @@ Project documentation and metadata:
 ### `dependencies/`
 `README.md` lists the PDK commit, the standard-cell, IO and SRAM libraries, the CPU generator and the tool versions.
 
-### `release/v.3.0.0/` (latest)
-Release of 14 November 2026, the one `doc/info.json` points at. One fully filled GDS (`gds/SoC2611.gds.gz`: seal
+### `release/v.3.0.2/` (latest)
+Release of 15 November 2026, the one `doc/info.json` points at. It is `v.3.0.0` without two row filler cells at two
+SRAM macro corners; `checks/changes_from_v3.0.0.txt` lists what changed and which results are carried from
+`v.3.0.0`. One fully filled GDS (`gds/SoC2611.gds.gz`: seal
 ring, PDK fill and a thinned top-up fill), CDL and Verilog netlists, the density of exactly this file, and under
 `checks/` the verdicts and result databases of the IHP minimum rule set, the density deck, the LVS summary, the net
 trace, the timing on the routed wires, the antenna summary of the router, the result of the PDK antenna table, the
 NWell rules, the check of input pins without a net and of the wiring against synthesis, the simulation summary, the
 supply drop and the proof that the packaged file is the checked file. SHA-256 hashes, what changed and the known
 limits are in its `ReleaseNote.md`.
+
+### `release/v.3.0.0/`
+Release of 14 November 2026 with the same layout: the repair of the 384 open buffer inputs, both antenna checks at
+0, the supply bars. It is complete and works; it is superseded by `v.3.0.2` for two NWell gaps of 0.485 um (rule
+NW.b, same net, not in the minimum rule set), described in `checks/nwell_erratum.txt`.
 
 ### `release/v.2.4.0/`, `v.2.3.0/`, `v.2.2.0/`, `v.2.1.0/`, `v.2.0.1/`
 Earlier complete releases with the same layout and the checks of their time: `v.2.4.0` (three antenna passes,
@@ -226,6 +241,7 @@ This project is licensed under the Apache License 2.0. See the `LICENSE` file fo
 ## Notes
 
 This repository is a research and development SoC implementation. The release named in `doc/info.json`,
-`v.3.0.0`, is the one meant for the submission. All earlier releases are kept as a record and are not for
-fabrication: those before `v.2.0.1` are preliminary states, and `v.2.0.1` to `v.2.4.0` have the 384 open buffer
-inputs of the notice under Project status. Folders under `candidate/` are not releases.
+`v.3.0.2`, is the one meant for the submission. `v.3.0.0` has the same layout but for two row fillers and is
+superseded by it; `v.3.0.1` was a candidate only and was withdrawn. All earlier releases are kept as a record and
+are not for fabrication: those before `v.2.0.1` are preliminary states, and `v.2.0.1` to `v.2.4.0` have the 384
+open buffer inputs of the notice under Project status. Folders under `candidate/` are not releases.
