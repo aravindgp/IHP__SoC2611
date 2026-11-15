@@ -1,0 +1,11 @@
+SoC2611.gds.gz: OK
+[drc] rule deck: IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14
+[drc] start 2026-11-15 05:47:08 UTC on 8e54483c835d, KLayout KLayout 0.30.5, 3 tables at a time, density slot: 1, 8 threads per table; tables: gatpolyfiller sealring
+[drc] tables end 2026-11-15 09:14:35 UTC, exit 0
+[drc] end 2026-11-15 09:14:35 UTC; tables finished: 3 of 3; killed by the system: 0
+KLayout DRC run for tables 'gatpolyfiller' completed in 8433.89 seconds
+KLayout DRC run for tables 'sealring' completed in 12438.07 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.
+KLayout DRC run for density table completed in 9774.0 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.
+[drc] send back: /workspace/projects/IHP__SoC2611/v302/work/drc_out/progress.log

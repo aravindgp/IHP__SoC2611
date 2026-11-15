@@ -1,0 +1,30 @@
+[drc] rule deck: IHP-Open-PDK dcb03b1e2d24250bccbb2e8783d55d2b4f734f14
+[drc] start 2026-11-15 05:47:08 UTC on 8e54483c835d, KLayout KLayout 0.30.5, 3 tables at a time, density slot: 1, 8 threads per table; tables: gatpolyfiller sealring
+[drc] 2026-11-15 05:57:10 UTC  tables finished: 0 of 3  memory of klayout: 18.1 GB
+[drc] 2026-11-15 06:07:10 UTC  tables finished: 0 of 3  memory of klayout: 75.7 GB
+[drc] 2026-11-15 06:17:10 UTC  tables finished: 0 of 3  memory of klayout: 92.8 GB
+[drc] 2026-11-15 06:27:10 UTC  tables finished: 0 of 3  memory of klayout: 83.3 GB
+[drc] 2026-11-15 06:37:11 UTC  tables finished: 0 of 3  memory of klayout: 85.3 GB
+[drc] 2026-11-15 06:47:11 UTC  tables finished: 0 of 3  memory of klayout: 87.3 GB
+[drc] 2026-11-15 06:57:11 UTC  tables finished: 0 of 3  memory of klayout: 87.4 GB
+[drc] 2026-11-15 07:07:11 UTC  tables finished: 0 of 3  memory of klayout: 86.5 GB
+[drc] 2026-11-15 07:17:11 UTC  tables finished: 0 of 3  memory of klayout: 96.6 GB
+[drc] 2026-11-15 07:27:11 UTC  tables finished: 0 of 3  memory of klayout: 78.5 GB
+[drc] 2026-11-15 07:37:11 UTC  tables finished: 0 of 3  memory of klayout: 85.1 GB
+[drc] 2026-11-15 07:47:11 UTC  tables finished: 0 of 3  memory of klayout: 81.6 GB
+[drc] 2026-11-15 07:57:11 UTC  tables finished: 0 of 3  memory of klayout: 90.0 GB
+[drc] 2026-11-15 08:07:11 UTC  tables finished: 0 of 3  memory of klayout: 59.8 GB
+[drc] 2026-11-15 08:17:11 UTC  tables finished: 1 of 3  memory of klayout: 39.9 GB
+[drc] 2026-11-15 08:27:11 UTC  tables finished: 1 of 3  memory of klayout: 40.1 GB
+[drc] density deck end 2026-11-15 08:30:11 UTC, exit 0
+[drc] 2026-11-15 08:37:11 UTC  tables finished: 2 of 3  memory of klayout: 27.4 GB
+[drc] 2026-11-15 08:47:11 UTC  tables finished: 2 of 3  memory of klayout: 28.0 GB
+[drc] 2026-11-15 08:57:11 UTC  tables finished: 2 of 3  memory of klayout: 29.1 GB
+[drc] 2026-11-15 09:07:11 UTC  tables finished: 2 of 3  memory of klayout: 27.6 GB
+[drc] tables end 2026-11-15 09:14:35 UTC, exit 0
+[drc] end 2026-11-15 09:14:35 UTC; tables finished: 3 of 3; killed by the system: 0
+KLayout DRC run for tables 'gatpolyfiller' completed in 8433.89 seconds
+KLayout DRC run for tables 'sealring' completed in 12438.07 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.
+KLayout DRC run for density table completed in 9774.0 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.

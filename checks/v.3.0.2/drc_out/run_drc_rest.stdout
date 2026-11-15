@@ -1,0 +1,116 @@
+15-Nov-2026 05:47:12 | INFO    | KLayout version detected: 0.30.5
+15-Nov-2026 05:47:12 | INFO    | Minimum DRC: running the minimum rule set only (extra, offgrid, angle, antenna and density sanity checks disabled).
+15-Nov-2026 05:47:12 | INFO    | Using DRC JSON file: /workspace/software/DGSE/pdk/IHP-Open-PDK/ihp-sg13cmos5l/libs.tech/klayout/python/sg13cmos5l_pycell_lib/sg13cmos5l_tech_mod.json
+15-Nov-2026 05:47:12 | INFO    | Running IHP-SG13CMOS5L density checks on design /workspace/projects/IHP__SoC2611/v302/work/SoC2611.gds, topcell: SoC2611
+2026-11-15 05:47:15 +0000: Memory Usage (426052K) : Starting running IHP-SG13CMOS5L Klayout DRC Density runset on /workspace/projects/IHP__SoC2611/v302/work/SoC2611.gds
+2026-11-15 05:47:15 +0000: Memory Usage (426052K) : Ruby Version for klayout: 3.0.2
+2026-11-15 05:47:21 +0000: Memory Usage (858276K) : Loading database to memory is complete.
+2026-11-15 05:47:21 +0000: Memory Usage (858276K) : IHP-SG13CMOS5L Klayout DRC Density runset output at: /workspace/projects/IHP__SoC2611/v302/work/drc_out/rest/SoC2611_SoC2611_density.lyrdb
+2026-11-15 05:47:21 +0000: Memory Usage (859300K) : Evaluate switches.
+2026-11-15 05:47:21 +0000: Memory Usage (859300K) : Configured KLayout worker thread(s): 8.
+2026-11-15 05:47:21 +0000: Memory Usage (859300K) : Deep mode enabled: reading layers and preparing general derivations.
+2026-11-15 05:47:21 +0000: Memory Usage (859300K) : Minimum DRC enabled: true
+2026-11-15 05:47:21 +0000: Memory Usage (859300K) : Density sanity checks enabled: false
+2026-11-15 05:47:21 +0000: Memory Usage (859300K) : Read in polygons from layers.
+2026-11-15 05:47:28 +0000: Memory Usage (1063124K) : activ_drw has 652842057 polygons
+2026-11-15 05:47:29 +0000: Memory Usage (1063124K) : activ_mask has 0 polygons
+2026-11-15 05:47:33 +0000: Memory Usage (1063124K) : activ_filler has 11737362 polygons
+2026-11-15 05:47:37 +0000: Memory Usage (1063124K) : gatpoly_drw has 492322359 polygons
+2026-11-15 05:47:42 +0000: Memory Usage (1063548K) : gatpoly_filler has 11737362 polygons
+2026-11-15 05:47:46 +0000: Memory Usage (1063548K) : metal1_drw has 1042588441 polygons
+2026-11-15 05:47:51 +0000: Memory Usage (1063548K) : metal1_filler has 20561518 polygons
+2026-11-15 05:47:52 +0000: Memory Usage (1063548K) : metal1_slit has 0 polygons
+2026-11-15 05:47:59 +0000: Memory Usage (1103472K) : metal2_drw has 498349018 polygons
+2026-11-15 05:48:05 +0000: Memory Usage (1108980K) : metal2_filler has 33962569 polygons
+2026-11-15 05:48:05 +0000: Memory Usage (1108980K) : metal2_slit has 0 polygons
+2026-11-15 05:48:12 +0000: Memory Usage (1165664K) : metal3_drw has 199689999 polygons
+2026-11-15 05:48:16 +0000: Memory Usage (1165780K) : metal3_filler has 10644026 polygons
+2026-11-15 05:48:17 +0000: Memory Usage (1165780K) : metal3_slit has 0 polygons
+2026-11-15 05:48:22 +0000: Memory Usage (1165780K) : metal4_drw has 16086407 polygons
+2026-11-15 05:48:26 +0000: Memory Usage (1165780K) : metal4_filler has 29514180 polygons
+2026-11-15 05:48:27 +0000: Memory Usage (1165780K) : metal4_slit has 0 polygons
+2026-11-15 05:48:32 +0000: Memory Usage (1165780K) : topmetal1_drw has 145558 polygons
+2026-11-15 05:48:36 +0000: Memory Usage (1165780K) : topmetal1_filler has 511765 polygons
+2026-11-15 05:48:37 +0000: Memory Usage (1165780K) : topmetal1_slit has 0 polygons
+2026-11-15 05:48:38 +0000: Memory Usage (1165780K) : lbe_drw has 0 polygons
+2026-11-15 05:48:40 +0000: Memory Usage (1165780K) : prboundary_drw has 1 polygons
+2026-11-15 05:48:45 +0000: Memory Usage (1165896K) : edgeseal_bound has 1 polygons
+2026-11-15 05:48:45 +0000: Memory Usage (1165896K) : Loaded TECH DRC rules values from /workspace/software/DGSE/pdk/IHP-Open-PDK/ihp-sg13cmos5l/libs.tech/klayout/python/sg13cmos5l_pycell_lib/sg13cmos5l_tech_mod.json
+2026-11-15 05:48:45 +0000: Memory Usage (1165896K) : Loaded default DRC rules values from /workspace/software/DGSE/pdk/IHP-Open-PDK/ihp-sg13cmos5l/libs.tech/klayout/tech/drc/rule_decks/sg13cmos5l_tech_default.json
+2026-11-15 05:48:50 +0000: Memory Usage (1184108K) : Density sanity markers are disabled (set -rd density_sanity=true to enable).
+2026-11-15 05:48:53 +0000: Memory Usage (1184668K) : Using prBoundary (189/0) for chip area: 43560000.0 um^2.
+2026-11-15 05:48:53 +0000: Memory Usage (1184668K) : Using bbox (0,0;6600,6600) for density window origin.
+2026-11-15 05:48:56 +0000: Memory Usage (1184668K) : Total area of the design is 43560000.0 um^2.
+2026-11-15 05:48:56 +0000: Memory Usage (1184668K) : Starting density IHP-SG13CMOS5L derivations.
+2026-11-15 05:49:41 +0000: Memory Usage (1233920K) : Starting IHP-SG13CMOS5L DENSITY DRC rules.
+2026-11-15 05:49:41 +0000: Memory Usage (1233920K) : Computing activ area and density...
+2026-11-15 05:51:37 +0000: Memory Usage (1994816K) : Executing rule AFil.g
+2026-11-15 05:51:37 +0000: Memory Usage (1994816K) : Executing rule AFil.g1
+2026-11-15 05:51:37 +0000: Memory Usage (1994816K) : Executing rule AFil.g2
+2026-11-15 05:54:25 +0000: Memory Usage (2544796K) : Executing rule AFil.g3
+2026-11-15 05:57:14 +0000: Memory Usage (2526656K) : Computing poly area and density...
+2026-11-15 05:57:30 +0000: Memory Usage (2526668K) : Executing rule GFil.g
+2026-11-15 05:57:30 +0000: Memory Usage (2526668K) : Computing metal1 area and density...
+2026-11-15 06:22:34 +0000: Memory Usage (3459812K) : Executing rule M1.j
+2026-11-15 06:22:34 +0000: Memory Usage (3459812K) : Executing rule M1.k
+2026-11-15 06:22:34 +0000: Memory Usage (3459812K) : Computing metal2 area and density...
+2026-11-15 06:34:14 +0000: Memory Usage (3602504K) : Computing metal3 area and density...
+2026-11-15 06:38:32 +0000: Memory Usage (3602504K) : Computing metal4 area and density...
+2026-11-15 06:39:59 +0000: Memory Usage (3602504K) : Executing rule M2.j
+2026-11-15 06:39:59 +0000: Memory Usage (3602504K) : Executing rule M2.k
+2026-11-15 06:39:59 +0000: Memory Usage (3602504K) : Executing rule M3.j
+2026-11-15 06:39:59 +0000: Memory Usage (3602504K) : Executing rule M3.k
+2026-11-15 06:39:59 +0000: Memory Usage (3602504K) : Executing rule M4.j
+2026-11-15 06:39:59 +0000: Memory Usage (3602504K) : Executing rule M4.k
+2026-11-15 06:39:59 +0000: Memory Usage (3602504K) : Executing rule M1Fil.h
+2026-11-15 07:10:47 +0000: Memory Usage (3441056K) : Executing rule M1Fil.k
+2026-11-15 07:44:28 +0000: Memory Usage (3296456K) : Executing rule M2Fil.h
+2026-11-15 08:01:58 +0000: Memory Usage (3756724K) : Executing rule M2Fil.k
+2026-11-15 08:16:07 +0000: Memory Usage (3833900K) : Executing rule M3Fil.h
+2026-11-15 08:21:21 +0000: Memory Usage (3715816K) : Executing rule M3Fil.k
+2026-11-15 08:26:37 +0000: Memory Usage (3742944K) : Executing rule M4Fil.h
+2026-11-15 08:28:16 +0000: Memory Usage (3743852K) : Executing rule M4Fil.k
+2026-11-15 08:29:54 +0000: Memory Usage (3706160K) : Computing TopMetal1 area and density...
+2026-11-15 08:30:06 +0000: Memory Usage (3705784K) : Executing rule TM1.c
+2026-11-15 08:30:06 +0000: Memory Usage (3705784K) : Executing rule TM1.d
+2026-11-15 08:30:06 +0000: Memory Usage (3705784K) : Computing LBE area and density...
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Executing rule LBE.i
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : ##################################################
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) :                  Density Report                 #
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : ##################################################
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Layer areas and percentages (units: um^2)
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : --------------------------------------------------
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Total Area     = 43560000.00 um^2
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Activ      Area      = 16909720.37 um^2
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Activ      Density % = 38.82%  [Min = 35.00%,  Max = 55.00%]
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : GatPoly    Area      = 9110837.72 um^2
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : GatPoly    Density % = 20.92%  [Min = 15.00%]
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Metal1     Area      = 16772787.24 um^2
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Metal1     Density % = 38.51%  [Min = 35.00%,  Max = 60.00%]
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Metal2     Area      = 16546730.79 um^2
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Metal2     Density % = 37.99%  [Min = 35.00%,  Max = 60.00%]
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Metal3     Area      = 16770608.02 um^2
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Metal3     Density % = 38.50%  [Min = 35.00%,  Max = 60.00%]
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Metal4     Area      = 17193063.34 um^2
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : Metal4     Density % = 39.47%  [Min = 35.00%,  Max = 60.00%]
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : TopMetal1  Area      = 14907661.74 um^2
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : TopMetal1  Density % = 34.22%  [Min = 25.00%,  Max = 70.00%]
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : LBE        Area      =  0.00 um^2
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : LBE        Density % =  0.00%  [Max = 20.00%]
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : 
+2026-11-15 08:30:09 +0000: Memory Usage (3705784K) : KLayout DRC run for density table completed in 9774.0 seconds
+15-Nov-2026 08:30:11 | INFO    | Completed running Density checks.
+15-Nov-2026 08:30:11 | INFO    | =====================================================================================
+15-Nov-2026 08:30:11 | INFO    | KLayout DRC Check Passed: No DRC violations detected in the layout.
+15-Nov-2026 08:30:11 | INFO    | =====================================================================================
+15-Nov-2026 08:30:11 | INFO    | Total DRC Run time: 9779.31 seconds (including execution, analysis, and reporting)

@@ -1,0 +1,137 @@
+"polygons" in: nwell_noconn.drc:18
+    Polygons (raw): 652842057 (flat)  7205 (hierarchical)
+    Elapsed: 4.220s  Memory: 995.00M
+"polygons" in: nwell_noconn.drc:19
+    Polygons (raw): 0 (flat)  0 (hierarchical)
+    Elapsed: 0.030s  Memory: 1037.00M
+"polygons" in: nwell_noconn.drc:20
+    Polygons (raw): 103578466 (flat)  3231 (hierarchical)
+    Elapsed: 2.520s  Memory: 1037.00M
+"polygons" in: nwell_noconn.drc:21
+    Polygons (raw): 37028880 (flat)  120 (hierarchical)
+    Elapsed: 2.570s  Memory: 1037.00M
+"polygons" in: nwell_noconn.drc:22
+    Polygons (raw): 84562708 (flat)  1862 (hierarchical)
+    Elapsed: 2.560s  Memory: 1037.00M
+"polygons" in: nwell_noconn.drc:23
+    Polygons (raw): 256 (flat)  13 (hierarchical)
+    Elapsed: 2.590s  Memory: 1037.00M
+"polygons" in: nwell_noconn.drc:24
+    Polygons (raw): 0 (flat)  0 (hierarchical)
+    Elapsed: 0.030s  Memory: 1037.00M
+"-" in: nwell_noconn.drc:26
+    Polygons (raw): 2011279 (flat)  305 (hierarchical)
+    Elapsed: 11.990s  Memory: 1332.00M
+NW.a
+"width" in: nwell_noconn.drc:27
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 32.660s  Memory: 1716.00M
+"output" in: nwell_noconn.drc:27
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 0.980s  Memory: 1716.00M
+NW.b
+"space" in: nwell_noconn.drc:28
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 95.500s  Memory: 2933.00M
+"output" in: nwell_noconn.drc:28
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 0.990s  Memory: 1850.00M
+NW.b1c
+"space" in: nwell_noconn.drc:29
+    Edge pairs: 25181 (flat)  9 (hierarchical)
+    Elapsed: 118.830s  Memory: 3197.00M
+"output" in: nwell_noconn.drc:29
+    Edge pairs: 25181 (flat)  9 (hierarchical)
+    Elapsed: 0.950s  Memory: 1909.00M
+"-" in: nwell_noconn.drc:32
+    Polygons (raw): 23145744 (flat)  473 (hierarchical)
+    Elapsed: 83.060s  Memory: 2794.00M
+"|" in: nwell_noconn.drc:32
+    Polygons (raw): 2856828 (flat)  4713 (hierarchical)
+    Elapsed: 28.440s  Memory: 2735.00M
+"&" in: nwell_noconn.drc:32
+    Polygons (raw): 15446166 (flat)  430 (hierarchical)
+    Elapsed: 17952.360s  Memory: 12896.00M
+"-" in: nwell_noconn.drc:33
+    Polygons (raw): 16049854 (flat)  442 (hierarchical)
+    Elapsed: 25.800s  Memory: 4526.00M
+"-" in: nwell_noconn.drc:34
+    Polygons (raw): 15445924 (flat)  416 (hierarchical)
+    Elapsed: 8.930s  Memory: 4023.00M
+"-" in: nwell_noconn.drc:34
+    Polygons (raw): 4455060 (flat)  399 (hierarchical)
+    Elapsed: 10.290s  Memory: 4249.00M
+"-" in: nwell_noconn.drc:35
+    Polygons (raw): 16049626 (flat)  431 (hierarchical)
+    Elapsed: 10.890s  Memory: 4024.00M
+"-" in: nwell_noconn.drc:35
+    Polygons (raw): 4552826 (flat)  411 (hierarchical)
+    Elapsed: 10.140s  Memory: 4248.00M
+"|" in: nwell_noconn.drc:36
+    Polygons (raw): 35035 (flat)  3453 (hierarchical)
+    Elapsed: 33.410s  Memory: 4026.00M
+NW.c
+"&" in: nwell_noconn.drc:38
+    Polygons (raw): 1282852 (flat)  151 (hierarchical)
+    Elapsed: 26.650s  Memory: 4392.00M
+"enclosed" in: nwell_noconn.drc:38
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 37.660s  Memory: 4028.00M
+"output" in: nwell_noconn.drc:38
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 3.150s  Memory: 4029.00M
+NW.c-straddle
+"interacting" in: nwell_noconn.drc:39
+    Polygons (raw): 1226448 (flat)  592 (hierarchical)
+    Elapsed: 174.700s  Memory: 5131.00M
+"-" in: nwell_noconn.drc:39
+    Polygons (raw): 0 (flat)  0 (hierarchical)
+    Elapsed: 567.380s  Memory: 4566.00M
+"&" in: nwell_noconn.drc:39
+    Polygons (raw): 1282852 (flat)  151 (hierarchical)
+    Elapsed: 29.270s  Memory: 4934.00M
+"interacting" in: nwell_noconn.drc:39
+    Polygons (raw): 0 (flat)  0 (hierarchical)
+    Elapsed: 0.780s  Memory: 4877.00M
+"output" in: nwell_noconn.drc:39
+    Polygons (raw): 0 (flat)  0 (hierarchical)
+    Elapsed: 3.170s  Memory: 4877.00M
+NW.d
+"not_interacting" in: nwell_noconn.drc:40
+    Polygons (raw): 2404444 (flat)  617 (hierarchical)
+    Elapsed: 1247.550s  Memory: 5941.00M
+"separation" in: nwell_noconn.drc:40
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 100.350s  Memory: 6427.00M
+"output" in: nwell_noconn.drc:40
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 3.120s  Memory: 5952.00M
+NW.d-straddle
+"interacting" in: nwell_noconn.drc:41
+    Polygons (raw): 42810 (flat)  3897 (hierarchical)
+    Elapsed: 261.670s  Memory: 5952.00M
+"-" in: nwell_noconn.drc:41
+    Polygons (raw): 0 (flat)  0 (hierarchical)
+    Elapsed: 252.430s  Memory: 6187.00M
+"&" in: nwell_noconn.drc:41
+    Polygons (raw): 1993938 (flat)  245 (hierarchical)
+    Elapsed: 63.740s  Memory: 5952.00M
+"interacting" in: nwell_noconn.drc:41
+    Polygons (raw): 0 (flat)  0 (hierarchical)
+    Elapsed: 0.780s  Memory: 5952.00M
+"output" in: nwell_noconn.drc:41
+    Polygons (raw): 0 (flat)  0 (hierarchical)
+    Elapsed: 3.180s  Memory: 5952.00M
+NW.e
+"inside" in: nwell_noconn.drc:42
+    Polygons (raw): 42810 (flat)  3897 (hierarchical)
+    Elapsed: 263.290s  Memory: 6888.00M
+"enclosed" in: nwell_noconn.drc:42
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 338.920s  Memory: 7065.00M
+"output" in: nwell_noconn.drc:42
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 3.280s  Memory: 7065.00M
+done
+Writing report database: /workspace/projects/IHP__SoC2611/v302/nwell/nwell_noconn.lyrdb ..
+Total elapsed: 21926.070s  Memory: 5505.00M

@@ -1,0 +1,7 @@
+15-Nov-2026 05:47:12 | INFO    | KLayout version detected: 0.30.5
+15-Nov-2026 05:47:12 | INFO    | Minimum DRC: running the minimum rule set only (extra, offgrid, angle, antenna and density sanity checks disabled).
+15-Nov-2026 05:47:12 | INFO    | Using DRC JSON file: /workspace/software/DGSE/pdk/IHP-Open-PDK/ihp-sg13cmos5l/libs.tech/klayout/python/sg13cmos5l_pycell_lib/sg13cmos5l_tech_mod.json
+15-Nov-2026 09:14:35 | INFO    | =====================================================================================
+15-Nov-2026 09:14:35 | INFO    | KLayout DRC Check Passed: No DRC violations detected in the layout.
+15-Nov-2026 09:14:35 | INFO    | =====================================================================================
+15-Nov-2026 09:14:35 | INFO    | Total DRC Run time: 12443.64 seconds (including execution, analysis, and reporting)
