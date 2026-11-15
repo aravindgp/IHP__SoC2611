@@ -1,7 +1,8 @@
 # SoC2611 interfaces: pins, protocols, clocks, supplies
 
 Pin numbers and pad cells per pin: `doc/Datasheet.md` (QFN64 table) and `SoC2611-main/constraints/bond_table.csv`.
-Timing constraints: `SoC2611-main/constraints/design.sdc`, `chip_extra.sdc`. Top entity: `soc2611_chip_top`
+Timing constraints: `SoC2611-main/constraints/design.sdc` (`chip_extra.sdc` in the same folder is from an earlier
+clock scheme and names pins the released netlist does not have). Top entity: `soc2611_chip_top`
 (exported as `SoC2611`). All signal pads are 3.3 V `sg13cmos5l_io` cells; the core runs at 1.2 V.
 
 ## 1. Pin groups and protocols (48 signal pins)
@@ -44,7 +45,7 @@ main clock tree.
 | `clk_main` | 20.0 ns | derived | GPIO, UART, SPI: input and output delay 2.0 ns |
 
 Clock-domain crossings (camera pixel clock, HyperBus RWDS, JTAG TCK) go through the synchronisers and FIFOs described in
-`SoC2611-main/docs/ASIC_PORT.md` section 5.
+`doc/architecture/03_clocks_and_resets.md`.
 
 Rated speed on the routed wires (`release/v.3.0.2/checks/timing_routed_wires.txt`): system clock 29.4 MHz slow,
 45.5 MHz typical, 64.4 MHz fast, so the input clock `clk_x2` at most 58.8 / 91.0 / 128.8 MHz. The 10 ns constraint
@@ -53,9 +54,11 @@ three corners.
 
 ## 4. Reset and boot
 
-`porst_n_in` low resets the whole chip. On release the boot ROM (in the 4 KiB TCM at address 0) runs; `gpio_in[3]`
+`porst_n_in` low resets the chip logic; only the clock generator, the `x2_phase` flip-flops and the JTAG TAP have no
+reset (the first two work from any start state, the TAP resets with TMS high for 5 TCK cycles). On release the boot ROM (in the 4 KiB TCM at address 0) runs; `gpio_in[3]`
 selects UART loader or direct jump (section 1 of `doc/RegisterMap.md`). The JTAG TAP is live from reset and can halt
-the CPU, load memory and resume (used by the `test_debug.py` cocotb test).
+the CPU, load memory and resume with OpenOCD (`SoC2611-main/docs/asic_jtag_README.md`); no simulation in the
+release drives the TAP.
 
 ## 5. Memory BIST
 

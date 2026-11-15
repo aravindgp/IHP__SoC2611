@@ -32,7 +32,8 @@ changed against `v.3.0.0` and which results are carried from it is in `release/v
   `SoC2611-main/verification/sim/cocotb_icg.log`: firmware suite T01-T06 **6/6 PASS** on the chip top
   (`tb_soc2611_hb`: HyperRAM model, IHP SRAM macro models, JTAG VexRiscv core, clock gating), 31 Oct 2026;
   `SoC2611-main/verification/sim/cocotb_results.xml` (JUnit, 0 failures);
-  `SoC2611-main/verification/sim/cocotb_bootldr.log`: boot-ROM UART loader BOOT -> GO -> HELLO **PASS**.
+  `SoC2611-main/verification/sim/cocotb_bootldr.log`: boot-ROM UART loader BOOT -> GO -> HELLO **PASS** (on the
+  generic ASIC top with a DDR memory model).
   Test list and pass criteria: `SoC2611-main/verification/sim/README.md`.
 
 ## TRL2 - Concept formulation

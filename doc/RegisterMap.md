@@ -19,7 +19,8 @@ accelerator status registers (tests T01, T03, T04, T05, T06).
 Boot sequence: after `porst_n_in` releases, the CPU runs the boot ROM from the TCM. GPIO in[3] is the boot strap:
 `1` = jump to the application image at `0x0000_4000` (already in HyperRAM, e.g. loaded by JTAG or a previous
 session), `0` = UART loader (8N1 at the system clock divided by 1085, see section 2; prints `BOOT`, receives the
-image, prints `GO`, jumps). The loader is verified in `verification/sim/cocotb_bootldr.log` (`BOOT -> GO -> HELLO`).
+image, prints `GO`, jumps). The loader is verified in `verification/sim/cocotb_bootldr.log` (`BOOT -> GO -> HELLO`), a
+run on the generic ASIC top with a DDR memory model, not on the chip top with the HyperBus controller.
 
 Exceptions: the CPU's trap vector is a constant, `0x8000_0020`, which lies inside the accelerator register window,
 and the CPU has no environment call (`ecall` does not trap). An illegal instruction, a misaligned access or any
