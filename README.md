@@ -129,7 +129,8 @@ diode from the complete net and allows a cumulative metal-to-gate ratio of 20,00
 │   ├── Interfaces.md
 │   ├── RegisterMap.md
 │   ├── TRL-Mixed-Signal-IP.md
-│   └── info.json
+│   ├── info.json
+│   └── videos/         (narrated explainer videos 01 to 13 and 16, list in videos/README.md)
 ├── dependencies/
 │   └── README.md
 ├── release/
@@ -167,6 +168,7 @@ Project documentation and metadata:
 - `RegisterMap.md` — address map, APB peripheral registers, accelerator host registers, boot sequence
 - `TRL-Mixed-Signal-IP.md` — technology readiness assessment, each ticked item with its evidence file
 - `info.json` — repository metadata and design information
+- `videos/` — narrated explainer videos of the chip and its sign-off, each describing the state of the day it was made; `videos/README.md` lists them
 
 ### `dependencies/`
 `README.md` lists the PDK commit, the standard-cell, IO and SRAM libraries, the CPU generator and the tool versions.
