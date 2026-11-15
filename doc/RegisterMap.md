@@ -91,4 +91,5 @@ by the accelerator runtime (`SW/base/`), not by application code.
 
 RV32IM VexRiscv (8 KiB I-cache 2-way, 8 KiB D-cache, JTAG debug TAP), ztachip with 1 cell x 4 PCOREs = 4 PCOREs,
 16 threads per PCORE, 12-bit data path, camera input enabled, VGA output disabled, main memory HyperRAM, 298
-RM_IHPSG13 SRAM macros (214 KiB). Generics: `SoC2611-main/docs/ASIC_PORT.md` section 4.
+RM_IHPSG13 SRAM macros (214 KiB). Generics: `doc/architecture/05_accelerator.md` (section 4 of
+`SoC2611-main/docs/ASIC_PORT.md` describes an earlier build with 8 PCOREs).
