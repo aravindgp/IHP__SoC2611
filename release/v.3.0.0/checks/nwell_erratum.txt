@@ -1,0 +1,37 @@
+Erratum to nwell_rules.txt, 15 November 2026
+
+What nwell_rules.txt says
+   Part 2, NWell gaps measured without nets: "NWell space or notch below 0.62 um (NW.b, whatever the nets):
+   42 places; inside SRAM macros 42, inside pad ring cells 0, in the chip assembly 0".
+
+Correction
+   2 of the 42 places are not inside a macro. They lie on a macro outline: each is a gap between the NWell of an
+   SRAM macro and the NWell of the standard-cell row beside it. The script sorted a gap as "inside SRAM macros"
+   whenever its marker touched a macro outline, and these two gaps start exactly on the outline.
+
+The two gaps
+   place   macro                    macro outline (um)                         gap        rule
+   1       RM_IHPSG13_1P_64x16_c2   (1394.080, 2930.440) - (1630.880, 2995.025)   0.485 um   0.62 um
+   2       RM_IHPSG13_1P_64x16_c2   (2883.920, 2930.440) - (3120.720, 2995.025)   0.485 um   0.62 um
+   Place 1: the macro NWell ends at y 2995.025 at its top right corner; the NWell of the row beside it (an NWell
+   shape in the top cell left by the filler edge fix of v.2.1.0, and the tiehi cell) starts at y 2995.510 from
+   x 1630.800. Marker x 1630.41 to 1631.27 um.
+   Place 2: same macro corner geometry; the NWell of the sg13cmos5l_fill_4 cell in the row beside it starts at
+   y 2995.510 from x 3120.720. Marker x 3120.33 to 3121.11 um.
+   No Activ lies inside either marker.
+
+How it was measured
+   NWell 31/0 not SRAM 25/0 (the derivation of IHP's deck), merged, space below 0.62 um, on the GDS of this release
+   (SHA-256 5cb1caa218ee16156cb656467195274cfbb17a92be66035459b41e853d3abccf): 2 places; inside a macro 0, on a
+   macro outline 2, in the chip assembly 0. The same two places, with the same gap, are in v.2.0.1 and v.2.4.0.
+   The extra checks on a second machine (branch checks-v.3.0.0, folder checks/v.3.0.0/nwell) report the same two
+   NW.b markers; their other NWell rules and the PDK antenna table are at 0.
+
+Which rule
+   IHP's NW.b: "Min. NWell space or notch (same net). NWell regions separated by less than this value will be
+   merged." 0.62 um, checked per net. NW.b1: PWell width between NWell regions of different nets, 1.80 um.
+   Both are switched off in the minimum rule set of the precheck.
+   Both wells here are on VDD: the macro's VDD! and VDDARRAY! pins connect to VDD in netlist/SoC2611.cdl.gz, and
+   the standard-cell NWell is VDD. So the rule is NW.b, not NW.b1.
+
+The rest of nwell_rules.txt is unchanged: the 13 rules of part 1 are at 0, and NW.a is at 0.

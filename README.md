@@ -33,7 +33,14 @@ request: IHP-GmbH/Open-Silicon-MPW issue #79). State of 14 November 2026:
 - LVS (KLayout, IHP deck): the netlists match, 354,825 instances of the chip top. SRAM macros and pad cells are
   black boxes with their pins.
 - Connectivity: every signal net was traced in the GDS against the netlist, 343,545 nets, 0 open and 0 shorted pins.
-- NWell rules without connectivity: 13 of 13 at 0.
+- NWell rules without connectivity: the 13 rules of IHP's deck that need no nets are at 0. Rule NW.b (NWell space,
+  same net, 0.62 um) is not among them: IHP's deck checks it per net, and it is not in the minimum rule set. Measured
+  without nets, there are 2 NWell gaps of 0.485 um, each between the NWell at the top right corner of an
+  RM_IHPSG13_1P_64x16_c2 macro and the NWell of the standard-cell row beside it (x 1630.4 to 1631.3 um and 3120.3
+  to 3121.1 um, y 2995.0 to 2995.5 um). Both wells are on VDD, so the rule is NW.b, whose text says that NWell
+  regions closer than this are merged, and not NW.b1 (different nets, 1.80 um). No diffusion lies in either gap.
+  The two gaps are in every release from `v.2.0.1` on; they were found on 15 November. Details in
+  `release/v.3.0.0/checks/nwell_erratum.txt`.
 - Antenna: 0 nets above the limit of the router's check, and 0 violations in every rule of the PDK antenna table.
 - Timing, with the parasitics of the routed wires: hold is met at all three corners. System clock 64.4 MHz fast,
   45.5 MHz typical, 29.4 MHz slow; the double-rate input clock is twice that. The 100 MHz input clock of the
