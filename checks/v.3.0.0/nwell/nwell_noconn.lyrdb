@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>NWell rules without connectivity</description>
+ <original-file/>
+ <generator>drc: script='nwell_noconn.drc'</generator>
+ <top-cell>SoC2611</top-cell>
+ <tags>
+ </tags>
+ <categories>
+  <category>
+   <name>NW.a</name>
+   <description>Min. NWell width = 0.62</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.b</name>
+   <description>Min. NWell space or notch = 0.62 (net-blind)</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.b1c</name>
+   <description>CANDIDATE NW.b1: NWell-NWell space &lt; 1.80 (violation only if different nets)</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.c</name>
+   <description>Min. NWell enclosure of P+Activ not in ThickGateOx = 0.31</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.c_straddle</name>
+   <description>P+Activ crossing the NWell edge</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.d</name>
+   <description>Min. NWell space to external N+Activ not in ThickGateOx = 0.31</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.d_straddle</name>
+   <description>N+Activ crossing the NWell edge</description>
+   <categories>
+   </categories>
+  </category>
+  <category>
+   <name>NW.e</name>
+   <description>Min. NWell enclosure of N+Activ tie in NWell = 0.24</description>
+   <categories>
+   </categories>
+  </category>
+ </categories>
+ <cells>
+  <cell>
+   <name>SoC2611</name>
+   <variant/>
+   <layout-name/>
+   <references>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_256x8_c3_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_256x8_c3_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 4929.65,3239.93</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_CTRL</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_CTRL</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5033.77,3278.03</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RSC_IHPSG13_DFNQX2</name>
+   <variant/>
+   <layout-name>RSC_IHPSG13_DFNQX2</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5048.05,3244.43</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_ROWREG5</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_ROWREG5</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5033.77,3278.03</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RSC_IHPSG13_DFNQMX2IX1</name>
+   <variant/>
+   <layout-name>RSC_IHPSG13_DFNQMX2IX1</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5028.67,3269.63</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_COLDEC3</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_COLDEC3</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5033.77,3278.03</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_COLCTRL3</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_COLCTRL3</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5075.08,3278.03</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_64x22_c2_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_64x22_c2_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 3350.4,3239.93</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_COLDEC2_AB</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_COLDEC2_AB</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 3613.415,3294.83</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_COLDEC2</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_COLDEC2</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 3613.415,3294.83</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_CTRL_AB</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_CTRL_AB</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 3613.415,3294.83</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_CTRL</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_CTRL</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 3613.415,3294.83</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_COLCTRL2</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_COLCTRL2</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 3680.225,3294.83</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_ROWREG4_AB</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_ROWREG4_AB</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 3613.415,3294.83</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_ROWREG4</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_ROWREG4</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 3613.415,3294.83</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_1024x32_c2_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_1024x32_c2_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5474.2,4819.31</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_ROWREG8_AB</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_ROWREG8_AB</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5816.945,4874.21</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_ROWREG8</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_ROWREG8</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5816.945,4874.21</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_256x16_c2_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_256x16_c2_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5922.88,5646.96</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_COLDEC2</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_COLDEC2</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 6027,5693.46</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_COLCTRL2</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_COLCTRL2</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 6068.31,5693.46</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_ROWREG6</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_ROWREG6</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 6027,5693.46</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_256x32_c2_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_256x32_c2_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5446.24,5646.96</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_256x32_c2_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_256x32_c2_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 4980.21,6022.71</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_ROWREG6_AB</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_ROWREG6_AB</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5331.625,6077.61</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_ROWREG6</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_ROWREG6</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5331.625,6077.61</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_64x16_c2</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_64x16_c2</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 3936.43,3728.39</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_ROWREG4</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_ROWREG4</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 4040.55,3774.89</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>sg13cmos5l_lgcp_1</name>
+   <variant/>
+   <layout-name>sg13cmos5l_lgcp_1</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 3300,3296.16</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_256x8_c2_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_256x8_c2_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5584.37,4201.97</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_256x16_c2_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_256x16_c2_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 5104.42,4201.97</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_1024x32_c2_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_1024x32_c2_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>m0 *1 2406.8,5099.68</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_ROWREG8</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_ROWREG8</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>m0 *1 2600.84,5053.18</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_512x8_c3_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_512x8_c3_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 737.12,4593.26</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_512x16_c2_bm_bist</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_512x16_c2_bm_bist</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 737.12,4211.54</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_1P_ROWREG7</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_1P_ROWREG7</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 841.24,4258.04</trans>
+    </ref>
+   </references>
+  </cell>
+  <cell>
+   <name>RM_IHPSG13_2P_64x32_c2</name>
+   <variant/>
+   <layout-name>RM_IHPSG13_2P_64x32_c2</layout-name>
+   <references>
+    <ref>
+     <parent>SoC2611</parent>
+     <trans>r0 *1 4463.62,2985.19</trans>
+    </ref>
+   </references>
+  </cell>
+ </cells>
+ <items>
+  <item>
+   <tags/>
+   <category>'NW.b'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (1630.414,2995.025;1630.88,2995.025)|(1631.266,2995.51;1630.8,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (3120.334,2995.025;3120.72,2995.025)|(3121.106,2995.51;3120.72,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (1629.067,2995.025;1630.88,2995.025)|(1631.76,2995.51;1630.8,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (1629.92,2995.025;1630.21,2995.025)|(1631.943,2995.51;1630.8,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (1630.21,2995.025;1630.88,2995.025)|(1632.613,2995.51;1630.8,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (3118.987,2995.025;3119.76,2995.025)|(3121.493,2995.51;3120.72,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (3119.76,2995.025;3120.05,2995.025)|(3121.783,2995.51;3120.72,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (3120.05,2995.025;3120.72,2995.025)|(3122.453,2995.51;3120.72,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (1629.067,2995.025;1629.92,2995.025)|(1631.653,2995.51;1630.8,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (3118.987,2995.025;3120.72,2995.025)|(3122.453,2995.51;3120.72,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>SoC2611</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (1629.547,2995.025;1630.88,2995.025)|(1632.613,2995.51;1631.28,2995.51)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>RSC_IHPSG13_DFNQX2</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (5.05,1.785;5.05,1.87)|(3.44,1.87;3.44,1.785)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>RSC_IHPSG13_DFNQMX2IX1</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (8.62,1.785;8.62,1.87)|(7.01,1.87;7.01,1.785)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>RM_IHPSG13_1P_COLCTRL2</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (4.21,-40.215;4.21,-40.13)|(2.6,-40.13;2.6,-40.215)</value>
+   </values>
+  </item>
+  <item>
+   <tags/>
+   <category>'NW.b1c'</category>
+   <cell>sg13cmos5l_lgcp_1</cell>
+   <visited>false</visited>
+   <multiplicity>1</multiplicity>
+   <comment/>
+   <image/>
+   <values>
+    <value>edge-pair: (4.045,1.865;4.045,1.89)|(2.67,1.89;2.67,1.75)</value>
+   </values>
+  </item>
+ </items>
+</report-database>

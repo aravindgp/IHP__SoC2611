@@ -1,0 +1,8 @@
+14-Nov-2026 03:56:21 | INFO    | KLayout version detected: 0.30.5
+14-Nov-2026 03:56:21 | INFO    | Using DRC JSON file: /workspace/software/DGSE/pdk/IHP-Open-PDK/ihp-sg13cmos5l/libs.tech/klayout/python/sg13cmos5l_pycell_lib/sg13cmos5l_tech_mod.json
+14-Nov-2026 03:56:21 | INFO    | Running IHP-SG13CMOS5L antenna checks on design /workspace/projects/IHP__SoC2611/v300/work/SoC2611.gds, topcell: SoC2611
+14-Nov-2026 07:32:42 | INFO    | Completed running Antenna checks.
+14-Nov-2026 07:32:42 | INFO    | =====================================================================================
+14-Nov-2026 07:32:42 | INFO    | KLayout DRC Check Passed: No DRC violations detected in the layout.
+14-Nov-2026 07:32:42 | INFO    | =====================================================================================
+14-Nov-2026 07:32:42 | INFO    | Total DRC Run time: 12982.54 seconds (including execution, analysis, and reporting)

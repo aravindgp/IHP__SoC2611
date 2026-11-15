@@ -24,3 +24,34 @@ Result, each checked by its own "completed in" line:
 - 3 of 3 finished; 0 processes killed by the system; 0 exceptions. Peak klayout memory (sum) 73.9 GB.
 - The deck logs "prboundary_drw has 1 polygons": the die outline on prBoundary.drawing (189/0) is read.
 - `launch.log` is the console output of run_drc_check.sh.
+
+## Added 2026-11-15: PDK antenna table and NWell geometry rules (not part of the minimum rule set)
+
+### Antenna table (`antenna/`): CLEAN
+`run_drc.py --path=SoC2611.gds --topcell=SoC2611 --run_mode=deep --antenna_only --density_thr=16`, same PDK commit.
+2026-11-14 03:56 → 07:32 UTC (12,983 s), peak about 21 GB. 23 rule categories (Ant.a, Ant.c, Ant.b/Ant.e for
+Metal1–TopMetal1, Ant.d/Ant.f for Via1–TopVia1, Ant.g, Ant.h, Ant.i), **0 markers**. Deck reads the design as
+6600.0 um * 6600.0 um.
+
+### NWell geometry without connectivity (`nwell/`): 2 NW.b markers
+The PDK nwell table runs no rules with `--minimum_drc` and its full version hangs in connectivity setup on this
+chip, so `nwell/nwell_noconn.drc` checks the geometric NWell rules (values from sg13cmos5l_tech_default.json).
+2026-11-14 03:55 → 07:27 UTC (19,154 s).
+
+| Rule | Markers |
+|---|---|
+| NW.a width >= 0.62 | 0 |
+| NW.b space >= 0.62 | **2** |
+| NW.c / NW.d / NW.e enclosure and space to Activ, and both straddle checks | 0 |
+| NW.b1 candidates (space < 1.80, net-blind, review only) | 13: 11 at the two NW.b spots, 4 inside library cells (DFNQX2, DFNQMX2IX1, SRAM COLCTRL2, lgcp_1) |
+
+Both NW.b markers are at the top-right corner of an SRAM macro `RM_IHPSG13_1P_64x16_c2`:
+- x 1630.41–1631.27, y 2995.025–2995.510: macro (1394.08,2930.44;1630.88,2995.025); its NWell ends at
+  y 2995.025, the NWell of `sg13cmos5l_tiehi` + `fill_2` in the row above starts at y 2995.510, overlapping
+  the macro by 0.08 um in x. Gap 0.485 um < 0.62.
+- x 3120.33–3121.11, y 2995.025–2995.500: macro (2883.92,2930.44;3120.72,2995.025); NWell of `sg13cmos5l_fill_4`
+  + `dfrbpq_1` above starts at x 3120.72 (corner on corner), y 2995.500. Gap 0.475 um < 0.62.
+
+The same cells and NWell edges are in v.2.5.0, so this is not new in v.3.0.0. Fix options: keep the standard cells
+next to these two corners at least 0.62 um (1.80 um if the macro NWell is on a different net) away in x, or join
+the two NWells if both are VDD.

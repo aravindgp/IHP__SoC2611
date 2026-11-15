@@ -1,0 +1,43 @@
+# NWell geometry rules WITHOUT connectivity, for chips where the PDK nwell table hangs in
+# "connectivity setup". Rule values = sg13cmos5l_tech_default.json; derivations follow
+# sg13cmos5l_maximal.drc (NWell_Nsram, NAct/PAct, LV = not ThickGateOx). Deep mode.
+#   NW.a   NWell width >= 0.62
+#   NW.b   NWell space/notch >= 0.62 (any net; same-net rule, different nets must anyway be >= 1.80)
+#   NW.b1c CANDIDATES for NW.b1: NWell-NWell space < 1.80. Net-blind: only a violation if the two
+#          wells are on different nets (in std-cell rows they normally share VDD) -> review, not count
+#   NW.c   NWell enclosure of P+Activ (LV) >= 0.31
+#   NW.d   NWell space to external N+Activ (LV) >= 0.31
+#   NW.e   NWell enclosure of N+Activ tie inside NWell (LV) >= 0.24
+# usage: klayout -b -r nwell_noconn.drc -rd input=X.gds -rd topcell=T -rd report=out.lyrdb
+source($input, $topcell)
+report("NWell rules without connectivity", $report)
+deep
+threads(4)
+verbose(true)
+
+activ   = polygons(1, 0)
+nsd     = polygons(7, 0)
+psd     = polygons(14, 0)
+sram    = polygons(25, 0)
+nwell   = polygons(31, 0)
+tgo     = polygons(44, 0)
+pwblk   = polygons(46, 21)
+
+nwell_ns = nwell - sram                    # PDK: NWell_Nsram = NWell.not(SRAM)
+log("NW.a");  nwell_ns.width(0.62.um).output("NW.a", "Min. NWell width = 0.62")
+log("NW.b");  nwell_ns.space(0.62.um).output("NW.b", "Min. NWell space or notch = 0.62 (net-blind)")
+log("NW.b1c"); nwell_ns.space(1.80.um).output("NW.b1c", "CANDIDATE NW.b1: NWell-NWell space < 1.80 (violation only if different nets)")
+
+# diffusion-dependent rules (slow on a filled chip: N+/P+ derivation)
+nact     = activ & (nsd | (activ - psd))   # PDK: Activ & nSD_drv (nSD_block ignored)
+pact     = activ - nact
+nact_lv  = (nact - tgo) - sram
+pact_lv  = (pact - tgo) - sram
+x1       = nwell | pwblk
+
+log("NW.c");  pact_lv.and(nwell).enclosed(nwell, 0.31.um).output("NW.c", "Min. NWell enclosure of P+Activ not in ThickGateOx = 0.31")
+log("NW.c-straddle"); pact_lv.interacting(nwell).not(x1).interacting(pact_lv.and(nwell)).output("NW.c_straddle", "P+Activ crossing the NWell edge")
+log("NW.d");  nwell_ns.separation(nact_lv.not_interacting(x1), 0.31.um).output("NW.d", "Min. NWell space to external N+Activ not in ThickGateOx = 0.31")
+log("NW.d-straddle"); nact_lv.interacting(nwell).not(nwell).interacting(nact_lv.and(nwell)).output("NW.d_straddle", "N+Activ crossing the NWell edge")
+log("NW.e");  nact_lv.inside(nwell).enclosed(nwell, 0.24.um).output("NW.e", "Min. NWell enclosure of N+Activ tie in NWell = 0.24")
+log("done")
