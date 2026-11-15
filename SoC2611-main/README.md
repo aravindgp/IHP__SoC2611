@@ -1,7 +1,8 @@
 # SoC2611-main — sources, flow and source-to-release mapping
 
 SoC2611 is the IHP release name of the chip (internal top-level name `soc2611_chip_top`).
-This directory holds what is needed to understand and reproduce the release in `../release/v.1.0.0/`.
+This directory holds what is needed to understand and reproduce the releases in `../release/`; the release for
+fabrication is `../release/v.3.0.2/`.
 
 ## Contents
 | Path | What |
@@ -11,7 +12,8 @@ This directory holds what is needed to understand and reproduce the release in `
 | `constraints/` | SDC (`design.sdc`, `chip_extra.sdc`), QFN64 pad ring + port map (`padring_qfn64.json`, `portmap_qfn64.json`), bond table |
 | `Flow/scripts/signoff/` | Chip integration (pads, pad↔core power straps), GDS stream, CDL, seal ring, tiled fill, DRC/LVS, release scripts |
 | `Flow/scripts/dgse/` | PDN script and detailed-route step/resume runner used with the DGSE (OpenROAD) P&R flow |
-| `verification/` | DRC table summaries, OpenROAD antenna summary, connectivity check of the current (preliminary) layout |
+| `testbenches/` | RTL test benches (VHDL, cocotb) and the gate-level test bench of the routed netlist (`gate_level/`) |
+| `verification/` | RTL simulation logs (`sim/`), power estimate of the routed chip (`power/`), and DRC, antenna and connectivity summaries of an intermediate layout (the checks of the released file are in `../release/v.3.0.2/checks/`) |
 
 ## Source-to-release mapping
 1. **RTL → netlist**: `synthesis/synth.ys` (Yosys 0.70+277) maps to the **sg13g2** standard-cell and SRAM liberty
@@ -28,7 +30,14 @@ This directory holds what is needed to understand and reproduce the release in `
 5. **Release**: `ihp_release.py` renames the top cell to `SoC2611` and writes the GDS with the Open-Silicon-MPW
    KLayout save options; `ihp_sealring_label.py` completes the seal-ring label; `ihp_repo_docs.py` writes the docs.
 
-## Status (preliminary)
+## Status (15 November 2026)
+Release `v.3.0.2` is the version for fabrication: routing clean, the IHP minimum rule set, density and LVS clean on
+the released GDS, hold met at three corners, rated at a 29.4 MHz system clock (slow corner), and the routed netlist
+runs the test firmware in simulation with and without the delays of the routed wires. Readiness TRL 6
+(`../doc/TRL-Mixed-Signal-IP.md`). What each release changed is in its `ReleaseNote.md`. The paragraphs below are
+the state before the final releases, kept as a record.
+
+## Status before the final releases (record)
 Routing is not yet DRC-clean, antenna repair and hold-timing closure are open, LVS has not been run. The
 verification summaries here were taken on a reduced LVS view (IO/SRAM FEOL removed, all metal kept) of an
 intermediate routing snapshot — not on the released GDS. The final release will carry DRC on the unmodified filled

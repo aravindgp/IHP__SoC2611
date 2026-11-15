@@ -1,10 +1,32 @@
 # SoC2611 — Datasheet
 
-> **Status: PRELIMINARY — not for fabrication.** Detailed routing has not converged and hold timing on
-> CPU↔SRAM paths is open; DRC/LVS are not clean yet. A final release will replace this one.
+> **Status: release `v.3.0.2` (15 November 2026), the version for fabrication.** All figures come from static
+> analysis and simulation of the released layout; no silicon has been measured yet.
 
 ## Supplies
 VDD/VSS: 1.2 V core, IOVDD/IOVSS: 3.3 V IO (one pair of each per side).
+
+## Ratings and operating conditions
+| Item | Value | Source |
+|---|---|---|
+| Core supply VDD, corners of the analysis | 1.08 V (slow, 125 C), 1.20 V (typical, 25 C), 1.32 V (fast, -40 C) | PDK libraries |
+| System clock, maximum | 29.4 MHz slow, 45.5 MHz typical, 64.4 MHz fast; rate the chip at the slow figure | `release/v.3.0.2/checks/timing_routed_wires.txt` |
+| Input clock `clk_x2`, maximum | twice the system clock: 58.8 / 91.0 / 128.8 MHz | same |
+| Hold | met at all three corners | same |
+| Power, 100 MHz input clock, toggle rate 0.1 | 0.50 W slow, 0.62 W typical, 0.78 W fast (estimate) | `SoC2611-main/verification/power/power_estimate.txt` |
+| Power at the rated clock of each corner | about 0.30 W slow, 0.57 W typical, 1.01 W fast (estimate) | same |
+| Static voltage drop, worst cell, 0.78 W | VDD 71 mV, VSS 122 mV | `release/v.3.0.2/checks/supply_drop.txt` |
+
+Power scales with the system clock (P = P_leakage + P_dynamic x f / 50 MHz); leakage is below 1 mW.
+
+## Operating notes for bring-up
+- Start at the nominal 1.20 V and a low clock, then raise the clock. The timing corners assume the stated voltage at
+  every cell; the static drop on VDD and VSS comes on top of it and grows with the clock.
+- The UART bit rate is the system clock divided by 1085 (for example 46,080 baud at a 50 MHz system clock, about
+  27,100 baud at 29.4 MHz), and one timer "millisecond" is 125,000 system clocks. Set the host terminal to the bit
+  rate that follows from the clock used. Details in `doc/RegisterMap.md`.
+- Firmware must not raise exceptions: the trap vector is fixed inside the accelerator register window
+  (`doc/RegisterMap.md` section 1). Recovery is by reset or JTAG.
 
 ## QFN64 pinout
 Pin numbering counter-clockwise from top-left (west 1-16, south 17-32, east 33-48, north 49-64).

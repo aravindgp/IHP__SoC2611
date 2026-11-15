@@ -1,0 +1,34 @@
+SoC2611 power estimate (static analysis, 13 November 2026)
+
+Method
+  OpenSTA in OpenROAD dcf36133, report_power on the routed database with the parasitics of the routed wires, one run
+  per corner (Liberty of the standard cells, IO cells and SRAM macros of IHP-Open-PDK dcb03b1e, same corner).
+  No simulation vectors: every input pin and every register output toggles with a rate of 0.1 per clock cycle, and
+  the tool carries that rate through the logic. Clocks run at the frequency of the constraints: input clock 10 ns
+  (100 MHz), system clock 20 ns (50 MHz). The routed layout is the one of 13 November; release v.3.0.0 later added
+  34 buffers and 26 antenna diodes to it (about 0.01 % of the cells), and v.3.0.2 is v.3.0.0 without two row fillers.
+  This is an estimate. No silicon has been measured.
+
+Result at a 100 MHz input clock (50 MHz system clock), toggle rate 0.1, in W
+
+  group            slow 1.08 V 125 C   typical 1.20 V 25 C   fast 1.32 V -40 C
+  registers            0.1757              0.2186                0.2677
+  logic                0.0623              0.0791                0.0998
+  clock tree           0.0724              0.0926                0.1186
+  SRAM macros          0.1902              0.2292                0.2912
+  pad cells            0.0034              0.0042                0.0053
+  total                0.5038              0.6241                0.7827
+  of it leakage        0.0006              0.0001                0.0003
+
+  Registers, clock tree and SRAM macros take about 87 % of the total. Their power depends on the clock, not much on
+  what the software does, so the estimate is a fair first figure for any program.
+
+Model
+  P = P_leakage + P_dynamic x (f_system / 50 MHz)
+  with P_dynamic = total minus leakage from the table, at the same toggle rate. Leakage is below 1 mW at every corner.
+  At the rated system clock of each corner (static timing on the routed wires: slow 29.4 MHz, typical 45.5 MHz,
+  fast 64.4 MHz) this gives about 0.30 W slow, 0.57 W typical and 1.01 W fast.
+  A program with more activity than 0.1 per cycle raises mainly the logic share (about 13 %).
+
+Supply current at the analysed point (fast corner, 0.78 W at 1.32 V): about 0.59 A on VDD, carried by 4 VDD and
+4 VSS pads. Static voltage drop at that point: release/v.3.0.2/checks/supply_drop.txt (VDD 71 mV, VSS 122 mV worst).

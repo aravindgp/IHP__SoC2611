@@ -30,5 +30,9 @@ reproduced. See also `doc/info.json` ("dependencies", "tools").
 | OpenROAD | `dcf36133` (build of 17 Feb 2026) | floorplan, placement, CTS, routing, ECO, parasitics |
 | KLayout | 0.30.5 | stream, seal ring, fill, density, DRC, LVS |
 | cocotb | 1.9 with the GHDL backend | firmware-level verification |
+| Verilator | 5.053 (development build, rev v5.052-640) | gate-level simulation of the routed netlist without delays (`SoC2611-main/testbenches/gate_level/`) |
+| Icarus Verilog | 14.0 (development build) | gate-level simulation of the routed netlist with the cell and wire delays |
+| xPack GNU RISC-V Embedded GCC | 15.2.0 (`riscv-none-elf-`) | firmware for the gate-level test bench |
+| OpenSTA (in OpenROAD `dcf36133`) | as above | static timing and power estimate on the routed wires |
 | SpinalHDL / sbt / OpenJDK | 1.9.3 / 1.9.9 / 11 | CPU generation |
 | OpenOCD | with the `vexriscv` target | JTAG bring-up (`cpu0.yaml`) |

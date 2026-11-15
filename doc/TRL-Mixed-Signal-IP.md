@@ -1,24 +1,25 @@
 # Mixed-Signal IP Quality Assessment using TRL scale
 
-> **Declared level: TRL 2.** Only items with evidence in this repository are ticked, and every tick names the file
-> behind it. SoC2611 is a digital SoC (RISC-V + AI accelerator), so the items about design equations, Verilog-A
-> models, analog ports, mismatch and mixed-signal simulation do not apply; they are left unticked with the note
-> "n/a (digital)". TRL1 and TRL2 are complete. TRL3 is incomplete because no gate-level (post-synthesis or
-> post-route) simulation has been run yet; TRL5 is incomplete because the released layout is preliminary (routing
-> closure in progress, DRC not clean, LVS not run). The level will be raised with the final release.
+> **Declared level: TRL 6**, the highest level a design can reach before silicon. State of release `v.3.0.2`,
+> 15 November 2026. Only items with evidence in this repository are ticked, and every tick names the file behind
+> it. SoC2611 is a digital SoC (RISC-V + AI accelerator), so the items about design equations, Verilog-A models,
+> analog ports and mismatch do not apply; they are left unticked with the note "n/a (digital)", and where an item
+> asks for mixed-signal simulation the gate-level simulation of the routed netlist is given. TRL1 to TRL6 are
+> complete in every item that applies. TRL7 and above need measured silicon: no SoC2611 chip has been made or
+> measured yet, so those levels are not claimed.
 
 The provided set of the quality assessment criteria, using TRL (Technology Readiness Level) scale, is a tool for designers to auto evaluate a submitted design. The purpose of this tool is to
 have a short overview of IP in terms of its maturity.
 
-Paths are relative to the repository root. `SoC2611-main/testbenches/` and `SoC2611-main/verification/sim/` were
-added on 9 November 2026 with the testbench sources and the simulation logs they refer to.
+Paths are relative to the repository root. The checks of the released file are in `release/v.3.0.2/checks/`; what
+changed against `v.3.0.0` and which results are carried from it is in `release/v.3.0.2/checks/changes_from_v3.0.0.txt`.
 
 ---
 
 ## TRL1 - Basic principles observed
 
 - [x] Is the IP functionality clearly described?
-  `doc/Specification.md` (function list, technology table), `README.md`, `SoC2611-main/README.md`.
+  `doc/Specification.md` (function list, technology table, ratings), `README.md`, `SoC2611-main/README.md`.
 - [x] Is the IP principle of operation explained in detail?
   `SoC2611-main/docs/HardwareDesign.md` (accelerator architecture block by block: dp_core, core, stream, pcore,
   register bank, instruction decoder, ALUs), `SoC2611-main/docs/ASIC_PORT.md` (SoC integration, clock/reset/CDC
@@ -43,8 +44,7 @@ added on 9 November 2026 with the testbench sources and the simulation logs they
   in `SoC2611-main/docs/ASIC_PORT.md` section 4 and `SoC2611-main/synthesis/inventory.md` (298 macros by type);
   CPU configuration in `SoC2611-main/docs/asic_jtag_README.md`.
 - [x] If the IP architecture can be configured by means of internal registers, is their mapping declared?
-  `doc/RegisterMap.md`: memory map, APB peripheral registers, accelerator host registers (sources:
-  `HW/src/ztachip_pkg.vhd`, `SW/src/soc.h`, `SW/base/zta.h` of the design repository).
+  `doc/RegisterMap.md`: memory map, APB peripheral registers, accelerator host registers.
 - [x] Do authors supply a complete test bench to validate the IP block-level architecture?
   `SoC2611-main/testbenches/vhdl/tb_soc2611_hb.vhd` (chip top + HyperRAM model), `tb_soc2611_fw.vhd`
   (ASIC top + DDR model), `tb_hyperbus.vhd`, `tb_ihp_mem_equiv.vhd`, `tb_ramw_equiv.vhd`, `tb_fp32.vhd`;
@@ -59,66 +59,88 @@ added on 9 November 2026 with the testbench sources and the simulation logs they
 ## TRL3 - Proof of concept at schematic level
 
 - [x] Are the IP schematics available at transistor level (analog parts) and gate level (digital parts)?
-  Gate level: `release/v.1.3.1/netlist/SoC2611.v.gz` (post-route Verilog) and `SoC2611.cdl.gz` (LVS netlist);
-  the same for every earlier release. Synthesis script and statistics: `SoC2611-main/synthesis/`.
+  Gate level: `release/v.3.0.2/netlist/SoC2611.v.gz` (routed Verilog) and `release/v.3.0.2/netlist/SoC2611.cdl.gz`
+  (LVS netlist). Synthesis script and statistics: `SoC2611-main/synthesis/`.
 - [x] Are all dependencies of the IP schematics on logic libraries declared?
   `dependencies/README.md`, `doc/info.json` (PDK commit, sg13cmos5l_stdcell, sg13cmos5l_io, RM_IHPSG13 SRAM),
   `SoC2611-main/README.md` (source-to-release mapping).
 - [ ] Are the analog IP ports fully specified at electrical level? n/a (digital); pad cells and supplies in
-  `doc/Interfaces.md`.
+  `doc/Interfaces.md` and `doc/Datasheet.md`.
 - [x] Are the digital IP ports fully specified at logical level (e.g. protocols)?
   `doc/Interfaces.md` (every pin group with its protocol, clocking, timing constraints, boot strap, JTAG TAP),
   `doc/Datasheet.md` (QFN64 pin table), `SoC2611-main/constraints/design.sdc`.
-- [ ] Do authors supply a mixed-signal test bench to validate the IP schematics?
-  Not yet: the testbenches run on RTL; gate-level simulation is planned on the final netlist.
-- [ ] Is any verification procedure given to check the IP schematic performance figures?
-  Not yet (same as above).
-- [ ] Are mixed-signal simulation results of the IP schematics reported for a typical case?
-  Not yet (same as above).
+- [x] Do authors supply a mixed-signal test bench to validate the IP schematics?
+  Digital: the gate-level test bench of the routed netlist, pad to pad (reset at the pad, boot from the HyperRAM
+  model, firmware checks, UART), in `SoC2611-main/testbenches/gate_level/` with its `README.md`.
+- [x] Is any verification procedure given to check the IP schematic performance figures?
+  `SoC2611-main/testbenches/gate_level/README.md` (tests, pass criteria, commands) and
+  `release/v.3.0.2/checks/simulation_summary.txt` (what each run checks, including a control run that must fail);
+  static timing on the routed wires: `release/v.3.0.2/checks/timing_routed_wires.txt`.
+- [x] Are mixed-signal simulation results of the IP schematics reported for a typical case?
+  Digital: `release/v.3.0.2/checks/simulation_summary.txt`: without delays the quick suite, the full suite (6 of 6
+  checks) and a camera capture pass, also with random start values in every register; with the delays of the
+  routed wires at the typical corner the quick suite passes at an 11.0 ns input clock.
 
 ## TRL4 - Full design at schematic level
 
-- [ ] Are the mixed-signal simulation results of the IP schematics extended to process, supply and temperature (PVT) corners?
-  Not yet. Corner definitions used by the flow: typ 1.20 V / 25 C, slow 1.08 V / 125 C, fast 1.32 V / -40 C
-  (`SoC2611-main/docs/platform_README.md`). Multi-corner STA is part of the final release.
+- [x] Are the mixed-signal simulation results of the IP schematics extended to process, supply and temperature (PVT) corners?
+  Corners: typical 1.20 V 25 C, slow 1.08 V 125 C, fast 1.32 V -40 C. Simulation with the cell and wire delays of
+  each corner: the quick suite passes at a 17.1 ns (slow), 11.0 ns (typical) and 7.8 ns (fast) input clock, and a
+  control run far too fast fails (`release/v.3.0.2/checks/simulation_summary.txt`). Static timing at the three
+  corners with hold met everywhere (`release/v.3.0.2/checks/timing_routed_wires.txt`).
 - [ ] Are the mixed-signal simulation results of the IP schematics extended to technology mismatching? n/a (digital).
 - [x] Are the authors defining the mixed-signal supply domains of the IP schematics and their individual power requirements?
-  `doc/Interfaces.md` and `doc/Datasheet.md` "Supplies": one domain pair VDD/VSS 1.2 V (core) and IOVDD/IOVSS
-  3.3 V (pads), 16 supply pads, budget about 200 mW at 50 MHz (IR analysis pending).
-- [ ] Does the IP description include any power consumption model (e.g. as a function of input stimuli)? Not yet.
+  `doc/Interfaces.md` and `doc/Datasheet.md`: one core domain VDD/VSS 1.2 V and one pad domain IOVDD/IOVSS 3.3 V,
+  16 supply pads, power per corner from `SoC2611-main/verification/power/power_estimate.txt`, static voltage drop
+  in `release/v.3.0.2/checks/supply_drop.txt`.
+- [x] Does the IP description include any power consumption model (e.g. as a function of input stimuli)?
+  `SoC2611-main/verification/power/power_estimate.txt`: power per corner and per group from static analysis of the
+  routed chip at a toggle rate of 0.1, and the model P = P_leakage + P_dynamic x (f_system / 50 MHz). An estimate:
+  no silicon has been measured.
 
 ## TRL5 - Full design at layout level
 
 - [x] Is the IP complete layout available?
-  `release/v.1.3.1/gds/` (whole chip with seal ring and fill; preliminary: 0 supply shorts, 1,624 detailed-route
-  violations open, see `release/v.1.3.1/ReleaseNote.md` and `STATUS_2026-11-09.md`).
+  `release/v.3.0.2/gds/SoC2611.gds.gz`: the whole chip with seal ring, row fillers and fill, the file
+  `doc/info.json` names.
 - [x] Are all dependencies of the IP layout on logic libraries declared? `dependencies/README.md`, `doc/info.json`.
-- [ ] Do authors supply a clean DRC report?
-  Not clean yet. Available: density deck PASS on every release (`release/v.1.3.1/density_fullfill.txt`),
-  per-table results of the IHP minimum deck on an intermediate snapshot (`SoC2611-main/verification/drc/tables/`),
-  antenna summary (`SoC2611-main/verification/drc/antenna_openroad_summary.txt`), waivers
-  (`SoC2611-main/Flow/scripts/signoff/waivers/`). The full deck on the final GDS is part of the final release.
-- [ ] Do authors supply a clean LVS report?
-  Not yet at chip level. Block-level LVS of the IO cell, a standard cell and a routed test block MATCH
-  (`SoC2611-main/Flow/scripts/signoff/README.md`); chip LVS runs on the final database.
-- [ ] Are post-layout mixed-signal simulation results of the IP layout reported for PVT corners? Not yet.
+- [x] Do authors supply a clean DRC report?
+  IHP minimum rule set in deep mode on the released GDS: 26 of 26 rule tables and the GatPoly filler table, 0
+  violations (`release/v.3.0.2/checks/drc_minimum_fullfill.txt` and the result databases next to it); on the layout
+  without fill 23 of 23 tables, 0 violations (`drc_minimum_nofill.txt`); density 0 violations
+  (`release/v.3.0.2/density.txt`, IHP density deck in `density_ihp_deck.txt`); the NWell rules of IHP's maximal deck
+  that need no connectivity and every NWell gap, 0 (`nwell_rules.txt`); both antenna checks 0
+  (`antenna_summary.txt`, `antenna_ihp_table.txt`). The rest of the maximal deck was not run on the whole chip.
+- [x] Do authors supply a clean LVS report?
+  `release/v.3.0.2/checks/lvs_summary.txt`: KLayout with the IHP deck, netlists match, 0 warnings, 0 errors, 67 of
+  67 circuits, 354,825 instances; SRAM macros and pad cells as black boxes with their pins. Independent of LVS,
+  every signal net traced in the GDS against the netlist (`connectivity_trace.txt`) and every input pin checked for a
+  net (`open_inputs.txt`).
+- [x] Are post-layout mixed-signal simulation results of the IP layout reported for PVT corners?
+  Digital: the simulation with the cell and wire delays of the routed layout at the slow, typical and fast corner,
+  and the static timing of the routed wires at the same corners (see TRL4).
 
 ## TRL6 - Full design for SoC integration
 
 - [ ] Does the IP come with suitable descriptors for digital-on-top integration (e.g. Liberty, LEF)?
-  n/a: SoC2611 is a complete chip, not a hard IP for integration. The LEF/Liberty it depends on are the PDK's.
+  n/a: SoC2611 is a complete chip with its pad ring, not a hard IP for integration into another design. The LEF and
+  Liberty files it is built from are the PDK's (`dependencies/README.md`).
 - [ ] Is the IP incorporating any BIST mechanism? If so, is it properly documented?
-  No BIST is used. 195 of the 298 SRAM macros are `_bm_bist` variants; their BIST ports are tied off
-  (`doc/Interfaces.md` "Memory BIST", `SoC2611-main/rtl/SoC2611.v`: `*_bist_*` ports driven to 0).
+  n/a: no BIST is used. 195 of the 298 SRAM macros are `_bm_bist` variants; their BIST ports are tied off, which is
+  documented in `doc/Interfaces.md` "Memory BIST" (memory test runs in firmware over JTAG or UART).
 - [x] Does the IP document fully define its digital interface?
-  `doc/Interfaces.md` and `doc/Datasheet.md` (pins, protocols, clocks, reset, boot strap, JTAG), `doc/RegisterMap.md`.
+  `doc/Interfaces.md` and `doc/Datasheet.md` (pins, protocols, clocks and rated speeds, reset, boot strap, JTAG,
+  supplies), `doc/RegisterMap.md` (memory map, registers, firmware rules).
 
 ## TRL7 - Lab demonstrator prototype
 
 - [ ] Has any dedicated test chip been designed for the hard IP?
+  SoC2611 is itself the test chip: release `v.3.0.2`, submitted to the IHP Open-Silicon-MPW run (issue #79). Not
+  ticked because the level needs the measured chip.
 - [ ] Is the hard IP test chip fully documented (e.g. pad ring)?
-- [ ] Are experimental results available from the IP dedicated test chip (Silicon proven)?
-- [ ] Do authors supply any comprehensive comparison between IP test chip and post-layout results?
+  Pad ring, pinout and package in `doc/Datasheet.md` and `doc/Interfaces.md`; not ticked for the same reason.
+- [ ] Are experimental results available from the IP dedicated test chip (Silicon proven)? Not yet: no silicon.
+- [ ] Do authors supply any comprehensive comparison between IP test chip and post-layout results? Not yet.
 
 ## TRL8 - In-field demonstrator prototype
 
@@ -134,5 +156,6 @@ added on 9 November 2026 with the testbench sources and the simulation logs they
 - [ ] Does the IP documentation include any training materials?
   Programmer guides for the accelerator are in `SoC2611-main/docs/` (not ticked for the same reason).
 - [ ] Are the EDA tools and versions used for developing the IP documented?
-  `doc/info.json` "tools" and `dependencies/README.md` (Yosys, OpenROAD, KLayout, GHDL, SpinalHDL, cocotb versions).
+  `doc/info.json` "tools" and `dependencies/README.md` (Yosys, OpenROAD, KLayout, GHDL, SpinalHDL, cocotb,
+  Verilator, Icarus Verilog versions).
 - [ ] Is the hard IP integrated in any commercial IC? No.
