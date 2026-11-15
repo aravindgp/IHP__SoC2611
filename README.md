@@ -20,7 +20,7 @@ This repository contains the design assets, documentation, testbenches, signoff 
 ![SoC2611 block diagram: CPU, accelerator, memories, buses, peripherals, pads and the parts on the board](doc/architecture/figures/01_soc_block_diagram.svg)
 
 *Blocks of the chip top, the buses between them, the pads and the parts on the board, drawn from the RTL and the
-released netlist.*
+released netlist. The description and the other diagrams are in `doc/architecture/`.*
 
 ## Project status
 
@@ -131,6 +131,7 @@ diode from the complete net and allows a cumulative metal-to-gate ratio of 20,00
 ├── candidate/
 │   └── v.2.4.1/        (candidate GDS and DRC run script for checks on a second machine; not a release; has the open-input defect)
 ├── doc/
+│   ├── architecture/   (diagrams with their descriptions, index in architecture/README.md)
 │   ├── Datasheet.md
 │   ├── Specification.md
 │   ├── Interfaces.md
@@ -168,6 +169,8 @@ diode from the complete net and allows a cumulative metal-to-gate ratio of 20,00
 ### `doc/`
 Project documentation and metadata:
 
+- `architecture/` — diagrams of the chip with their descriptions, drawn from the RTL, the released netlist and the
+  GDS; `architecture/README.md` lists them
 - `Specification.md` — functional and architectural specification
 - `Datasheet.md` — pinout, supplies and packaging information
 - `Interfaces.md` — pin groups with protocols, clocks and timing constraints, reset and boot, BIST, package
@@ -236,10 +239,11 @@ The SoC2611 design is intended to combine:
 For a technical understanding of the design, start with:
 
 1. `doc/Specification.md`
-2. `doc/Interfaces.md` and `doc/RegisterMap.md`
-3. `doc/Datasheet.md`
-4. `doc/TRL-Mixed-Signal-IP.md`
-5. `SoC2611-main/README.md`
+2. `doc/architecture/README.md`
+3. `doc/Interfaces.md` and `doc/RegisterMap.md`
+4. `doc/Datasheet.md`
+5. `doc/TRL-Mixed-Signal-IP.md`
+6. `SoC2611-main/README.md`
 
 ## Licensing
 

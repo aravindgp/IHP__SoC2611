@@ -12,6 +12,7 @@ accelerator status registers (tests T01, T03, T04, T05, T06).
 |---|---|---|
 | `0x0000_0000` | TCM, 4 KiB (one `RM_IHPSG13_2P_1024x32` macro, 1024 words of 32 bits) | Boot ROM image is copied into the TCM by hardware at power-up; reset vector `0x0000_0000`. Stack of the boot ROM. |
 | `0x0000_4000` | Application entry (`APP_ENTRY`) in main memory | Main memory is the external HyperRAM behind the AXI HyperBus controller (one 8 MB device on CS#0). |
+| `0x4000_0000` | Accelerator scratchpad SRAM, read port for the CPU data bus | Read only. A CPU write here is never accepted and stalls the CPU. Instruction fetches in this range go to main memory. |
 | `0x8000_0000` | Accelerator (ztachip) host registers, `MEM_MAP` | Word addressed: register `(reg2 << 5) + reg`, see section 3. |
 | `0xC000_0000` | APB peripherals | Byte offsets below, 8-bit APB address space (`apb_addr_len_c = 8`). |
 
@@ -22,7 +23,8 @@ image, prints `GO`, jumps). The loader is verified in `verification/sim/cocotb_b
 
 Exceptions: the CPU's trap vector is a constant, `0x8000_0020`, which lies inside the accelerator register window,
 and the CPU has no environment call (`ecall` does not trap). An illegal instruction, a misaligned access or any
-other exception therefore jumps into the register window; only reset or JTAG recovers. Firmware for this chip must
+other exception therefore jumps into the register window. The instruction bus has no route to addresses with bit 31
+at 1, so that fetch is accepted but never answered and the CPU stalls; only reset or JTAG recovers. Firmware for this chip must
 not raise exceptions and must not use `ecall`.
 
 ## 2. APB peripherals (base `0xC000_0000`, byte offset = 4 x firmware word index)
@@ -34,15 +36,18 @@ not raise exceptions and must not use `ecall`.
 | `0x0C` | `APB_CAMERA_ENABLE` | W | camera write-DMA enable |
 | `0x10` | `APB_CAMERA_CURR_FRAME` | R | index of the frame buffer being written |
 | `0x14` .. `0x20` | `APB_CAMERA_BUFFER` + 0..3 | W | camera frame buffer addresses 0..3 |
-| `0x24` | `APB_VIDEO_ENABLE` | W | video read-DMA enable (VGA output not bonded on this chip) |
-| `0x28` | read-DMA current buffer | R | |
-| `0x2C` .. `0x38` | `APB_VIDEO_BUFFER` + 0..3 | W | video buffer addresses 0..3 |
+| `0x24` | `APB_VIDEO_ENABLE` | W | video read-DMA enable; VGA output is disabled on this chip, so no slave answers `0x24` .. `0x38` and an access stalls the CPU |
+| `0x28` | read-DMA current buffer | R | not present, see `0x24` |
+| `0x2C` .. `0x38` | `APB_VIDEO_BUFFER` + 0..3 | W | not present, see `0x24` |
 | `0x3C` | `APB_UART_READ` | R | UART receive data |
 | `0x40` | `APB_UART_WRITE` | W | UART transmit data |
-| `0x44` | `APB_UART_READ_AVAIL` | R | receive bytes available |
-| `0x48` | `APB_UART_WRITE_AVAIL` | R | transmit space available |
-| `0x4C` | `APB_TIME_GET` | R | timer, low word: counts once every 125,000 system clocks |
-| `0x50` | `APB_TIME2_GET` | R | timer, high word |
+| `0x44` | `APB_UART_READ_AVAIL` | R | bit 0 = 1 when the receive FIFO is not empty |
+| `0x48` | `APB_UART_WRITE_AVAIL` | R | bit 0 = 1 when the transmit FIFO is not full |
+| `0x4C` | `APB_TIME_GET` | R | timer: counts once every 125,000 system clocks |
+| `0x50` | `APB_TIME2_GET` | R | second counter: counts once every system clock |
+
+Any offset not in this table, such as `0x04`, stalls the CPU: the APB bridge waits for a ready signal that no slave
+gives.
 
 UART: 8 data bits, no parity, 1 stop bit. The bit time is fixed at 1085 system clocks (the design constant assumes a
 125 MHz system clock and 115,200 baud), so the bit rate is the system clock divided by 1085: 46,080 baud at a 50 MHz
@@ -73,7 +78,7 @@ Word address = `MEM_MAP + 4 x ((reg2 << 5) + reg)`, `reg2` = page, `reg` = regis
 | 15 | `REG_SOFT_RESET` | W | accelerator soft reset |
 | 16 .. 19 | `REG_MSGQ_READ`, `_READ_AVAIL`, `_WRITE`, `_WRITE_AVAIL` | R/W | message queue to the PCORE programs |
 | 20, 21 | `REG_SWDL_COMPLETE_READ`, `_CLEAR` | R/W | software download complete flag |
-| 22 | `REG_DP_MAX_PCORE` | - | defined in `ztachip_pkg.vhd` and `zta.h`, not decoded by the hardware (the chip has 4 PCOREs) |
+| 22 | `REG_DP_MAX_PCORE` | - | defined in `ztachip_pkg.vhd` and `zta.h`, not decoded by the hardware (the chip has 4 PCOREs); a read never returns and stalls the CPU (`SoC2611-main/docs/ASIC_PORT.md`) |
 | 23 .. 25 | `REG_DP_INDICATION_PARM0/1`, `REG_DP_READ_INDICATION_PARM` | R | indication parameters |
 | 26 .. 28, 31 | `REG_FPU_SET`, `REG_FPU_EXE`, `REG_FPU_GET_STATUS`, `REG_FPU_SET_MEM` | R/W | FP32 unit |
 
