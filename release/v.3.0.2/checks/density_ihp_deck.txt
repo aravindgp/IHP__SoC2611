@@ -1,0 +1,13 @@
+IHP density deck on the GDS of v.3.0.0 (14 November 2026), carried to v.3.0.2
+Carried, not run again. The density of the GDS of v.3.0.2 itself was computed by our own density check: 0
+violations (density.txt). v.3.0.2 leaves out two row filler cells, a few square micrometres of Activ, GatPoly
+and Metal1 in a chip of 43.56 mm2: the global densities are unchanged at the reported precision (Activ 38.813 %,
+GatPoly 20.916 %, Metal1 38.500 %), and the lowest 200 um window keeps 8.0 points of margin for Activ and 5.8
+points for Metal1.
+
+IHP density deck (run_drc.py --density_only, minimum rule set, deep mode) on the GDS of this release, run on a second machine
+KLayout DRC run for density table completed in 8241.25 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.
+The same deck was also run on the build machine from the candidate copy of this GDS, hash checked before the run:
+KLayout DRC run for density table completed in 7873.95 seconds
+KLayout DRC Check Passed: No DRC violations detected in the layout.

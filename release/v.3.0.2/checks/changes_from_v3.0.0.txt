@@ -1,0 +1,30 @@
+Changes of v.3.0.2 against v.3.0.0 (15 November 2026)
+
+Two row filler cells left out, nothing else.
+
+   place   filler left out                                     new first cell of the row   its NWell to the macro NWell corner
+   1       sg13cmos5l_fill_1, r0 at (1631.04, 2993.76) um      sg13cmos5l_tiehi            0.629 um
+   2       sg13cmos5l_fill_4, r0 at (3120.96, 2993.76) um      sg13cmos5l_dfrbpq_1         1.92 um
+
+Why: at the top right corners of two RM_IHPSG13_1P_64x16_c2 macros the macro NWell ended at y 2995.025 um and the
+NWell of the first cell of the row beside it began at y 2995.510 um: a gap of 0.485 um against 0.62 um of rule NW.b.
+In both places that first cell was a row filler. Fillers have no devices and no nets. In the thinned file, the NWell
+box that the filler edge fix of v.2.1.0 kept for the filler at place 1 is gone with it.
+
+Proof that nothing else changed: the full-fill file and the layout without fill of v.3.0.2 were each compared with
+those of v.3.0.0 cell by cell (KLayout LayoutDiff, all shapes and instances): 2 differences each, the two filler
+instances, present only in v.3.0.0. The thinned one-file GDS was then made from the full-fill file by the same
+script as in v.3.0.0.
+
+v.3.0.1 is not a release: it joined the wells with two drawn NWell rectangles whose joints were narrower than
+0.62 um (rule NW.a); its candidate branch is marked as withdrawn.
+
+What this means for the checks:
+- run again on the files of v.3.0.2, because they read NWell, the fillers or the whole file: the IHP minimum rule set
+  on the GDS of this release and on the layout without fill, density, LVS, the NWell rules and the NWell gap
+  measurement;
+- carried from v.3.0.0, because their inputs are unchanged: the routed database, the netlist and the signal metal are
+  the same, and the supply rails of the rows are drawn in the top cell over each whole row, so leaving out a filler
+  removes only its own short rail piece at the start of the row. These are open inputs and wiring, simulation of the
+  routed netlist, timing with the routed wires, the router's antenna check, the net trace of the metal, and the
+  voltage drop.
