@@ -12,7 +12,7 @@ This repository contains the design assets, documentation, testbenches, signoff 
 - Die size: 6.6 mm × 6.6 mm
 - On-chip memory: 298 RM_IHPSG13 SRAM macros (214 KiB); external HyperRAM as main memory
 - Top cell: `SoC2611`
-- Readiness: TRL 2 declared (`doc/TRL-Mixed-Signal-IP.md`)
+- Readiness: TRL 6 declared (`doc/TRL-Mixed-Signal-IP.md`), the highest level before silicon
 - License: Apache-2.0
 
 ## Project status
@@ -46,8 +46,8 @@ request: IHP-GmbH/Open-Silicon-MPW issue #79). State of 15 November 2026:
 - Simulation of the routed netlist, pad to pad (reset, boot from the external memory, firmware, UART): without
   delays, the quick suite, the full suite (6 of 6 checks) and a camera capture pass, and the quick suite and the
   capture pass again with random start values in every register; with the cell and wire delays of the timing
-  analysis, the quick suite passes at the rated speed of each corner, and a control run far too fast fails as it
-  must.
+  analysis, the quick suite passes at each corner within one percent of its rated speed (29.2 / 45.5 / 64.1 MHz
+  system clock, slow / typical / fast), and a control run far too fast fails as it must.
 - Core supply: metal bars between the pad ring and the core; worst static drop at 0.78 W 71 mV on VDD and 122 mV
   on VSS (217 mV and 205 mV before).
 - Die outline: on prBoundary.drawing (189/0), 6600 um by 6600 um, besides prBoundary.boundary (189/4) and

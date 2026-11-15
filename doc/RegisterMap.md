@@ -17,8 +17,13 @@ accelerator status registers (tests T01, T03, T04, T05, T06).
 
 Boot sequence: after `porst_n_in` releases, the CPU runs the boot ROM from the TCM. GPIO in[3] is the boot strap:
 `1` = jump to the application image at `0x0000_4000` (already in HyperRAM, e.g. loaded by JTAG or a previous
-session), `0` = UART loader (115200 8N1, prints `BOOT`, receives the image, prints `GO`, jumps). The loader is
-verified in `verification/sim/cocotb_bootldr.log` (`BOOT -> GO -> HELLO`).
+session), `0` = UART loader (8N1 at the system clock divided by 1085, see section 2; prints `BOOT`, receives the
+image, prints `GO`, jumps). The loader is verified in `verification/sim/cocotb_bootldr.log` (`BOOT -> GO -> HELLO`).
+
+Exceptions: the CPU's trap vector is a constant, `0x8000_0020`, which lies inside the accelerator register window,
+and the CPU has no environment call (`ecall` does not trap). An illegal instruction, a misaligned access or any
+other exception therefore jumps into the register window; only reset or JTAG recovers. Firmware for this chip must
+not raise exceptions and must not use `ecall`.
 
 ## 2. APB peripherals (base `0xC000_0000`, byte offset = 4 x firmware word index)
 
@@ -36,11 +41,15 @@ verified in `verification/sim/cocotb_bootldr.log` (`BOOT -> GO -> HELLO`).
 | `0x40` | `APB_UART_WRITE` | W | UART transmit data |
 | `0x44` | `APB_UART_READ_AVAIL` | R | receive bytes available |
 | `0x48` | `APB_UART_WRITE_AVAIL` | R | transmit space available |
-| `0x4C` | `APB_TIME_GET` | R | timer, low word |
+| `0x4C` | `APB_TIME_GET` | R | timer, low word: counts once every 125,000 system clocks |
 | `0x50` | `APB_TIME2_GET` | R | timer, high word |
 
-UART: fixed 115200 baud, 8 data bits, no parity, 1 stop bit, from the 50 MHz core clock. The SPI master and the
-remaining GPIO are driven by the firmware through the same APB slave (`soc.h`).
+UART: 8 data bits, no parity, 1 stop bit. The bit time is fixed at 1085 system clocks (the design constant assumes a
+125 MHz system clock and 115,200 baud), so the bit rate is the system clock divided by 1085: 46,080 baud at a 50 MHz
+system clock, about 27,100 baud at the slow-corner rating of 29.4 MHz. The timer counts once every 125,000 system
+clocks, which is one millisecond only at 125 MHz (2.5 ms at 50 MHz). Firmware and host software must scale both to
+the clock in use. The SPI master and the remaining GPIO are driven by the firmware through the same APB slave
+(`soc.h`).
 
 ## 3. Accelerator host registers (base `0x8000_0000`)
 
