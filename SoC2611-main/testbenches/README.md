@@ -27,6 +27,12 @@ run and how. Results: `../verification/sim/`.
 | `test_debug.py` | JTAG debug TAP: halt, memory access, resume | pass |
 | `test_speed.py` | speed path | pass |
 
+## Gate-level bench (`gate_level/`)
+
+This bench runs on the released routed netlist (`../../release/v.3.0.2/netlist/SoC2611.v.gz`), not on the RTL. It
+simulates the chip pad to pad, without delays (Verilator) and with the cell and wire delays (Icarus Verilog). How
+to run it: `gate_level/README.md`. Results: `../../release/v.3.0.2/checks/simulation_summary.txt`.
+
 ## How to run (design repository root)
 
 ```sh
